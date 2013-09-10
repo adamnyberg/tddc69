@@ -113,10 +113,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Sort.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Sort.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/adany869/tddc69/lab1/Sort.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state line="5" column="25" selection-start="120" selection-end="120" vertical-scroll-proportion="0.0">
+=======
+            <state line="2" column="26" selection-start="59" selection-end="68" vertical-scroll-proportion="0.06012024">
+>>>>>>> e53543f754db6317d282a6232bab5f0a3a14edba
               <folding />
             </state>
           </provider>
@@ -131,10 +135,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShapeTest.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ShapeTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/se/liu/ida/adany869/tddc69/lab1/ShapeTest.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state line="7" column="25" selection-start="218" selection-end="218" vertical-scroll-proportion="0.3398058">
+=======
+            <state line="7" column="25" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0">
+>>>>>>> e53543f754db6317d282a6232bab5f0a3a14edba
               <folding />
             </state>
           </provider>
@@ -196,10 +204,12 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
+<<<<<<< HEAD
               <option name="myItemId" value="test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
@@ -228,8 +238,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+=======
+>>>>>>> e53543f754db6317d282a6232bab5f0a3a14edba
               <option name="myItemId" value="lab1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -253,21 +265,31 @@
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="OverrideImplement.combined" value="true" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="preferences.sourceCode.General" />
     <property name="recentsLimit" value="5" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
+=======
+>>>>>>> e53543f754db6317d282a6232bab5f0a3a14edba
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
+<<<<<<< HEAD
     <property name="dynamic.classpath" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+=======
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+>>>>>>> e53543f754db6317d282a6232bab5f0a3a14edba
   </component>
   <component name="RunManager" selected="Application.ShapeTest">
     <configuration default="false" name="klass" type="Application" factoryName="Application" temporary="true">
@@ -475,7 +497,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="180" y="132" width="1036" height="711" extended-state="0" />
+=======
+    <frame x="12" y="22" width="1428" height="878" extended-state="0" />
+>>>>>>> e53543f754db6317d282a6232bab5f0a3a14edba
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -565,16 +591,29 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/adany869/tddc69/lab1/ListTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state line="9" column="21" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0">
+=======
+        <state line="16" column="29" selection-start="482" selection-end="482" vertical-scroll-proportion="0.0">
+>>>>>>> e53543f754db6317d282a6232bab5f0a3a14edba
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/adany869/tddc69/lab1/ShapeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="25" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/se/liu/ida/adany869/tddc69/lab1/Sort.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="21" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lab1.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/se/liu/ida/adany869/tddc69/lab1/Shape.java">
@@ -595,11 +634,6 @@
     <entry file="file://$PROJECT_DIR$/src/se/liu/ida/adany869/tddc69/lab1/Rectangle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="4" selection-start="85" selection-end="85" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lab1.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/se/liu/ida/adany869/tddc69/lab1/Rectangle.java">
@@ -647,16 +681,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/adany869/tddc69/lab1/Sort.java">
+    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/adany869/tddc69/lab1/ShapeTest.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state line="5" column="25" selection-start="120" selection-end="120" vertical-scroll-proportion="0.0">
+=======
+        <state line="7" column="25" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0">
+>>>>>>> e53543f754db6317d282a6232bab5f0a3a14edba
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/adany869/tddc69/lab1/ShapeTest.java">
+    <entry file="file://$PROJECT_DIR$/src/se/liu/ida/adany869/tddc69/lab1/Sort.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state line="7" column="25" selection-start="218" selection-end="218" vertical-scroll-proportion="0.3398058">
+=======
+        <state line="2" column="26" selection-start="59" selection-end="68" vertical-scroll-proportion="0.06012024">
+>>>>>>> e53543f754db6317d282a6232bab5f0a3a14edba
           <folding />
         </state>
       </provider>

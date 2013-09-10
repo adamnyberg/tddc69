@@ -1,4 +1,6 @@
 .DS_Store
 lab2/lab2.ipr
 lab2/lab2.iws
-.idea
+lab1/.idea
+Lab2/.idea
+lab2/.idea
