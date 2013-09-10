@@ -4,7 +4,7 @@
     <list default="true" id="9d9923c9-bf99-43d2-bb98-8e3580341415" name="Default" comment="" />
     <ignored path="lab2.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/ShapeType.java" changelist="9d9923c9-bf99-43d2-bb98-8e3580341415" time="1378797632695" ignored="false" />
+    <file path="/ShapeType.java" changelist="9d9923c9-bf99-43d2-bb98-8e3580341415" time="1378799178430" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +68,16 @@
       <file leaf-file-name="SquareType.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SquareType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="15" selection-start="47" selection-end="47" vertical-scroll-proportion="0.04109589">
+            <state line="1" column="32" selection-start="57" selection-end="57" vertical-scroll-proportion="0.020547945">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Board.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Board.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="14" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -85,6 +94,7 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/ShapeType.java" />
+        <option value="$PROJECT_DIR$/src/SquareType.java" />
       </list>
     </option>
   </component>
@@ -356,9 +366,16 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="14" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/SquareType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="15" selection-start="47" selection-end="47" vertical-scroll-proportion="0.04109589">
+        <state line="1" column="32" selection-start="57" selection-end="57" vertical-scroll-proportion="0.020547945">
           <folding />
         </state>
       </provider>
