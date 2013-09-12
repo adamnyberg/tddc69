@@ -19,6 +19,8 @@ public class TetrisTextView {
                             textBoard.append(square);
                             break;
                     }
+                } else {
+                    textBoard.append(' ');
                 }
             }
             textBoard.append("\n");
