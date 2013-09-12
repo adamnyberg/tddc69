@@ -16,6 +16,7 @@ public class TetrisFrame extends JFrame{
     private JTextArea textArea;
     public TetrisFrame(Board board) {
         super("MyWindowTitle");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.board = board;
         textArea = new JTextArea(board.getHeight(), board.getWidth());
         textArea.setText(TetrisTextView.convertToText(board));

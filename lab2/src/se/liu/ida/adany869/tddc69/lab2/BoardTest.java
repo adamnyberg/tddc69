@@ -13,7 +13,6 @@ public class BoardTest {
         TetrisTextView view;
         view = new TetrisTextView();
 
-        System.out.println(view.convertToText(b));
         TetrisFrame frame = new TetrisFrame(b);
     }
 }
