@@ -1,8 +1,5 @@
 package se.liu.ida.adany869.tddc69.lab2;
 
-import se.liu.ida.adany869.tddc69.lab2.Board;
-import se.liu.ida.adany869.tddc69.lab2.SquareType;
-
 public class TetrisTextView {
     public String convertToText(Board board) {
 

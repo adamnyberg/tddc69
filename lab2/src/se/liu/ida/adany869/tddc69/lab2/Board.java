@@ -1,5 +1,4 @@
 package se.liu.ida.adany869.tddc69.lab2;
-
 /**
  * Created with IntelliJ IDEA.
  * User: Harald
