@@ -1,15 +1,27 @@
-/**
- * Created with IntelliJ IDEA.
- * User: Harald
- * Date: 2013-09-10
- * Time: 09:51
- * To change this template use File | Settings | File Templates.
- */
+import java.util.List;
+
 public class TetrisTextView {
     public String convertToText(Board board) {
-        for (S) {
 
+        StringBuilder textBoard = new StringBuilder();
+        textBoard.append("Board:\n\n");
 
+        for (int height  : board.getHeight()) {
+            for (int width : board.getWidth) {
+                SquareType square = board.getSquare(width, height);
+                switch (square) {
+
+                    case OUTSIDE :
+                        textBoard.append(' ');
+                        break;
+                    default:
+                        textBoard.append(square);
+                        break;
+                }
+            }
+            textBoard.append("\n");
         }
+
+        return textBoard.toString();
     }
 }
