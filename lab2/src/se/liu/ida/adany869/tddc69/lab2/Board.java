@@ -18,21 +18,21 @@ public class Board {
     private static final int BORDER_WIDTH = 2;
 
     public Board(){
-        this(INIT_HEIGHT, INIT_WIDTH);
+        this(INIT_WIDTH, INIT_HEIGHT);
     }
 
-    public Board(int h, int w) {
+    public Board(int w, int h) {
         height = h;
         width = w;
         BoardArray = new SquareType[width + BORDER_WIDTH][height + BORDER_HEIGHT];
     }
 
-    public void setSquare(int height, int width, SquareType value){
-        BoardArray[height][width] = value;
+    public void setSquare(int width, int height, SquareType value){
+        BoardArray[width][height] = value;
     }
 
-    public SquareType getSquare(int height, int width){
-        return BoardArray[height][width];
+    public SquareType getSquare(int width, int height){
+        return BoardArray[width][height];
     }
 
     public int getHeight() {

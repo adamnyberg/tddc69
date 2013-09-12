@@ -1,7 +1,7 @@
 package se.liu.ida.adany869.tddc69.lab2;
 
 public class TetrisTextView {
-    public String convertToText(Board board) {
+    public static String convertToText(Board board) {
 
         StringBuilder textBoard = new StringBuilder();
         textBoard.append("se.liu.ida.adany869.tddc69.lab2.Board:\n\n");
