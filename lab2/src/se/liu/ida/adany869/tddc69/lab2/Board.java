@@ -27,6 +27,10 @@ public class Board {
         BoardArray = new SquareType[width + BORDER_WIDTH][height + BORDER_HEIGHT];
     }
 
+    public void setSquare(int height, int width, SquareType value){
+        BoardArray[height][width] = value;
+    }
+
     public SquareType getSquare(int height, int width){
         return BoardArray[height][width];
     }
