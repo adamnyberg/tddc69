@@ -9,14 +9,16 @@ public class TetrisTextView {
         for (int height = 0;  height < board.getHeight(); height++) {
             for (int width = 0; width < board.getWidth(); width++) {
                 SquareType square = board.getSquare(width, height);
-                switch (square) {
+                if (square != null) {
+                    switch (square) {
 
-                    case OUTSIDE :
-                        textBoard.append(' ');
-                        break;
-                    default:
-                        textBoard.append(square);
-                        break;
+                        case OUTSIDE :
+                            textBoard.append('|');
+                            break;
+                        default:
+                            textBoard.append(square);
+                            break;
+                    }
                 }
             }
             textBoard.append("\n");
