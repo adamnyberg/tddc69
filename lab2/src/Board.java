@@ -7,6 +7,8 @@
  */
 public class Board {
     private SquareType[][] BoardArray;
+    private int height;
+    private int width;
     private static final int INIT_HEIGHT = 15;
     private static final int INIT_WIDTH = 15;
     private static final int BORDER_HEIGHT = 1;
@@ -16,11 +18,21 @@ public class Board {
         this(INIT_HEIGHT, INIT_WIDTH);
     }
 
-    public Board(int height, int width) {
+    public Board(int h, int w) {
+        height = h;
+        width = w;
         BoardArray = new SquareType[width + BORDER_WIDTH][height + BORDER_HEIGHT];
     }
 
-    public SquareType getSquare(int x, int y){
-        return BoardArray[x][y]
+    public SquareType getSquare(int height, int width){
+        return BoardArray[height][width];
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
     }
 }
