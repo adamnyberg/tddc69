@@ -35,4 +35,5 @@ public class Queue {
         myList.remove(0);
         return obj;
     }
+
 }

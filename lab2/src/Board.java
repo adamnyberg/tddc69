@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Harald
@@ -35,4 +37,10 @@ public class Board {
     public int getWidth() {
         return width;
     }
+
+    public SquareType randomSquareType() {
+        Random randGen = new Random();
+        return SquareType.getSquareType(randGen.nextInt(7));
+        }
 }
+
