@@ -11,7 +11,7 @@ public class TetrominoMaker {
 
         switch (square) {
             case I:
-                
+
                 break;
 
             case J:
