@@ -7,9 +7,9 @@ public class Poly {
         switch (n) {
             case 0:
                 return poly0();
-                break;
 
             case 1:
+                return poly0();
         }
     }
 
