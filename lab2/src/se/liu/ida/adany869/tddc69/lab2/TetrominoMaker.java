@@ -6,34 +6,78 @@ public class TetrominoMaker {
         return SquareType.getNumberOfTypes();
     }
 
-    /*public Poly getPoly(int n) {
+    public Poly getPoly(int n) {
         SquareType square = SquareType.getSquareType(n);
-
+        SquareType[][] polyArray;
         switch (square) {
             case I:
-
-                break;
+                return new Poly(
+                        new SquareType[][]{
+                                {SquareType.EMPTY, SquareType.I, SquareType.EMPTY, SquareType.EMPTY},
+                                {SquareType.EMPTY, SquareType.I, SquareType.EMPTY, SquareType.EMPTY},
+                                {SquareType.EMPTY, SquareType.I, SquareType.EMPTY, SquareType.EMPTY},
+                                {SquareType.EMPTY, SquareType.I, SquareType.EMPTY, SquareType.EMPTY}
+                        }
+                );
 
             case J:
-                break;
+
+                return new Poly(
+                    new SquareType[][]{
+                        {SquareType.EMPTY,  SquareType.J, SquareType.EMPTY},
+                        {SquareType.EMPTY,  SquareType.J, SquareType.EMPTY},
+                        {SquareType.J,      SquareType.J, SquareType.EMPTY}
+                    }
+                );
 
             case L:
-                break;
+                return new Poly(
+                        new SquareType[][]{
+                                {SquareType.EMPTY, SquareType.L, SquareType.EMPTY},
+                                {SquareType.EMPTY, SquareType.L, SquareType.EMPTY},
+                                {SquareType.EMPTY, SquareType.L, SquareType.L}
+                        }
+                );
 
             case O:
-                break;
+                return new Poly(
+                        new SquareType[][]{
+                                {SquareType.O, SquareType.O},
+                                {SquareType.O, SquareType.O},
+                                {SquareType.O, SquareType.O}
+                        }
+                );
 
             case S:
-                break;
+                return new Poly(
+                        new SquareType[][]{
+                                {SquareType.EMPTY,  SquareType.S, SquareType.S},
+                                {SquareType.EMPTY,  SquareType.S, SquareType.EMPTY},
+                                {SquareType.S,      SquareType.S, SquareType.L}
+                        }
+                );
 
             case T:
-                break;
+                return new Poly(
+                        new SquareType[][]{
+                                {SquareType.T,      SquareType.T, SquareType.T},
+                                {SquareType.EMPTY,  SquareType.T, SquareType.EMPTY},
+                                {SquareType.EMPTY,  SquareType.T, SquareType.EMPTY}
+                        }
+                );
 
             case Z:
-                break;
+                return new Poly(
+                        new SquareType[][]{
+                                {SquareType.Z,      SquareType.Z, SquareType.EMPTY},
+                                {SquareType.EMPTY,  SquareType.Z, SquareType.EMPTY},
+                                {SquareType.EMPTY,  SquareType.Z, SquareType.Z}
+                        }
+                );
 
             default:
                 break;
         }
-    }*/
+        return null;
+    }
 }
