@@ -12,6 +12,8 @@ import java.util.Random;
  */
 public class Board {
     private SquareType[][] BoardArray;
+    private Poly fallingPoly;
+    private int[] FallingPos = new int[2];
     private int height;
     private int width;
     private static final int INIT_HEIGHT = 15;
@@ -59,7 +61,13 @@ public class Board {
         }
     }
 
-
+    public SquareType getFallingSquare(int height, int width){
+        if (height-FallingPos[0]>= 0 && height-FallingPos[0]<= fallingPoly.getDimension()
+                && width-FallingPos[1]>= 0 && width-FallingPos[1]<= fallingPoly.getDimension()) {
+            return fallingPoly.getSquare(height-FallingPos[0], width-FallingPos[1]);
+        }
+        else return SquareType.EMPTY;
+    }
 
 }
 
