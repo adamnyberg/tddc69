@@ -9,7 +9,13 @@ public class TetrisTextView {
         for (int height = 0;  height < board.getHeight(); height++) {
             for (int width = 0; width < board.getWidth(); width++) {
                 SquareType square = board.getSquare(height, width);
-                if (square != null) {
+                SquareType fallingSquare = board.getFallingSquare(height, width);
+
+                if (fallingSquare != SquareType.EMPTY) {
+                    square = fallingSquare;
+                }
+
+                if (square != SquareType.EMPTY) {
                     switch (square) {
 
                         case OUTSIDE :
