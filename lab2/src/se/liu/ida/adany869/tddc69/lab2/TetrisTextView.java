@@ -8,7 +8,7 @@ public class TetrisTextView {
 
         for (int height = 0;  height < board.getHeight(); height++) {
             for (int width = 0; width < board.getWidth(); width++) {
-                SquareType square = board.getSquare(width, height);
+                SquareType square = board.getSquare(height, width);
                 if (square != null) {
                     switch (square) {
 
