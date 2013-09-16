@@ -1,4 +1,6 @@
 package se.liu.ida.adany869.tddc69.lab2;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.util.Random;
 
 /**
@@ -47,5 +49,17 @@ public class Board {
         Random randGen = new Random();
         return SquareType.getSquareType(randGen.nextInt(7));
         }
+
+    public void emptyBoard(){
+        for (SquareType[] squareTypes : BoardArray) {
+            for (int i = 0; i<squareTypes.length; i++) {
+                squareTypes[i] = null;
+            }
+
+        }
+    }
+
+
+
 }
 

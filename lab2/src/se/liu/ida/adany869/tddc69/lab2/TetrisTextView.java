@@ -20,7 +20,7 @@ public class TetrisTextView {
                             break;
                     }
                 } else {
-                    textBoard.append(' ');
+                    textBoard.append("  ");
                 }
             }
             textBoard.append("\n");

@@ -11,6 +11,7 @@ public class Poly {
             case 1:
                 return poly0();
         }
+        return poly0();
     }
 
     public Poly poly0() {
