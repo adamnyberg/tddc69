@@ -2,14 +2,18 @@ package se.liu.ida.adany869.tddc69.lab2;
 
 public class Poly {
     private SquareType[][] PolyArray;
-
+    private int dimension;
 
     public Poly(SquareType[][] polyArray) {
-        PolyArray = polyArray;
+        this.PolyArray = polyArray;
+        dimension = this.PolyArray.length;
+    }
+
+    public int getDimension() {
+        return dimension;
     }
 
     public void rotate(boolean rotateRight){
-        int dimension = PolyArray.length;
         int maxIndex = dimension-1;
         SquareType[][] newArray = new SquareType[dimension][dimension];
         if (rotateRight) {
@@ -27,5 +31,9 @@ public class Poly {
                 }
             }
         }
+    }
+
+    public SquareType getSquare(int height, int width){
+        return PolyArray[height][width];
     }
 }
