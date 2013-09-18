@@ -31,6 +31,7 @@ public class Poly {
                 }
             }
         }
+        PolyArray = newArray;
     }
 
     public SquareType getSquare(int height, int width){

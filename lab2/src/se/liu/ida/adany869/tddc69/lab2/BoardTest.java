@@ -9,30 +9,38 @@ public class BoardTest {
 
     public static void main(String[] args) {
         final Board b = new Board();
-        TetrisFrame frame = new TetrisFrame(b);
-        class Action2 extends AbstractAction {
-            private Board b;
-            private TetrisFrame frame;
-            private Action2(Board board, TetrisFrame frame) {
-                this.b = board;
-                this.frame = frame;
-            }
+        b.fallingPoly = TetrominoMaker.getPoly(5);
+        b.FallingPos[0] = 0;
+        b.FallingPos[1] = 3;
+        final Random randGen = new Random();
+        b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
+        b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
+        b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
+        b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
+        b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
+        final TetrisFrame frame = new TetrisFrame(b);
 
+        final Action doOneStep = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                Random randGen = new Random();
-                b.emptyBoard();
-                b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
-                b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
-                b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
-                b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
-                b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
+                if (b.FallingPos[0] > 15){
+                    b.emptyBoard();
+                    b.FallingPos[0] = 0;
+                    b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
+                    b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
+                    b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
+                    b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
+                    b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
+                }
+                b.fallingPoly.rotate(true);
+                b.FallingPos[0]++;
                 frame.updateFrame(b);
             }
-        }
-        final Action2 doOneStep = new Action2(b, frame);
+        };
         final Timer clockTimer = new Timer(500, doOneStep);
         clockTimer.setCoalesce(true);
         clockTimer.start();
+
+
 
     }
 }
