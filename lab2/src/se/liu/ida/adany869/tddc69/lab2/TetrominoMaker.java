@@ -6,7 +6,7 @@ public class TetrominoMaker {
         return SquareType.getNumberOfTypes();
     }
 
-    public Poly getPoly(int n) {
+    public static Poly getPoly(int n) {
         SquareType square = SquareType.getSquareType(n);
         SquareType[][] polyArray;
         switch (square) {
@@ -43,7 +43,6 @@ public class TetrominoMaker {
                 return new Poly(
                         new SquareType[][]{
                                 {SquareType.O, SquareType.O},
-                                {SquareType.O, SquareType.O},
                                 {SquareType.O, SquareType.O}
                         }
                 );
@@ -53,7 +52,7 @@ public class TetrominoMaker {
                         new SquareType[][]{
                                 {SquareType.EMPTY,  SquareType.S, SquareType.S},
                                 {SquareType.EMPTY,  SquareType.S, SquareType.EMPTY},
-                                {SquareType.S,      SquareType.S, SquareType.L}
+                                {SquareType.S,      SquareType.S, SquareType.EMPTY}
                         }
                 );
 
