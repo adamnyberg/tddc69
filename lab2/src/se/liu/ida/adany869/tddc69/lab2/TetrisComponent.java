@@ -29,6 +29,11 @@ public class TetrisComponent extends JComponent {
         return null;
     }*/
 
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(height, width);
+    }
+
     /*public void paintComponent() {
         drawBackground();
         //drawSquares();
