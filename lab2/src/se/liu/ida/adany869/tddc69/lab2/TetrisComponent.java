@@ -1,6 +1,8 @@
 package se.liu.ida.adany869.tddc69.lab2;
 
-public class TetrisComponent {
+import javax.swing.*;
+
+public class TetrisComponent extends JComponent {
     private Board board;
 
     private int height;
@@ -21,11 +23,18 @@ public class TetrisComponent {
         this.width = width;
     }
 
-    public Object getPreferredSize() {
+    /*public Object getPreferredSize() {
         return null;
-    }
+    }*/
 
     public void paintComponent() {
+        drawBackground();
+        //drawSquares();
+    }
 
+    public void drawBackground() {
+        JTextArea text = new JTextArea(height, width);
+        text.setText("hej");
+        this.add(text);
     }
 }
