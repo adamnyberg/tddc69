@@ -21,10 +21,14 @@ public class TetrisFrame extends JFrame{
         textArea.setText(TetrisTextView.convertToText(board));
         this.setLayout(new MigLayout());
         createMenus();
-        this.add(textArea, BorderLayout.CENTER);
+        //this.add(textArea, BorderLayout.CENTER);
+        TetrisComponent tetrisComponent = new TetrisComponent(this.board);
+        this.add(tetrisComponent);
         this.pack();
         this.setVisible(true);
     }
+
+
     public void updateFrame(Board board){
         textArea.setText(TetrisTextView.convertToText(board));
     }

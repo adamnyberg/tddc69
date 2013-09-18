@@ -31,7 +31,7 @@ public class BoardTest {
                     b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
                     b.setSquare(randGen.nextInt(b.getWidth()),randGen.nextInt(b.getHeight()), b.randomSquareType());
                 }
-                b.fallingPoly.rotate(true);
+                b.fallingPoly.rotate(false);
                 b.FallingPos[0]++;
                 frame.updateFrame(b);
             }
