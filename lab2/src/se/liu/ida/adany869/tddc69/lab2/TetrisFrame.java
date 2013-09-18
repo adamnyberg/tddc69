@@ -13,7 +13,7 @@ public class TetrisFrame extends JFrame{
     public TetrisFrame(Board board) {
         super("Tetris");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.board = board;
+        this.board = board;•
         //final Timer clockTimer = new Timer(500, doOneStep);
         //clockTimer.setCoalesce(true);
         //clockTimer.start();
@@ -23,7 +23,7 @@ public class TetrisFrame extends JFrame{
         createMenus();
         //this.add(textArea, BorderLayout.CENTER);
         TetrisComponent tetrisComponent = new TetrisComponent(this.board);
-        this.add(tetrisComponent);
+        this.add(tetrisComponent, BorderLayout.CENTER);
         this.pack();
         this.setVisible(true);
     }
