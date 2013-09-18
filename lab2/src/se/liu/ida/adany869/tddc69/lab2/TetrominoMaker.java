@@ -53,7 +53,7 @@ public class TetrominoMaker {
                         new SquareType[][]{
                                 {SquareType.EMPTY,  SquareType.S, SquareType.S},
                                 {SquareType.EMPTY,  SquareType.S, SquareType.EMPTY},
-                                {SquareType.S,      SquareType.S, SquareType.L}
+                                {SquareType.S,      SquareType.S, SquareType.EMPTY}
                         }
                 );
 

@@ -4,13 +4,6 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Harald
- * Date: 2013-09-12
- * Time: 15:01
- * To change this template use File | Settings | File Templates.
- */
 public class TetrisFrame extends JFrame{
 
     private Board board;
