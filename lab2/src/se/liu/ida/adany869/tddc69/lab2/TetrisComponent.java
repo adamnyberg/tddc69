@@ -23,11 +23,13 @@ public class TetrisComponent extends JComponent {
         this.width = width;
     }
 
-    public Object getPreferredSize() {
+    /*public Object getPreferredSize() {
         return null;
-    }
+    }*/
 
     public void paintComponent() {
+        drawBackground();
+        //drawSquares();
     }
 
     public void drawSquares(){
@@ -35,5 +37,13 @@ public class TetrisComponent extends JComponent {
             for (int width = 0; width < board.getWidth(); width++) {
 
             }
+        }
+    }
+
+    public void drawBackground() {
+        JTextArea text = new JTextArea(height, width);
+        text.setText("hej");
+        this.add(text);
     }
 }
+
