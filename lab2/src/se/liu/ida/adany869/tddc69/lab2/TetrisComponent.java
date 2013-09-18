@@ -1,6 +1,7 @@
 package se.liu.ida.adany869.tddc69.lab2;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class TetrisComponent extends JComponent {
     private Board board;
@@ -26,6 +27,11 @@ public class TetrisComponent extends JComponent {
     /*public Object getPreferredSize() {
         return null;
     }*/
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(height, width);
+    }
 
     public void paintComponent() {
         drawBackground();
