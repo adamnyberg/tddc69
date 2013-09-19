@@ -13,31 +13,27 @@ public class TetrisComponent extends JComponent {
     private static final int INIT_WIDTH = 600;
 
     public TetrisComponent(Board board) {
-        this.board = board;
-        this.height = INIT_HEIGHT;
-        this.width = INIT_WIDTH;
+        this(board, INIT_HEIGHT, INIT_WIDTH);
     }
 
     public TetrisComponent(Board board, int height, int width) {
         this.board = board;
         this.height = height;
         this.width = width;
-        drawBackground();
     }
-
-    /*public Object getPreferredSize() {
-        return null;
-    }*/
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(height, width);
+        return new Dimension(width, height);
     }
 
-    /*public void paintComponent() {
-        drawBackground();
+    public void paintComponent(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.blue);
+        g2.fillRect(0,0, width, height);
+        //drawBackground();
         //drawSquares();
-    }*/
+    }
 
     public void drawSquares(){
         for (int height = 0;  height < board.getHeight(); height++) {
@@ -48,9 +44,12 @@ public class TetrisComponent extends JComponent {
     }
 
     public void drawBackground() {
-        JTextArea text = new JTextArea(height, width);
-        text.setText(TetrisTextView.convertToText(board));
-        this.add(text, BorderLayout.CENTER);
+        this.setBackground(Color.BLUE);
+        /*JTextArea text = new JTextArea(height, width);
+        text.setText("HEJ!");
+        text.setAlignmentX(0);
+        text.setAlignmentY(0);
+        this.add(text);*/
     }
 }
 
