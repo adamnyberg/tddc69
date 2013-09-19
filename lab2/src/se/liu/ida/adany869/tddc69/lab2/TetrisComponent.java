@@ -20,6 +20,7 @@ public class TetrisComponent extends JComponent {
         this.board = board;
         this.height = height;
         this.width = width;
+        //this.add(new SquareComponent(SquareType.S, 10));
     }
 
     @Override
@@ -29,27 +30,27 @@ public class TetrisComponent extends JComponent {
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.blue);
-        g2.fillRect(0,0, width, height);
-        //drawBackground();
-        //drawSquares();
+
+        drawBackground(g2);
+        drawText(g2);
+        drawSquares(g2);
     }
 
-    public void drawSquares(){
+    public void drawSquares(Graphics g2){
         for (int height = 0;  height < board.getHeight(); height++) {
             for (int width = 0; width < board.getWidth(); width++) {
-
+                
             }
         }
     }
 
-    public void drawBackground() {
-        this.setBackground(Color.BLUE);
-        /*JTextArea text = new JTextArea(height, width);
-        text.setText("HEJ!");
-        text.setAlignmentX(0);
-        text.setAlignmentY(0);
-        this.add(text);*/
+    public void drawBackground(Graphics g2) {
+        g2.setColor(Color.blue);
+        g2.fillRect(0,0, width, height);
+    }
+
+    public void drawText(Graphics g2) {
+
     }
 }
 
