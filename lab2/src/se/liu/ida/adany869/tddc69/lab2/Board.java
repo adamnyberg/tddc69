@@ -1,18 +1,21 @@
 package se.liu.ida.adany869.tddc69.lab2;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Board {
     private SquareType[][] BoardArray;
-    public Poly fallingPoly;
-    public int[] FallingPos = new int[2];
+    private Poly fallingPoly;
+    private int[] FallingPos = new int[2];
     private int height;
     private int width;
-    private static final int INIT_HEIGHT = 15;
+    private ArrayList<BoardListener> boardListeners = new ArrayList<BoardListener>();
+    private static final int INIT_HEIGHT = 20;
     private static final int INIT_WIDTH = 15;
     private static final int BORDER_HEIGHT = 1;
     private static final int BORDER_WIDTH = 1;
+    final Random randGen = new Random();
 
     public Board(){
         this(INIT_HEIGHT, INIT_WIDTH);
@@ -32,10 +35,15 @@ public class Board {
 
     public void setSquare(int height, int width, SquareType value){
         BoardArray[height][width] = value;
+        notifyListeners();
     }
 
     public SquareType getSquare(int height, int width){
-        return BoardArray[height][width+BORDER_WIDTH];
+        SquareType squareType = BoardArray[height][width+BORDER_WIDTH];
+        if (squareType == SquareType.EMPTY){
+            squareType = getFallingSquare(height, width);
+        }
+        return squareType;
     }
 
     public int getHeight() {
@@ -70,6 +78,45 @@ public class Board {
         }
 
         else return SquareType.EMPTY;
+    }
+
+    public void addBoardListener(BoardListener bl){
+        boardListeners.add(bl);
+    }
+
+    private void notifyListeners(){
+        for (BoardListener boardListener : boardListeners) {
+            boardListener.boardChanged();
+        }
+    }
+
+    public Poly getFallingPoly() {
+        return fallingPoly;
+    }
+
+    public void generateNewFallingPoly() {
+        this.fallingPoly = TetrominoMaker.getPoly(randGen.nextInt(SquareType.getNumberOfTypes()));
+        //TODO: Set FallingPos[];
+        notifyListeners();
+    }
+
+    public int[] getFallingPos() {
+        return FallingPos;
+    }
+
+    public void setFallingPosDown() {
+        FallingPos[0]--;
+        notifyListeners();
+    }
+
+    public void setFallingPosRight() {
+        FallingPos[1]++;
+        notifyListeners();
+    }
+
+    public void setFallingPosLeft() {
+        FallingPos[1]--;
+        notifyListeners();
     }
 
 }
