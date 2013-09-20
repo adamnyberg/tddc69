@@ -5,7 +5,7 @@ import java.util.List;
 import java.lang.Exception;
 
 public enum SquareType {
-    I, J, L, O, S, T, Z, OUTSIDE, EMPTY;
+    I, J, L, O, S, T, Z, A, OUTSIDE, EMPTY;
 
     private static final int NUMBER_OF_POLIES = 7;
 

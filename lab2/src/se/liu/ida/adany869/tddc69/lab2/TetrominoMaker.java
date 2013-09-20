@@ -73,7 +73,12 @@ public class TetrominoMaker {
                                 {SquareType.EMPTY,  SquareType.Z, SquareType.Z}
                         }
                 );
-
+            case A:
+                return new Poly(
+                        new SquareType[][]{
+                                {SquareType.A}
+                        }
+                );
             default:
                 break;
         }
