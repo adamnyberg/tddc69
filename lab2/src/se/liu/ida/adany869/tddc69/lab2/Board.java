@@ -86,6 +86,7 @@ public class Board {
 
     private void notifyListeners(){
         for (BoardListener boardListener : boardListeners) {
+
             boardListener.boardChanged();
         }
     }
@@ -96,7 +97,8 @@ public class Board {
 
     public void generateNewFallingPoly() {
         this.fallingPoly = TetrominoMaker.getPoly(randGen.nextInt(SquareType.getNumberOfTypes()));
-        //TODO: Set FallingPos[];
+        FallingPos[0] = -fallingPoly.getDimension();
+        FallingPos[1] = randGen.nextInt(getWidth() - BORDER_WIDTH - fallingPoly.getDimension()) + BORDER_WIDTH;
         notifyListeners();
     }
 
@@ -105,7 +107,8 @@ public class Board {
     }
 
     public void setFallingPosDown() {
-        FallingPos[0]--;
+        if (FallingPos[0] < this.height - fallingPoly.getDimension()) FallingPos[0]++;
+        else FallingPos[0] = -fallingPoly.getDimension();
         notifyListeners();
     }
 
@@ -119,5 +122,13 @@ public class Board {
         notifyListeners();
     }
 
-}
+    public void rotateFallingPolyRight(){
+        fallingPoly.rotate(true);
+        notifyListeners();
+    }
 
+    public void rotateFallingPolyLeft(){
+        fallingPoly.rotate(false);
+        notifyListeners();
+    }
+}

@@ -17,8 +17,8 @@ public class TetrisFrame extends JFrame{
         //final Timer clockTimer = new Timer(500, doOneStep);
         //clockTimer.setCoalesce(true);
         //clockTimer.start();
-        textArea = new JTextArea(board.getHeight(), board.getWidth());
-        textArea.setText(TetrisTextView.convertToText(board));
+        //textArea = new JTextArea(board.getHeight(), board.getWidth());
+        //textArea.setText(TetrisTextView.convertToText(board));
         this.setLayout(new MigLayout());
         createMenus();
         //this.add(textArea, BorderLayout.CENTER);
