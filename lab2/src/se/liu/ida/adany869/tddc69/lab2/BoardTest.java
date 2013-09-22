@@ -17,7 +17,7 @@ public class BoardTest {
                 b.tick();
             }
         };
-        final Timer clockTimer = new Timer(100, doOneStep);
+        final Timer clockTimer = new Timer(200, doOneStep);
         clockTimer.setCoalesce(true);
         clockTimer.start();
 

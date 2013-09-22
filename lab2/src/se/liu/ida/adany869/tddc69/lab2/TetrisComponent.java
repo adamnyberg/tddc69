@@ -2,6 +2,7 @@ package se.liu.ida.adany869.tddc69.lab2;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.EnumMap;
 
 public class TetrisComponent extends JComponent implements BoardListener {
@@ -27,6 +28,14 @@ public class TetrisComponent extends JComponent implements BoardListener {
         colors.put(SquareType.T, Color.orange);
         colors.put(SquareType.Z, Color.yellow);
         colors.put(SquareType.A, Color.pink);
+        this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "moveLeft");
+        this.getActionMap().put("moveLeft", moveLeft);
+        this.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "moveRight");
+        this.getActionMap().put("moveRight", moveRight);
+        this.getInputMap().put(KeyStroke.getKeyStroke("UP"), "rotateRight");
+        this.getActionMap().put("rotateRight", rotateRight);
+        this.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "down");
+        this.getActionMap().put("down", down);
     }
 
     public TetrisComponent(Board board, int height, int width) {
@@ -47,23 +56,19 @@ public class TetrisComponent extends JComponent implements BoardListener {
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-
-        //drawBackground(g2);
-        drawText(g2);
         drawSquares(g2);
     }
 
     public void drawSquares(Graphics g2){
-        int sizeX = this.width/board.getFullWidth();
-        int sizeY= this.height/board.getFullHeight();
+        int sizeX = this.width/board.getWidth();
+        int sizeY= this.height/board.getHeight();
         int posX;
         int posY;
-        for (int height = 0;  height < board.getFullHeight(); height++) {
-            for (int width = 0; width < board.getFullWidth(); width++) {
+        for (int height = Board.START_AREA_SIZE;  height < board.getFullHeight(); height++) {
+            for (int width = Board.BORDER_WIDTH; width < board.getFullWidth(); width++) {
                 SquareType squareType = board.getAllBoardSquare(height, width);
-                //System.out.println("(Comp) Board (8,2): " + board.getBoardSquare(8,1));
-                posX = width*sizeX;
-                posY = height*sizeY;
+                posX = (width-Board.BORDER_WIDTH)*sizeX;
+                posY = (height-Board.START_AREA_SIZE)*sizeY;
                 g2.setColor(colors.get(squareType));
                 g2.fillRect(posX, posY, sizeX, sizeY);
             }
@@ -75,8 +80,33 @@ public class TetrisComponent extends JComponent implements BoardListener {
         g2.fillRect(0,0, width, height);
     }
 
-    public void drawText(Graphics g2) {
+    final private Action moveLeft = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            board.moveLeft();
+        }
+    };
 
-    }
+    final private Action moveRight = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            board.moveRight();
+        }
+    };
+
+    final private Action rotateRight = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            board.rotateRight();
+        }
+    };
+
+    final private Action down = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            board.tick();
+        }
+    };
+
 }
 

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Board {
-    private SquareType[][] BoardArray;
+    private SquareType[][] boardArray;
     private Poly fallingPoly;
     private int fallingPosX;
     private int fallingPosY;
@@ -13,8 +13,9 @@ public class Board {
     private static final int INIT_HEIGHT = 20;
     private static final int INIT_WIDTH = 15;
     private static final int BORDER_HEIGHT = 1;
-    private static final int BORDER_WIDTH = 1;
-    private static final int START_AREA_SIZE = 4;
+    //TODO: public or private? used in TetrisComponent
+    public static final int BORDER_WIDTH = 1;
+    public static final int START_AREA_SIZE = 4;
     final Random randGen = new Random();
 
     public Board(){
@@ -24,7 +25,7 @@ public class Board {
     public Board(int h, int w) {
         height = h;
         width = w;
-        BoardArray = new SquareType[height + BORDER_HEIGHT + START_AREA_SIZE][width + BORDER_WIDTH*2];
+        boardArray = new SquareType[height + BORDER_HEIGHT + START_AREA_SIZE][width + BORDER_WIDTH*2];
 
         for (int i = 0; i < height + BORDER_HEIGHT + START_AREA_SIZE; i++) {
             for (int j = 0; j<width+BORDER_WIDTH*2; j++) {
@@ -44,24 +45,24 @@ public class Board {
     }
 
     private void setSquare(int height, int width, SquareType value){
-        BoardArray[height][width] = value;
+        boardArray[height][width] = value;
         notifyListeners();
     }
 
     private void setBoardSquare(int y, int x, SquareType value){
-        BoardArray[y][x+BORDER_WIDTH] = value;
+        boardArray[y][x+BORDER_WIDTH] = value;
         notifyListeners();
     }
 
     public SquareType getAllBoardSquare(int height, int width){
-        SquareType squareType = BoardArray[height][width];
+        SquareType squareType = boardArray[height][width];
         if (squareType == SquareType.EMPTY){
             squareType = getFallingSquare(height, width-BORDER_WIDTH);
         }
         return squareType;
     }
     public SquareType getBoardSquare(int y, int x){
-        return BoardArray[y][x+BORDER_WIDTH];
+        return boardArray[y][x+BORDER_WIDTH];
     }
 
     public SquareType getSquare(int height, int width){
@@ -86,7 +87,7 @@ public class Board {
         }
 
     public void emptyBoard(){
-        for (int i = START_AREA_SIZE - 1; i < START_AREA_SIZE+ getHeight(); i++) {
+        for (int i = 0; i < START_AREA_SIZE+ getHeight(); i++) {
             for (int j = 0; j < getWidth(); j++) {
                 setBoardSquare(i,j, SquareType.EMPTY) ;
             }
@@ -143,17 +144,16 @@ public class Board {
     public void moveDown() {
         if (canMoveDown()) fallingPosY++;
         else fixPolyToBoard();
-        //else fallingPosY = 0;
         notifyListeners();
     }
 
     public void moveRight() {
-        fallingPosX++;
+        if (canMoveRight()) fallingPosX++;
         notifyListeners();
     }
 
     public void moveLeft() {
-        fallingPosX--;
+        if (canMoveLeft()) fallingPosX--;
         notifyListeners();
     }
 
@@ -184,10 +184,6 @@ public class Board {
                 SquareType squareType = fallingPoly.getSquare(y,x);
                 if (squareType != SquareType.EMPTY) {
                     this.setBoardSquare(absY, absX, squareType);
-                    System.out.println("AbsY2: " + absY);
-                    System.out.println("AbsX2: " + absX);
-                    System.out.println("SquareType: " + squareType);
-                    System.out.println("Board (8,2): " + getSquare(8,2));
                 }
             }
 
@@ -200,7 +196,6 @@ public class Board {
         for(int y = 0; y < START_AREA_SIZE; y++){
             for (int x = 0; x < getWidth(); x++) {
                 if(getBoardSquare(y, x) != SquareType.EMPTY){
-                    System.out.println("TRUE!!!!");
                     return true;
                 }
             }
@@ -219,7 +214,8 @@ public class Board {
                 for (int x = 0; x < fallingPoly.getDimension(); x++) {
                     int absX = absolutePosXForFallingSquare(x);
                     int absY = absolutePosYForFallingSquare(y);
-                    System.out.println();
+                    int nextHypoPos = absY+1;
+                    /*System.out.println();
                     System.out.println("PosY: " + fallingPosY);
                     System.out.println("PosX: " + fallingPosX);
                     System.out.println("AbsY: " + absY);
@@ -228,9 +224,9 @@ public class Board {
                     System.out.println("boardX: " + absX);
                     System.out.println("fallingSquare: "+ fallingPoly.getSquare(y,x));
                     System.out.println("boardSquare: "+ this.getBoardSquare(absY + 1, absX));
-                    System.out.println("Board (8,2): " + this.getBoardSquare(8,2));
+                    System.out.println("Board (8,2): " + this.getBoardSquare(8,2));*/
                     if (fallingPoly.getSquare(y,x) != SquareType.EMPTY &&
-                            this.getBoardSquare(absY+1, absX) != SquareType.EMPTY ){
+                            this.getBoardSquare(nextHypoPos, absX) != SquareType.EMPTY ){
                         return false;
                     }
                 }
@@ -240,8 +236,75 @@ public class Board {
         return false;
     }
 
-    public void tick(){
-        if (fallingPoly != null) moveDown();
-        else generateNewFallingPoly();
+    private boolean canMoveRight(){
+        if (fallingPoly != null){
+            for(int y = 0; y < fallingPoly.getDimension(); y++){
+                for (int x = 0; x < fallingPoly.getDimension(); x++) {
+                    int absX = absolutePosXForFallingSquare(x);
+                    int absY = absolutePosYForFallingSquare(y);
+                    int nextHypoPos = absX+1;
+                    if (fallingPoly.getSquare(y,x) != SquareType.EMPTY &&
+                            this.getBoardSquare(absY, nextHypoPos) != SquareType.EMPTY ){
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
     }
+
+    private boolean canMoveLeft(){
+        if (fallingPoly != null){
+            for(int y = 0; y < fallingPoly.getDimension(); y++){
+                for (int x = 0; x < fallingPoly.getDimension(); x++) {
+                    int absX = absolutePosXForFallingSquare(x);
+                    int absY = absolutePosYForFallingSquare(y);
+                    int nextHypoPos = absX-1;
+                    if (fallingPoly.getSquare(y,x) != SquareType.EMPTY &&
+                            this.getBoardSquare(absY, nextHypoPos) != SquareType.EMPTY ){
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private void checkRowRemoval(){
+        for (int i = START_AREA_SIZE; i < height+START_AREA_SIZE; i++) {
+            if (isFullRow(boardArray[i])){
+                emptyRow(i);
+            }
+        }
+    }
+
+    private boolean isFullRow(SquareType[] row){
+        for (SquareType squareType : row) {
+            if (squareType == SquareType.EMPTY){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void emptyRow(int rowIndex){
+        for (int i = rowIndex; i >= START_AREA_SIZE ; i--) {
+            for (int j = 0; j < width; j++) {
+                setBoardSquare(i, j, getBoardSquare(i-1, j));
+            }
+
+        }
+    }
+
+    public void tick(){
+        if (fallingPoly != null) {
+            moveDown();
+        }
+        else generateNewFallingPoly();
+        checkRowRemoval();
+    }
+
+
 }
