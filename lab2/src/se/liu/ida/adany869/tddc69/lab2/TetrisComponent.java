@@ -18,6 +18,12 @@ public class TetrisComponent extends JComponent implements BoardListener {
 
     public TetrisComponent(Board board) {
         this(board, INIT_HEIGHT, INIT_WIDTH);
+    }
+
+    public TetrisComponent(Board board, int height, int width) {
+        this.board = board;
+        this.height = height;
+        this.width = width;
         colors.put(SquareType.EMPTY, Color.black);
         colors.put(SquareType.OUTSIDE, Color.magenta);
         colors.put(SquareType.I, Color.red);
@@ -41,12 +47,6 @@ public class TetrisComponent extends JComponent implements BoardListener {
         final Timer clockTimer = new Timer(500, doOneStep);
         clockTimer.setCoalesce(true);
         clockTimer.start();
-    }
-
-    public TetrisComponent(Board board, int height, int width) {
-        this.board = board;
-        this.height = height;
-        this.width = width;
         board.addBoardListener(this);
     }
 
