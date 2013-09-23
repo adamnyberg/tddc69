@@ -11,9 +11,5 @@ public class BoardTest {
         final Board b = new Board();
         b.generateNewFallingPoly();
         final TetrisFrame frame = new TetrisFrame(b);
-
-
-
-
     }
 }
