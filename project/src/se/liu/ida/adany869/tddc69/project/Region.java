@@ -7,8 +7,7 @@ public class Region {
     private ArrayList<Region> neighbours;
     //private Region[] neighbours;
 
-    public Region(int armies) {
-        this.armies = armies;
+    public Region() {
     }
     public ArrayList getNeighbours() {
         return neighbours;
