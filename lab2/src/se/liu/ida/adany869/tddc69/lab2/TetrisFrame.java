@@ -2,7 +2,6 @@ package se.liu.ida.adany869.tddc69.lab2;
 
 import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -46,12 +45,12 @@ public class TetrisFrame extends JFrame{
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String ObjButtons[] = {"Yes","No"};
+                String ObjButtons[] = {"Yes", "No"};
                 int PromptResult = JOptionPane.showOptionDialog(null,
                         "Are you sure you want to exit?", "Tetris",
                         JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
-                        ObjButtons,ObjButtons[1]);
-                if(PromptResult == 0) {
+                        ObjButtons, ObjButtons[1]);
+                if (PromptResult == 0) {
                     System.exit(0);
                 }
             }

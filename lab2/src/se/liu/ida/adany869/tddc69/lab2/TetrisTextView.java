@@ -4,7 +4,7 @@ public class TetrisTextView {
     public static String convertToText(Board board) {
 
         StringBuilder textBoard = new StringBuilder();
-        textBoard.append("se.liu.ida.adany869.tddc69.lab2.Board:\n\n");
+        textBoard.append("Board:\n\n");
 
         for (int height = 0;  height < board.getHeight(); height++) {
             for (int width = 0; width < board.getWidth(); width++) {

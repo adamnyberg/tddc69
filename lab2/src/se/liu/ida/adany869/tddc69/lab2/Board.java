@@ -12,17 +12,8 @@ public class Board {
     private ArrayList<BoardListener> boardListeners = new ArrayList<BoardListener>();
     private static final int INIT_HEIGHT = 20;
     private static final int INIT_WIDTH = 15;
-    private static final int BORDER_HEIGHT = 1;
-
-    public static int getBorderWidth() {
-        return BORDER_WIDTH;
-    }
-
-    public static int getStartAreaSize() {
-        return START_AREA_SIZE;
-    }
-
-    private static final int BORDER_WIDTH = 1;
+    private static final int BORDER_HEIGHT = 2;
+    private static final int BORDER_WIDTH = 2;
     private static final int START_AREA_SIZE = 4;
     final Random randGen = new Random();
 
@@ -37,11 +28,18 @@ public class Board {
 
         for (int i = 0; i < height + BORDER_HEIGHT + START_AREA_SIZE; i++) {
             for (int j = 0; j<width+BORDER_WIDTH*2; j++) {
-                if (i >= height+START_AREA_SIZE || j < BORDER_WIDTH || j > width) setSquare(i, j, SquareType.OUTSIDE);
+                if (i >= height+START_AREA_SIZE || j < BORDER_WIDTH || j >= width+BORDER_WIDTH) setSquare(i, j, SquareType.OUTSIDE);
                 else setSquare(i, j, SquareType.EMPTY);
             }
         }
+    }
 
+    public static int getBorderWidth() {
+        return BORDER_WIDTH;
+    }
+
+    public static int getStartAreaSize() {
+        return START_AREA_SIZE;
     }
 
     public int getFullHeight(){

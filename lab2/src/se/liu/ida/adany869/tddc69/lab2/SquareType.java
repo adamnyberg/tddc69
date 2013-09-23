@@ -2,7 +2,6 @@ package se.liu.ida.adany869.tddc69.lab2;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.lang.Exception;
 
 public enum SquareType {
     I, J, L, O, S, T, Z, A, OUTSIDE, EMPTY;
