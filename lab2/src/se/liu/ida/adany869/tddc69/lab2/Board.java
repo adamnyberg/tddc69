@@ -89,11 +89,6 @@ public class Board {
         return width;
     }
 
-    public SquareType randomSquareType() {
-        Random randGen = new Random();
-        return SquareType.getSquareType(randGen.nextInt(7));
-        }
-
     public void emptyBoard(){
         for (int i = 0; i < START_AREA_SIZE+ getHeight(); i++) {
             for (int j = 0; j < getWidth(); j++) {
@@ -125,13 +120,8 @@ public class Board {
 
     private void notifyListeners(){
         for (BoardListener boardListener : boardListeners) {
-
             boardListener.boardChanged();
         }
-    }
-
-    public Poly getFallingPoly() {
-        return fallingPoly;
     }
 
     public void generateNewFallingPoly() {
@@ -139,14 +129,6 @@ public class Board {
         fallingPosY = 0;
         fallingPosX = width/2 - fallingPoly.getDimension()/2;
         notifyListeners();
-    }
-
-    public int getFallingPosX() {
-        return fallingPosX;
-    }
-
-    public int getFallingPosY() {
-        return fallingPosY;
     }
 
     public void moveDown() {
@@ -257,16 +239,6 @@ public class Board {
                     int absX = absolutePosXForFallingSquare(x);
                     int absY = absolutePosYForFallingSquare(y);
                     int nextHypoPos = absY+1;
-                    /*System.out.println();
-                    System.out.println("PosY: " + fallingPosY);
-                    System.out.println("PosX: " + fallingPosX);
-                    System.out.println("AbsY: " + absY);
-                    System.out.println("AbsX: " + absX);
-                    System.out.println("boardY: " + (absY+1));
-                    System.out.println("boardX: " + absX);
-                    System.out.println("fallingSquare: "+ fallingPoly.getSquare(y,x));
-                    System.out.println("boardSquare: "+ this.getBoardSquare(absY + 1, absX));
-                    System.out.println("Board (8,2): " + this.getBoardSquare(8,2));*/
                     if (fallingPoly.getSquare(y,x) != SquareType.EMPTY &&
                             this.getBoardSquare(nextHypoPos, absX) != SquareType.EMPTY ){
                         return false;
