@@ -1,3 +1,5 @@
+package se.liu.ida.adany869.tddc69.lab2;
+
 public class MapTest {
     public static void main(String[] args) {
         int numberOfRegions = 4;

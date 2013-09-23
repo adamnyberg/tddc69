@@ -1,3 +1,5 @@
+package se.liu.ida.adany869.tddc69.lab2;
+
 public class Region {
     private int armies = 0;
 
