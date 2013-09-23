@@ -1,23 +1,23 @@
 package se.liu.ida.adany869.tddc69.lab2;
 
-import javax.swing.*;
 import java.awt.*;
 
-public class RegionComponent extends JComponent{
-
+public class RiskComponent {
+    private RiskWorld risk;
     private int height;
     private int width;
 
-    private static final int INIT_HEIGHT = 100;
-    private static final int INIT_WIDTH = 100;
+    private static final int INIT_HEIGHT = 800;
+    private static final int INIT_WIDTH = 1000;
 
-    public RegionComponent(int height, int width) {
+    public RiskComponent(RiskWorld risk, int height, int width) {
+        this.risk = risk;
         this.height = height;
         this.width = width;
     }
 
-    public RegionComponent() {
-        this(INIT_HEIGHT, INIT_WIDTH);
+    public RiskComponent(RiskWorld risk) {
+        this(risk, INIT_HEIGHT, INIT_WIDTH);
     }
 
     @Override
