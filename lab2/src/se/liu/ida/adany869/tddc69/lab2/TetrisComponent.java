@@ -48,7 +48,6 @@ public class TetrisComponent extends JComponent implements BoardListener {
         this.height = height;
         this.width = width;
         board.addBoardListener(this);
-        //this.add(new SquareComponent(SquareType.S, 10));
     }
 
     public void boardChanged(){
