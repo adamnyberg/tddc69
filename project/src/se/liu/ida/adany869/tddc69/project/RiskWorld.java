@@ -8,4 +8,8 @@ public class RiskWorld {
         this.regions = regions;
         this.players = players;
     }
+
+    public Region[] getRegions() {
+        return regions;
+    }
 }

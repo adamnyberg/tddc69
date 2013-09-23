@@ -27,5 +27,12 @@ public class RiskComponent extends JComponent{
 
         g2.setColor(Color.red);
         g2.fillRect(0,0, width, height);
+        drawRegions();
+    }
+
+    private void drawRegions(){
+        for (Region region : risk.getRegions()) {
+            this.add(new RegionComponent(region));
+        }
     }
 }
