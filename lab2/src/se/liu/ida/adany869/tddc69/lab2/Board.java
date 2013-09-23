@@ -166,14 +166,12 @@ public class Board {
     }
 
     public void rotateRight(){
-        //if (canRotateRight()) fallingPoly.rotate(true);
         rotate(true);
         notifyListeners();
     }
 
     public void rotateLeft(){
-        //if (canRotateLeft())
-        fallingPoly.rotate(false);
+        rotate(false);
         notifyListeners();
     }
 
@@ -185,10 +183,8 @@ public class Board {
             if (rotateRight) {
                 for (int i=0; i<dimension; i++) {
                     for (int j=0; j<dimension; j++){
-                        System.out.println("1");
                         if (fallingPoly.getSquare(maxIndex-j, i) != SquareType.EMPTY &&
-                                this.getSquare(absolutePosYForFallingSquare(i), absolutePosXForFallingSquare(j)) != SquareType.EMPTY){
-                            System.out.println("2");
+                                this.getBoardSquare(absolutePosYForFallingSquare(i), absolutePosXForFallingSquare(j)) != SquareType.EMPTY){
                             return;
                         }
                         newArray[i][j] = fallingPoly.getSquare(maxIndex-j, i);//PolyArray[maxIndex-j][i];
@@ -199,6 +195,10 @@ public class Board {
             else {
                 for (int i=0; i<dimension; i++) {
                     for (int j=0; j<dimension; j++){
+                        if (fallingPoly.getSquare(i, j) != SquareType.EMPTY &&
+                                this.getBoardSquare(absolutePosYForFallingSquare(maxIndex-j), absolutePosXForFallingSquare(i)) != SquareType.EMPTY){
+                            return;
+                        }
                         newArray[maxIndex-j][i] = fallingPoly.getSquare(i,j);//PolyArray[i][j];
                     }
                 }

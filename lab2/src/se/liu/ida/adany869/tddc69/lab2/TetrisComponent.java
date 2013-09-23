@@ -34,8 +34,10 @@ public class TetrisComponent extends JComponent implements BoardListener {
         this.getActionMap().put("moveRight", moveRight);
         this.getInputMap().put(KeyStroke.getKeyStroke("UP"), "rotateRight");
         this.getActionMap().put("rotateRight", rotateRight);
-        this.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "down");
-        this.getActionMap().put("down", down);
+        this.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "rotateLeft");
+        this.getActionMap().put("rotateLeft", rotateLeft);
+        this.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "down");
+        this.getActionMap().put("down", doOneStep);
         final Timer clockTimer = new Timer(500, doOneStep);
         clockTimer.setCoalesce(true);
         clockTimer.start();
@@ -104,11 +106,10 @@ public class TetrisComponent extends JComponent implements BoardListener {
         }
     };
 
-    final private Action down = new AbstractAction() {
+    final private Action rotateLeft = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            board.tick();
-
+            board.rotateLeft();
         }
     };
 
