@@ -1,8 +1,9 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import javax.swing.*;
 import java.awt.*;
 
-public class RiskComponent {
+public class RiskComponent extends JComponent{
     private RiskWorld risk;
     private int height;
     private int width;
@@ -25,6 +26,6 @@ public class RiskComponent {
         Graphics2D g2 = (Graphics2D) g;
 
         g2.setColor(Color.red);
-        g2.fillRect(0,0, height, width);
+        g2.fillRect(0,0, width, height);
     }
 }
