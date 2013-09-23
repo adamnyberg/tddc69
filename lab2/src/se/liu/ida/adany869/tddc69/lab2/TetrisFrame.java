@@ -13,7 +13,7 @@ public class TetrisFrame extends JFrame{
 
     public TetrisFrame(Board board) {
         super("Tetris");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.board = board;
         //final Timer clockTimer = new Timer(500, doOneStep);
         //clockTimer.setCoalesce(true);
@@ -46,8 +46,15 @@ public class TetrisFrame extends JFrame{
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                System.exit(0);
+                String ObjButtons[] = {"Yes","No"};
+                int PromptResult = JOptionPane.showOptionDialog(null,
+                        "Are you sure you want to exit?", "Tetris",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
+                        ObjButtons,ObjButtons[1]);
+                if(PromptResult==0)
+                {
+                    System.exit(0);
+                }
             }
         });
     }
