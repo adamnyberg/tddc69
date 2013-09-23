@@ -67,11 +67,11 @@ public class TetrisComponent extends JComponent implements BoardListener {
         int sizeY= this.height/board.getHeight();
         int posX;
         int posY;
-        for (int height = Board.START_AREA_SIZE;  height < board.getFullHeight(); height++) {
-            for (int width = Board.BORDER_WIDTH; width < board.getFullWidth(); width++) {
+        for (int height = Board.getStartAreaSize();  height < board.getFullHeight(); height++) {
+            for (int width = Board.getBorderWidth(); width < board.getFullWidth(); width++) {
                 SquareType squareType = board.getAllBoardSquare(height, width);
-                posX = (width-Board.BORDER_WIDTH)*sizeX;
-                posY = (height-Board.START_AREA_SIZE)*sizeY;
+                posX = (width-Board.getBorderWidth())*sizeX;
+                posY = (height-Board.getStartAreaSize())*sizeY;
                 g2.setColor(colors.get(squareType));
                 g2.fillRect(posX, posY, sizeX, sizeY);
             }

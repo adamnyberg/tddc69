@@ -13,9 +13,17 @@ public class Board {
     private static final int INIT_HEIGHT = 20;
     private static final int INIT_WIDTH = 15;
     private static final int BORDER_HEIGHT = 1;
-    //TODO: public or private? used in TetrisComponent
-    public static final int BORDER_WIDTH = 1;
-    public static final int START_AREA_SIZE = 4;
+
+    public static int getBorderWidth() {
+        return BORDER_WIDTH;
+    }
+
+    public static int getStartAreaSize() {
+        return START_AREA_SIZE;
+    }
+
+    private static final int BORDER_WIDTH = 1;
+    private static final int START_AREA_SIZE = 4;
     final Random randGen = new Random();
 
     public Board(){
