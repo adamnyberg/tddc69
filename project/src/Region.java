@@ -1,13 +1,13 @@
-public class Country {
+public class Region {
     private int armies = 0;
 
-    private Country[] neighbours;
+    private Region[] neighbours;
 
-    public Country[] getNeighbours() {
+    public Region[] getNeighbours() {
         return neighbours;
     }
 
-    public void setNeighbours(Country[] neighbours) {
+    public void setNeighbours(Region[] neighbours) {
 
         this.neighbours = neighbours;
     }
@@ -20,7 +20,7 @@ public class Country {
         this.armies = armies;
     }
 
-    public Country() {
+    public Region() {
 
     }
 }

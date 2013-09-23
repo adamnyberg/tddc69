@@ -1,17 +1,17 @@
 public class MapTest {
     public static void main(String[] args) {
-        int numberOfCountries = 4;
+        int numberOfRegions = 4;
         
-        Country[] countries = new Country[numberOfCountries];
-        for (int i = 0; i < numberOfCountries; i++) {
-            countries[i] = new Country();
+        Region[] regions = new Region[numberOfRegions];
+        for (int i = 0; i < numberOfRegions; i++) {
+            regions[i] = new Region();
         }
 
-        for (Country country : countries) {
+        for (Region region : regions) {
             
         }
         
-        Map map = new Map(countries);
+        Map map = new Map(regions);
         
     }
 }

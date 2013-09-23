@@ -1,7 +1,7 @@
 public class Map {
-    private Country[] countries;
+    private Region[] countries;
 
-    public Map(Country[] countries) {
+    public Map(Region[] countries) {
         this.countries = countries;
     }
 }

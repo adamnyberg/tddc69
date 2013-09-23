@@ -51,8 +51,7 @@ public class TetrisFrame extends JFrame{
                         "Are you sure you want to exit?", "Tetris",
                         JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
                         ObjButtons,ObjButtons[1]);
-                if(PromptResult==0)
-                {
+                if(PromptResult == 0) {
                     System.exit(0);
                 }
             }
