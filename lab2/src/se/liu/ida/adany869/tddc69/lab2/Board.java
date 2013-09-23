@@ -158,14 +158,47 @@ public class Board {
     }
 
     public void rotateRight(){
-        fallingPoly.rotate(true);
+        //if (canRotateRight()) fallingPoly.rotate(true);
+        rotate(true);
         notifyListeners();
     }
 
     public void rotateLeft(){
+        //if (canRotateLeft())
         fallingPoly.rotate(false);
         notifyListeners();
     }
+
+    public void rotate(boolean rotateRight){
+        if (fallingPoly != null){
+            int dimension = fallingPoly.getDimension();
+            int maxIndex = dimension-1;
+            SquareType[][] newArray = new SquareType[dimension][dimension];
+            if (rotateRight) {
+                for (int i=0; i<dimension; i++) {
+                    for (int j=0; j<dimension; j++){
+                        System.out.println("1");
+                        if (fallingPoly.getSquare(maxIndex-j, i) != SquareType.EMPTY &&
+                                this.getSquare(absolutePosYForFallingSquare(i), absolutePosXForFallingSquare(j)) != SquareType.EMPTY){
+                            System.out.println("2");
+                            return;
+                        }
+                        newArray[i][j] = fallingPoly.getSquare(maxIndex-j, i);//PolyArray[maxIndex-j][i];
+                    }
+                }
+
+            }
+            else {
+                for (int i=0; i<dimension; i++) {
+                    for (int j=0; j<dimension; j++){
+                        newArray[maxIndex-j][i] = fallingPoly.getSquare(i,j);//PolyArray[i][j];
+                    }
+                }
+            }
+            fallingPoly.setPolyArray(newArray);
+        }
+    }
+
     private int absolutePosXForFallingSquare(int x){
         if (fallingPoly == null || x>=fallingPoly.getDimension()) throw new RuntimeException("No square in that position for fallingPoly");
         else return x + fallingPosX;
@@ -188,6 +221,7 @@ public class Board {
             }
 
         }
+        checkRowRemoval();
         checkGameOver();
         fallingPoly = null;
     }
@@ -272,6 +306,18 @@ public class Board {
         return false;
     }
 
+    /*private boolean canRotateRight(){
+        if (fallingPoly != null){
+            for (int i=0; i<fallingPoly.getDimension(); i++) {
+                for (int j=0; j<fallingPoly.getDimension(); j++){
+
+                    newArray[i][j] = PolyArray[maxIndex-j][i];
+                }
+            }
+        }
+        return false;
+    }*/
+
     private void checkRowRemoval(){
         for (int i = START_AREA_SIZE; i < height+START_AREA_SIZE; i++) {
             if (isFullRow(boardArray[i])){
@@ -302,8 +348,10 @@ public class Board {
         if (fallingPoly != null) {
             moveDown();
         }
-        else generateNewFallingPoly();
-        checkRowRemoval();
+        else {
+            generateNewFallingPoly();
+        }
+
     }
 
 

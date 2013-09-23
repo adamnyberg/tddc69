@@ -51,8 +51,8 @@ public class TetrominoMaker {
                 return new Poly(
                         new SquareType[][]{
                                 {SquareType.EMPTY,  SquareType.S, SquareType.S},
-                                {SquareType.EMPTY,  SquareType.S, SquareType.EMPTY},
-                                {SquareType.S,      SquareType.S, SquareType.EMPTY}
+                                {SquareType.S,  SquareType.S, SquareType.EMPTY},
+                                {SquareType.EMPTY,      SquareType.EMPTY, SquareType.EMPTY}
                         }
                 );
 
@@ -61,7 +61,7 @@ public class TetrominoMaker {
                         new SquareType[][]{
                                 {SquareType.T,      SquareType.T, SquareType.T},
                                 {SquareType.EMPTY,  SquareType.T, SquareType.EMPTY},
-                                {SquareType.EMPTY,  SquareType.T, SquareType.EMPTY}
+                                {SquareType.EMPTY,  SquareType.EMPTY, SquareType.EMPTY}
                         }
                 );
 
@@ -69,8 +69,8 @@ public class TetrominoMaker {
                 return new Poly(
                         new SquareType[][]{
                                 {SquareType.Z,      SquareType.Z, SquareType.EMPTY},
-                                {SquareType.EMPTY,  SquareType.Z, SquareType.EMPTY},
-                                {SquareType.EMPTY,  SquareType.Z, SquareType.Z}
+                                {SquareType.EMPTY,  SquareType.Z, SquareType.Z},
+                                {SquareType.EMPTY,  SquareType.EMPTY, SquareType.EMPTY}
                         }
                 );
             case A:

@@ -19,7 +19,7 @@ public class Poly {
         if (rotateRight) {
             for (int i=0; i<dimension; i++) {
                 for (int j=0; j<dimension; j++){
-                    newArray[i][j] = PolyArray[maxIndex-j][i];
+                    newArray[i][j] = getSquare(maxIndex-j, i);//PolyArray[maxIndex-j][i];
                 }
             }
 
@@ -27,7 +27,7 @@ public class Poly {
         else {
             for (int i=0; i<dimension; i++) {
                 for (int j=0; j<dimension; j++){
-                    newArray[maxIndex-j][i] = PolyArray[i][j];
+                    newArray[maxIndex-j][i] = getSquare(i,j);//PolyArray[i][j];
                 }
             }
         }
@@ -36,5 +36,9 @@ public class Poly {
 
     public SquareType getSquare(int height, int width){
         return PolyArray[height][width];
+    }
+
+    public void setPolyArray(SquareType[][] squareArray){
+        PolyArray = squareArray;
     }
 }
