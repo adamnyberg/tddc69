@@ -6,7 +6,7 @@ public class MapTest {
         
         Region[] regions = new Region[numberOfRegions];
         for (int i = 0; i < numberOfRegions; i++) {
-            regions[i] = new Region();
+            regions[i] = new Region("D");
         }
 
         for (Region region : regions) {

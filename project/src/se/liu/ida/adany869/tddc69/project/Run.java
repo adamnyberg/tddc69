@@ -7,10 +7,10 @@ public class Run {
 
         // create regions
         Region[] regions = {
-            new Region(),
-            new Region(),
-            new Region(),
-            new Region()
+            new Region("SWEDEN"),
+            new Region("MOTHER RUSSIA"),
+            new Region("MONGOLA"),
+            new Region("SIBIRIA")
         };
 
         RiskWorld risk = new RiskWorld(regions, players);
