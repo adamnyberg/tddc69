@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 public class TetrisFrame extends JFrame{
 
     private final Board board;
-    private JTextArea textArea;
 
     public TetrisFrame(Board board) {
         super("Tetris");
@@ -23,9 +22,7 @@ public class TetrisFrame extends JFrame{
     }
 
 
-    public void updateFrame(Board board){
-        textArea.setText(TetrisTextView.convertToText(board));
-    }
+
 
     private void createMenus(){
         final JMenuBar menuBar = new JMenuBar();
@@ -39,6 +36,8 @@ public class TetrisFrame extends JFrame{
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("Event: " + e);
+                System.out.println("cmd: " + e.getActionCommand());
                 String ObjButtons[] = {"Yes", "No"};
                 int PromptResult = JOptionPane.showOptionDialog(null,
                         "Are you sure you want to exit?", "Tetris",
@@ -49,5 +48,6 @@ public class TetrisFrame extends JFrame{
                 }
             }
         });
+
     }
 }

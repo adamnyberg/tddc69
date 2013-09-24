@@ -4,10 +4,11 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class RiskFrame  extends JFrame{
     private final RiskWorld risk;
-    private JTextArea textArea;
+    private Observer menuObserver;
 
     public RiskFrame(RiskWorld risk) {
         super("Rwhisky");
@@ -22,6 +23,14 @@ public class RiskFrame  extends JFrame{
         this.setVisible(true);
     }
 
+    public void setMenuObserver(Observer observer){
+        this.menuObserver = observer;
+    }
+
+    public void notifyMenuObserver(ActionEvent e){
+        menuObserver.update(e);
+    }
+
     private void createMenus(){
         final JMenuBar menuBar = new JMenuBar();
         final JMenu fileMenu = new JMenu("File");
@@ -34,14 +43,7 @@ public class RiskFrame  extends JFrame{
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String ObjButtons[] = {"Yes", "No"};
-                int PromptResult = JOptionPane.showOptionDialog(null,
-                        "Are you sure you want to exit?", "Tetris",
-                        JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
-                        ObjButtons, ObjButtons[1]);
-                if (PromptResult == 0) {
-                    System.exit(0);
-                }
+                notifyMenuObserver(e);
             }
         });
     }
