@@ -1,11 +1,11 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Run {
     public static void main(String[] args) {
-        // create players
-        Player[] players = {};
+
         Random randGen = new Random();
 
         // create regions
@@ -24,6 +24,22 @@ public class Run {
         for (Region region : regions) {
             region.setArmies(randGen.nextInt(100));
         }
+
+        // create players
+        Player[] players = {
+                new Player("Adam"),
+                new Player("Harald")
+        };
+        ArrayList<Region> playerRegions = new ArrayList<Region>();
+        playerRegions.add(regions[0]);
+        playerRegions.add(regions[1]);
+        players[0].setRegions(playerRegions);
+
+        playerRegions.remove(1);
+        playerRegions.remove(0);
+        playerRegions.add(regions[2]);
+        playerRegions.add(regions[3]);
+        players[1].setRegions(playerRegions);
 
         RiskWorld risk = new RiskWorld(regions, players);
         RiskFrame riskFrame = new RiskFrame(risk);
