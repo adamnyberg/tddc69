@@ -35,5 +35,8 @@ public class RegionComponent extends JComponent{
         g2.fillRect(0,0, height, width);
     }
 
+    public Region getRegion(){
+        return region;
+    }
 
 }

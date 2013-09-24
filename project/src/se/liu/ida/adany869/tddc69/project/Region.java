@@ -4,20 +4,20 @@ import java.util.ArrayList;
 
 public class Region {
     private int armies;
-    private ArrayList<Region> neighbours;
+    private String name;
     //private Region[] neighbours;
 
-    public Region() {
+    public Region(String name) {
+        this.name = name;
     }
 
-    public ArrayList<Region> getNeighbours() {
+    /*public ArrayList<Region> getNeighbours() {
         return neighbours;
-    }
+    }*/
 
-    public void setNeighbours(ArrayList neighbours) {
-
+    /*public void setNeighbours(ArrayList neighbours) {
         this.neighbours = neighbours;
-    }
+    }*/
 
     public int getArmies() {
         return armies;
@@ -27,9 +27,8 @@ public class Region {
         this.armies = armies;
     }
 
-
-
-    public void addNeighbour(Region region){
+    /*public void addNeighbour(Region region){
+        System.out.println("Region: " + region);
         neighbours.add(region);
-    }
+    }*/
 }
