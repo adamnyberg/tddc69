@@ -1,11 +1,13 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 public class Region {
     private int armies;
     private String name;
     private ArrayList<Region> neighbours = new ArrayList<Region>();
+    private ArrayList<Observer> regionObservers = new ArrayList<Observer>();
 
     public Region(String name) {
         this.name = name;
@@ -25,11 +27,27 @@ public class Region {
 
     public void setArmies(int armies) {
         this.armies = armies;
+        notifyObservers();
     }
 
     public void addNeighbour(Region region){
         System.out.println("Region: " + region);
         System.out.println("Regionname: " + region.name);
         neighbours.add(region);
+    }
+
+    public void attack(Region attacked){
+        this.setArmies(this.getArmies()-attacked.getArmies());
+        attacked.setArmies(attacked.getArmies()-this.getArmies());
+    }
+
+    public void addObserver(Observer o){
+        regionObservers.add(o);
+    }
+
+    public void notifyObservers(){
+        for (Observer observer : regionObservers) {
+            observer.update(new ActionEvent(this, 0, "updateArmy"));
+        }
     }
 }

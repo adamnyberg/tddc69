@@ -2,6 +2,7 @@ package se.liu.ida.adany869.tddc69.project;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 public class RiskPanel extends JPanel{
@@ -21,6 +22,9 @@ public class RiskPanel extends JPanel{
 
         addRegions();
         setupRegionComponentRelations();
+
+        this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "attack");
+        this.getActionMap().put("attack", attack);
     }
 
     public RiskPanel(RiskWorld risk) {
@@ -108,4 +112,21 @@ public class RiskPanel extends JPanel{
 
         }
     }
+
+    private final void updatePanel(){
+        this.repaint();
+    }
+
+    final private Action attack = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("asd");
+            Region attacker = risk.getRegions()[0];
+            Region attacked = risk.getRegions()[0].getNeighbours().get(0);
+            attacker.attack(attacked);
+            /*getRegionComponent(attacker).repaint();
+            getRegionComponent(attacked).repaint();*/
+            updatePanel();
+        }
+    };
 }
