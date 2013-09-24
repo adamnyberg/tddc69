@@ -11,6 +11,7 @@ public class RiskWorld {
         this.regions = regions;
         this.players = players;
         relations = new RegionRelations();
+
     }
 
     public Region[] getRegions() {
