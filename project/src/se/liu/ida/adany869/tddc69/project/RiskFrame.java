@@ -16,8 +16,8 @@ public class RiskFrame  extends JFrame{
         this.setLayout(new MigLayout());
         createMenus();
 
-        RiskComponent riskComponent = new RiskComponent(this.risk);
-        this.setContentPane(riskComponent);
+        RiskPanel riskPanel = new RiskPanel(this.risk);
+        this.setContentPane(riskPanel);
         this.pack();
         this.setVisible(true);
     }
