@@ -31,19 +31,35 @@ public class RiskFrame  extends JFrame{
         menuObserver.update(e);
     }
 
+    public final void closeFrame() {
+        this.setVisible(false);
+    }
+
     private void createMenus(){
         final JMenuBar menuBar = new JMenuBar();
-        final JMenu fileMenu = new JMenu("File");
+        final JMenu menu = new JMenu("Rwhisky");
+
+        final JMenuItem restart = new JMenuItem("Restart", 'R');
         final JMenuItem quit = new JMenuItem("Quit", 'Q');
 
-        fileMenu.add(quit);
-        menuBar.add(fileMenu);
+        menu.add(restart);
+        menu.add(quit);
+
+        menuBar.add(menu);
         this.setJMenuBar(menuBar);
 
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyMenuObserver(e);
+            }
+        });
+
+        restart.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyMenuObserver(e);
+                closeFrame();
             }
         });
     }

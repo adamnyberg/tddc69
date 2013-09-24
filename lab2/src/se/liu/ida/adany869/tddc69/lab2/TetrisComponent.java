@@ -11,8 +11,8 @@ public class TetrisComponent extends JComponent implements BoardListener {
     private int height;
     private int width;
 
-    private static final int INIT_HEIGHT = 800;
-    private static final int INIT_WIDTH = 600;
+    private static final int INIT_HEIGHT = 600;
+    private static final int INIT_WIDTH = 450;
 
     private EnumMap<SquareType, Color> colors= new EnumMap<SquareType, Color>(SquareType.class);
 
@@ -82,11 +82,6 @@ public class TetrisComponent extends JComponent implements BoardListener {
         }
     }
 
-    public void drawBackground(Graphics g2) {
-        g2.setColor(Color.blue);
-        g2.fillRect(0,0, width, height);
-    }
-
     final private Action moveLeft = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -122,4 +117,3 @@ public class TetrisComponent extends JComponent implements BoardListener {
     };
 
 }
-

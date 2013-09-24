@@ -33,7 +33,7 @@ public class RiskPanel extends JPanel{
         Graphics2D g2 = (Graphics2D) g;
 
         g2.setColor(new Color(0,0,0,0));
-        g2.fillRect(0,0, width, height);ß
+        g2.fillRect(0,0, width, height);
 
         drawBounds(g2);
     }
