@@ -11,6 +11,10 @@ public class GenericRelations<T> {
     }
 
     public ArrayList<T[]> getRelations(){
-        return relations;
+        return (ArrayList<T[]>) relations;
+    }
+
+    public T[] getRelation(int index){
+        return (T[]) relations.get(index);
     }
 }

@@ -21,7 +21,7 @@ public abstract class AbstractController {
             //Board[] param2 = new Board[1];
             //param2[0] = b;
             Method m = c.getMethod(methodName, param);
-            System.out.println("m: " + m.invoke(this, params));
+            m.invoke(this, params);
             // m.invoke(TTV, param2) = TTV.convertToText(b);
         }
         catch(NoSuchMethodException e) {

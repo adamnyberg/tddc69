@@ -20,4 +20,8 @@ public class RiskWorld {
     public RegionRelations getRegionRelations(){
         return relations;
     }
+
+    public void addRelation(Region regionA, Region regionB){
+        relations.addRelation(regionA, regionB);
+    }
 }

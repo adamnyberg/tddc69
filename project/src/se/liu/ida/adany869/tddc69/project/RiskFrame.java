@@ -12,7 +12,7 @@ public class RiskFrame  extends JFrame{
 
     public RiskFrame(RiskWorld risk) {
         super("Rwhisky");
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.risk = risk;
         this.setLayout(new MigLayout());
         createMenus();

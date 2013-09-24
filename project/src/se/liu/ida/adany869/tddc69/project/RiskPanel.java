@@ -18,13 +18,9 @@ public class RiskPanel extends JPanel{
         this.height = height;
         this.width = width;
         relations = new RegionComponentRelations();
-        addRegions();
-        Component[] components = this.getComponents();
 
-        for (int i = 0; i < components.length; i++) {
-            Rectangle bounds = components[i].getBounds();
-            System.out.println(bounds);
-        }
+        addRegions();
+        setupRegionComponentRelations();
     }
 
     public RiskPanel(RiskWorld risk) {
@@ -33,16 +29,11 @@ public class RiskPanel extends JPanel{
 
     @Override
     protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
         g2.setColor(new Color(0,0,0,0));
-        g2.fillRect(0,0, width, height);
-
-        Component[] components = this.getComponents();
-        for (int i = 0; i < components.length; i++) {
-            Rectangle bounds = components[i].getBounds();
-            System.out.println(bounds);
-        }
+        g2.fillRect(0,0, width, height);ß
 
         drawBounds(g2);
     }
@@ -55,16 +46,21 @@ public class RiskPanel extends JPanel{
 
     private void drawBounds(Graphics2D g2) {
         g2.setColor(Color.BLACK);
+        g2.setStroke(new BasicStroke(5));
 
-        for (ArrayList<RegionComponent> regionTupel : this.getRegionsRelation()) {
-            RegionComponent regionComponent1 = regionTupel.get(0);
-            RegionComponent regionComponent2 = regionTupel.get(1);
 
-            g2.drawLine(regionComponent1.getX(), regionComponent1.getY(), regionComponent2.getX(), regionComponent2.getY());
+        for (RegionComponent[] regionTupel : this.relations.getRelations()) {
+
+            RegionComponent regionComponent1 = regionTupel[0];
+            RegionComponent regionComponent2 = regionTupel[1];
+            g2.drawLine(regionComponent1.getX()+regionComponent1.getWidth()/2,
+                    regionComponent1.getY()+regionComponent1.getHeight()/2,
+                    regionComponent2.getX()+regionComponent2.getWidth()/2,
+                    regionComponent2.getY()+regionComponent2.getHeight()/2);
         }
     }
 
-    private ArrayList<RegionComponent> getRegionComponents() { // TODO: maby not need this
+    private ArrayList<RegionComponent> getRegionComponents() { // TODO: maybe not need this
         ArrayList<RegionComponent> regionComponents = new ArrayList<RegionComponent>();
 
         for (Component component : this.getComponents()) {
@@ -73,5 +69,43 @@ public class RiskPanel extends JPanel{
             }
         }
         return regionComponents;
+    }
+
+    public RegionComponent getRegionComponent(Region region){
+        ArrayList<RegionComponent> components = getRegionComponents(); //TODO: chache regionComponents
+        for (int i = 0; i < components.size(); i++) {
+             if (components.get(i).getRegion().equals(region)){
+                 return components.get(i);
+             }
+
+        }
+        return null;
+    }
+
+    public void setupRegionComponentRelations(){
+        this.relations = new RegionComponentRelations();
+        for (Region region : risk.getRegions()) {
+            ArrayList<Region> neighbourRegions = region.getNeighbours();
+            RegionComponent regionComponentA = getRegionComponent(region);
+            RegionComponent regionComponentB = null;
+            for (int i = 0; i < neighbourRegions.size(); i++) {
+                 relations.addRelation(regionComponentA, getRegionComponent(neighbourRegions.get(i)));
+            }
+            /*for (Component component : this.getRegionComponents()) {
+
+                    if (((RegionComponent) component).getRegion() == neighbourRegions.get(0)){
+                        regionComponentA = (RegionComponent) component;
+                    }
+                    else if (((RegionComponent) component).getRegion() == neighbourRegions.get(1)){
+                        regionComponentB = (RegionComponent) component;
+                    }
+                if (regionComponentA != null && regionComponentB != null){
+                    this.relations.addRelation(regionComponentA, regionComponentB);
+                }
+
+            }*/
+
+
+        }
     }
 }

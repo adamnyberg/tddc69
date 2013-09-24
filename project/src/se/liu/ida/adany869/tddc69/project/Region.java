@@ -5,19 +5,19 @@ import java.util.ArrayList;
 public class Region {
     private int armies;
     private String name;
-    //private Region[] neighbours;
+    private ArrayList<Region> neighbours = new ArrayList<Region>();
 
     public Region(String name) {
         this.name = name;
     }
 
-    /*public ArrayList<Region> getNeighbours() {
+    public ArrayList<Region> getNeighbours() {
         return neighbours;
-    }*/
+    }
 
-    /*public void setNeighbours(ArrayList neighbours) {
+    public void setNeighbours(ArrayList neighbours) {
         this.neighbours = neighbours;
-    }*/
+    }
 
     public int getArmies() {
         return armies;
@@ -27,8 +27,9 @@ public class Region {
         this.armies = armies;
     }
 
-    /*public void addNeighbour(Region region){
+    public void addNeighbour(Region region){
         System.out.println("Region: " + region);
+        System.out.println("Regionname: " + region.name);
         neighbours.add(region);
-    }*/
+    }
 }
