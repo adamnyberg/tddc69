@@ -2,12 +2,14 @@ package se.liu.ida.adany869.tddc69.project;
 
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Region {
     private int armies;
     private String name;
     private ArrayList<Region> neighbours = new ArrayList<Region>();
     private ArrayList<Observer> regionObservers = new ArrayList<Observer>();
+    private Random randGen = new Random();
 
     public Region(String name) {
         this.name = name;
@@ -37,8 +39,15 @@ public class Region {
     }
 
     public void attack(Region attacked){
-        this.setArmies(this.getArmies()-attacked.getArmies());
-        attacked.setArmies(attacked.getArmies()-this.getArmies());
+        System.out.println("RegionAttack");
+        int attackDmg = randGen.nextInt(this.getArmies()+1);
+        int defDmg =  randGen.nextInt(attacked.getArmies()+1);
+        int attackerArmiesAfter = this.getArmies()-defDmg;
+        int defenderArmiesAfter = attacked.getArmies()-attackDmg;
+        if(attackerArmiesAfter < 0) attackerArmiesAfter = 0;
+        if(defenderArmiesAfter < 0) defenderArmiesAfter = 0;
+        this.setArmies(attackerArmiesAfter);
+        attacked.setArmies(defenderArmiesAfter);
     }
 
     public void addObserver(Observer o){
@@ -47,6 +56,7 @@ public class Region {
 
     public void notifyObservers(){
         for (Observer observer : regionObservers) {
+            System.out.println("Region.notifyObservers");
             observer.update(new ActionEvent(this, 0, "updateArmy"));
         }
     }

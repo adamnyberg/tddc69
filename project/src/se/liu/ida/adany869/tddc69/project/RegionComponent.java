@@ -25,6 +25,7 @@ public class RegionComponent extends JComponent implements Observer{
         this.width = width;
         armyText.setText(Integer.toString(region.getArmies()));
         this.add(armyText, "span");
+        region.addObserver(this);
     }
 
     public RegionComponent(Region region) {
@@ -49,6 +50,7 @@ public class RegionComponent extends JComponent implements Observer{
     }
 
     public void update(ActionEvent e){
+        System.out.println("regComp.update: " + e.getActionCommand());
         invokeMethod(e.getActionCommand(), null);
     }
 
@@ -74,6 +76,7 @@ public class RegionComponent extends JComponent implements Observer{
         }
         catch(NoSuchMethodException e) {
             System.out.println(e.toString());
+            System.out.println("Class: " + c);
         }
         catch(InvocationTargetException e) {
             System.out.println(e.toString());
@@ -83,8 +86,7 @@ public class RegionComponent extends JComponent implements Observer{
         }
     }
 
-    private void updateArmy(){
-        System.out.println("jhh");
+    public void updateArmy(){
         armyText.setText(Integer.toString(region.getArmies()));
     }
 }
