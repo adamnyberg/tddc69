@@ -1,5 +1,6 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -27,8 +28,8 @@ public class Run {
 
         // create players
         Player[] players = {
-                new Player("Adam"),
-                new Player("Harald")
+                new Player("Adam", Color.blue),
+                new Player("Harald", Color.green)
         };
         ArrayList<Region> playerRegions = new ArrayList<Region>();
         playerRegions.add(regions[0]);

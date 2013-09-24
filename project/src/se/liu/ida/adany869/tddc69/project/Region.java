@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class Region {
     private int armies;
+    private Player player = null;
     private String name;
     private ArrayList<Region> neighbours = new ArrayList<Region>();
     private ArrayList<Observer> regionObservers = new ArrayList<Observer>();
@@ -30,6 +31,14 @@ public class Region {
     public void setArmies(int armies) {
         this.armies = armies;
         notifyObservers();
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public void addNeighbour(Region region){
