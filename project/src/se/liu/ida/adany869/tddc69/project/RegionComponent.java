@@ -40,7 +40,7 @@ public class RegionComponent extends JComponent implements Observer{
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
-        g2.setColor(Color.red);
+        g2.setColor(region.getPlayer().getColor());
         g2.fillRect(0,0, height, width);
     }
 
