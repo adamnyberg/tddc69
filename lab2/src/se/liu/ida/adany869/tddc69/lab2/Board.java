@@ -318,7 +318,6 @@ public class Board {
             for (int j = 0; j < width; j++) {
                 setBoardSquare(i, j, getBoardSquare(i-1, j));
             }
-
         }
     }
 
