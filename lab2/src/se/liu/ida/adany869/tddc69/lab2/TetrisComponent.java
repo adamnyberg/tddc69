@@ -24,6 +24,7 @@ public class TetrisComponent extends JComponent implements BoardListener {
         this.board = board;
         this.height = height;
         this.width = width;
+
         colors.put(SquareType.EMPTY, Color.black);
         colors.put(SquareType.OUTSIDE, Color.magenta);
         colors.put(SquareType.I, Color.red);
@@ -34,6 +35,7 @@ public class TetrisComponent extends JComponent implements BoardListener {
         colors.put(SquareType.T, Color.orange);
         colors.put(SquareType.Z, Color.yellow);
         colors.put(SquareType.A, Color.pink);
+
         this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "moveLeft");
         this.getActionMap().put("moveLeft", moveLeft);
         this.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "moveRight");
@@ -44,6 +46,7 @@ public class TetrisComponent extends JComponent implements BoardListener {
         this.getActionMap().put("rotateLeft", rotateLeft);
         this.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "down");
         this.getActionMap().put("down", doOneStep);
+
         final Timer clockTimer = new Timer(500, doOneStep);
         clockTimer.setCoalesce(true);
         clockTimer.start();

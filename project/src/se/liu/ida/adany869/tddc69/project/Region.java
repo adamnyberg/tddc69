@@ -10,7 +10,7 @@ public class Region {
     public Region() {
     }
 
-    public ArrayList getNeighbours() {
+    public ArrayList<Region> getNeighbours() {
         return neighbours;
     }
 
