@@ -7,6 +7,7 @@ public class RiskPanel extends JPanel{
     private RiskWorld risk;
     private int height;
     private int width;
+    private RegionComponentRelations relations;
 
     private static final int INIT_HEIGHT = 800;
     private static final int INIT_WIDTH = 1000;
@@ -15,6 +16,7 @@ public class RiskPanel extends JPanel{
         this.risk = risk;
         this.height = height;
         this.width = width;
+        relations = new RegionComponentRelations();
         addRegions();
         Component[] components = this.getComponents();
 

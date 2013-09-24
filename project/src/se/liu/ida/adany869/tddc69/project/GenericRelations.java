@@ -9,4 +9,8 @@ public class GenericRelations<T> {
         T[] objects = (T[]) new Object[]{objectA, objectB};
         relations.add(objects);
     }
+
+    public ArrayList<T[]> getRelations(){
+        return relations;
+    }
 }
