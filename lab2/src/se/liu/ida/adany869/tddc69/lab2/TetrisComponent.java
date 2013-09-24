@@ -11,8 +11,8 @@ public class TetrisComponent extends JComponent implements BoardListener {
     private int height;
     private int width;
 
-    private static final int INIT_HEIGHT = 400;
-    private static final int INIT_WIDTH = 300;
+    private static final int INIT_HEIGHT = 600;
+    private static final int INIT_WIDTH = 500;
 
     private EnumMap<SquareType, Color> colors= new EnumMap<SquareType, Color>(SquareType.class);
 
@@ -117,4 +117,3 @@ public class TetrisComponent extends JComponent implements BoardListener {
     };
 
 }
-

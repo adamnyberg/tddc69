@@ -14,7 +14,7 @@ public class Board {
     private static final int INIT_WIDTH = 15;
     private static final int BORDER_HEIGHT = 2;
     private static final int BORDER_WIDTH = 2;
-    private static final int START_AREA_SIZE = 4;
+    private static final int START_AREA_HEIGHT = 4;
     final Random randGen = new Random();
 
     public Board(){
@@ -24,11 +24,11 @@ public class Board {
     public Board(int h, int w) {
         height = h;
         width = w;
-        boardArray = new SquareType[height + BORDER_HEIGHT + START_AREA_SIZE][width + BORDER_WIDTH*2];
+        boardArray = new SquareType[height + BORDER_HEIGHT + START_AREA_HEIGHT][width + BORDER_WIDTH*2];
 
-        for (int i = 0; i < height + BORDER_HEIGHT + START_AREA_SIZE; i++) {
+        for (int i = 0; i < height + BORDER_HEIGHT + START_AREA_HEIGHT; i++) {
             for (int j = 0; j<width+BORDER_WIDTH*2; j++) {
-                if (i >= height+START_AREA_SIZE || j < BORDER_WIDTH || j >= width+BORDER_WIDTH) setSquare(i, j, SquareType.OUTSIDE);
+                if (i >= height+ START_AREA_HEIGHT || j < BORDER_WIDTH || j >= width+BORDER_WIDTH) setSquare(i, j, SquareType.OUTSIDE);
                 else setSquare(i, j, SquareType.EMPTY);
             }
         }
@@ -39,11 +39,11 @@ public class Board {
     }
 
     public static int getStartAreaSize() {
-        return START_AREA_SIZE;
+        return START_AREA_HEIGHT;
     }
 
     public int getFullHeight(){
-        return height + BORDER_HEIGHT + START_AREA_SIZE;
+        return height + BORDER_HEIGHT + START_AREA_HEIGHT;
     }
 
     public int getFullWidth(){
@@ -88,7 +88,7 @@ public class Board {
     }
 
     public void emptyBoard(){
-        for (int i = 0; i < START_AREA_SIZE+ getHeight(); i++) {
+        for (int i = 0; i < START_AREA_HEIGHT + getHeight(); i++) {
             for (int j = 0; j < getWidth(); j++) {
                 setBoardSquare(i,j, SquareType.EMPTY) ;
             }
@@ -215,7 +215,7 @@ public class Board {
     }
 
     private boolean isGameOver(){
-        for(int y = 0; y < START_AREA_SIZE; y++){
+        for(int y = 0; y < START_AREA_HEIGHT; y++){
             for (int x = 0; x < getWidth(); x++) {
                 if(getBoardSquare(y, x) != SquareType.EMPTY){
                     return true;
@@ -297,7 +297,7 @@ public class Board {
     }*/
 
     private void checkRowRemoval(){
-        for (int i = START_AREA_SIZE; i < height+START_AREA_SIZE; i++) {
+        for (int i = START_AREA_HEIGHT; i < height+ START_AREA_HEIGHT; i++) {
             if (isFullRow(boardArray[i])){
                 emptyRow(i);
             }
@@ -314,7 +314,7 @@ public class Board {
     }
 
     private void emptyRow(int rowIndex){
-        for (int i = rowIndex; i >= START_AREA_SIZE ; i--) {
+        for (int i = rowIndex; i >= START_AREA_HEIGHT; i--) {
             for (int j = 0; j < width; j++) {
                 setBoardSquare(i, j, getBoardSquare(i-1, j));
             }
