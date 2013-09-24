@@ -82,11 +82,6 @@ public class TetrisComponent extends JComponent implements BoardListener {
         }
     }
 
-    public void drawBackground(Graphics g2) {
-        g2.setColor(Color.blue);
-        g2.fillRect(0,0, width, height);
-    }
-
     final private Action moveLeft = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
