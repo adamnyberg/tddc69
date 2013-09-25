@@ -5,12 +5,15 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class RegionComponent extends JComponent implements Observer{
 
     private Region region;
+    private Mouse mouseListener = new Mouse();
     private int height;
     private int width;
     private JLabel armyText = new JLabel();
@@ -24,10 +27,12 @@ public class RegionComponent extends JComponent implements Observer{
         this.height = height;
         this.width = width;
         armyText.setText(Integer.toString(region.getArmies()));
-
-        this.add(armyText, "wrap");
         this.add(new JLabel(region.getName()), "span");
+        this.add(armyText, "span");
+        region.addObserver(this);
+        this.addMouseListener(mouseListener);
     }
+
 
     public RegionComponent(Region region) {
         this(region, INIT_HEIGHT, INIT_WIDTH);
@@ -51,6 +56,7 @@ public class RegionComponent extends JComponent implements Observer{
     }
 
     public void update(ActionEvent e){
+        System.out.println("regComp.update: " + e.getActionCommand());
         invokeMethod(e.getActionCommand(), null);
     }
 
@@ -76,6 +82,7 @@ public class RegionComponent extends JComponent implements Observer{
         }
         catch(NoSuchMethodException e) {
             System.out.println(e.toString());
+            System.out.println("Class: " + c);
         }
         catch(InvocationTargetException e) {
             System.out.println(e.toString());
@@ -85,8 +92,8 @@ public class RegionComponent extends JComponent implements Observer{
         }
     }
 
-    private void updateArmy(){
-        System.out.println("jhh");
+    //Used through invokeMethod().
+    public void updateArmy(){
         armyText.setText(Integer.toString(region.getArmies()));
     }
 }
