@@ -5,12 +5,15 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class RegionComponent extends JComponent implements Observer{
 
     private Region region;
+    private Mouse mouseListener = new Mouse();
     private int height;
     private int width;
     private JLabel armyText = new JLabel();
@@ -26,7 +29,9 @@ public class RegionComponent extends JComponent implements Observer{
         armyText.setText(Integer.toString(region.getArmies()));
         this.add(armyText, "span");
         region.addObserver(this);
+        this.addMouseListener(mouseListener);
     }
+
 
     public RegionComponent(Region region) {
         this(region, INIT_HEIGHT, INIT_WIDTH);
@@ -86,6 +91,7 @@ public class RegionComponent extends JComponent implements Observer{
         }
     }
 
+    //Used through invokeMethod().
     public void updateArmy(){
         armyText.setText(Integer.toString(region.getArmies()));
     }
