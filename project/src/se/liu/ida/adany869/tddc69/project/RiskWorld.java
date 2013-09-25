@@ -9,14 +9,13 @@ public class RiskWorld {
     public RiskWorld(Region[] regions, Player[] players) {
         this.regions = regions;
         this.players = players;
-
-
     }
 
     public Region[] getRegions() {
         return regions;
     }
 
-
-
+    public Player[] getPlayers() {
+        return players;
+    }
 }

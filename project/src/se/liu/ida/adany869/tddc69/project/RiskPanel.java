@@ -20,6 +20,7 @@ public class RiskPanel extends JPanel{
         this.width = width;
         relations = new RegionComponentRelations();
 
+        addPlayersInfo();
         addRegions();
         setupRegionComponentRelations();
 
@@ -44,8 +45,13 @@ public class RiskPanel extends JPanel{
 
     private void addRegions(){
         for (Region region : risk.getRegions()) {
-            this.add(new RegionComponent(region), "span wrap");
+            this.add(new RegionComponent(region), "span");
         }
+    }
+
+    private void addPlayersInfo() {
+        this.add(new PlayerComponent(risk.getPlayers()[0]));
+        this.add(new PlayerComponent(risk.getPlayers()[1]), "wrap");
     }
 
     private void drawBounds(Graphics2D g2) {

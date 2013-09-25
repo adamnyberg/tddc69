@@ -1,16 +1,25 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 public class Region {
     private int armies;
-    private Player player = null;
+    private Player player = new Player("none", Color.DARK_GRAY);
     private String name;
     private ArrayList<Region> neighbours = new ArrayList<Region>();
     private ArrayList<Observer> regionObservers = new ArrayList<Observer>();
 
     public Region(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 

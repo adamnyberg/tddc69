@@ -24,7 +24,9 @@ public class RegionComponent extends JComponent implements Observer{
         this.height = height;
         this.width = width;
         armyText.setText(Integer.toString(region.getArmies()));
-        this.add(armyText, "span");
+
+        this.add(armyText, "wrap");
+        this.add(new JLabel(region.getName()), "span");
     }
 
     public RegionComponent(Region region) {
