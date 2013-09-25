@@ -1,15 +1,20 @@
 package se.liu.ida.adany869.tddc69.lab2;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Random;
 
+/**
+ * The class board is the main class. Instanciatied it holds the structure of a tetris game. It has two different coordinate
+ * systems, one for the playable and visible area including a starting area where tetrominos are spawned,
+ * and one for the whole area, including borders, playable area and starting area.
+ */
 public class Board {
     private SquareType[][] boardArray;
+    //fallingPoly is initialized in the constructor via generateNewFallingPoly method.
     private Poly fallingPoly;
-    private int fallingPosX;
-    private int fallingPosY;
     private int height;
     private int width;
-    private ArrayList<BoardListener> boardListeners = new ArrayList<BoardListener>();
+    private Collection<BoardListener> boardListeners = new ArrayList<BoardListener>();
     private static final int INIT_HEIGHT = 20;
     private static final int INIT_WIDTH = 15;
     private static final int BORDER_HEIGHT = 2;
@@ -20,7 +25,9 @@ public class Board {
     public Board(){
         this(INIT_HEIGHT, INIT_WIDTH);
     }
-
+	/*
+	* Creates a board with h squares playable height and w squares playable width
+	*/
     public Board(int h, int w) {
         height = h;
         width = w;
@@ -32,6 +39,7 @@ public class Board {
                 else setSquare(i, j, SquareType.EMPTY);
             }
         }
+	generateNewFallingPoly();
     }
 
     public static int getBorderWidth() {
@@ -50,6 +58,10 @@ public class Board {
         return width + BORDER_WIDTH*2;
     }
 
+    private boolean doesPolyExist(){
+	return fallingPoly != null;
+    }
+
     private void setSquare(int height, int width, SquareType value){
         boardArray[height][width] = value;
         notifyListeners();
@@ -60,23 +72,24 @@ public class Board {
         notifyListeners();
     }
 
-    public SquareType getAllBoardSquare(int height, int width){
-        SquareType squareType = boardArray[height][width];
+    public SquareType getBoardOrFallingSquare(int y, int x){
+        SquareType squareType = boardArray[y][x];
         if (squareType == SquareType.EMPTY){
-            squareType = getFallingSquare(height, width-BORDER_WIDTH);
+            squareType = getFallingSquare(y, x-BORDER_WIDTH);
         }
         return squareType;
     }
+
     public SquareType getBoardSquare(int y, int x){
         return boardArray[y][x+BORDER_WIDTH];
     }
 
-    public SquareType getSquare(int height, int width){
-        SquareType squareType = getBoardSquare(height, width);
-        if (squareType == SquareType.EMPTY){
-            squareType = getFallingSquare(height, width);
-        }
-        return squareType;
+    public SquareType getFallingSquare(int y, int x){
+	if (isInsideFallingPoly(x, y)) {
+	    return fallingPoly.getSquare(y - fallingPoly.getPosY(), x - fallingPoly.getPosX());
+	}
+
+	else return SquareType.EMPTY;
     }
 
     public int getHeight() {
@@ -88,8 +101,8 @@ public class Board {
     }
 
     public void emptyBoard(){
-        for (int i = 0; i < START_AREA_HEIGHT + getHeight(); i++) {
-            for (int j = 0; j < getWidth(); j++) {
+        for (int i = 0; i < START_AREA_HEIGHT + height; i++) {
+            for (int j = 0; j < width; j++) {
                 setBoardSquare(i,j, SquareType.EMPTY) ;
             }
 
@@ -98,111 +111,66 @@ public class Board {
 
     private boolean isInsideFallingPoly(int x, int y){
         return (fallingPoly != null &&
-                y >= fallingPosY &&
-                y - fallingPosY < fallingPoly.getDimension() &&
-                x >= fallingPosX &&
-                x - fallingPosX < fallingPoly.getDimension());
-    }
-
-    public SquareType getFallingSquare(int height, int width){
-        if (isInsideFallingPoly(width, height)) {
-                return fallingPoly.getSquare(height - fallingPosY, width - fallingPosX);
-        }
-
-        else return SquareType.EMPTY;
+                y >= fallingPoly.getPosY() &&
+                y - fallingPoly.getPosY() < fallingPoly.getDimension() &&
+                x >= fallingPoly.getPosX() &&
+                x - fallingPoly.getPosX() < fallingPoly.getDimension());
     }
 
     public void addBoardListener(BoardListener bl){
         boardListeners.add(bl);
     }
 
-    private void notifyListeners(){
+    public void notifyListeners(){
         for (BoardListener boardListener : boardListeners) {
             boardListener.boardChanged();
         }
     }
 
     public void generateNewFallingPoly() {
-        this.fallingPoly = TetrominoMaker.getPoly(randGen.nextInt(SquareType.getNumberOfTypes()));//TetrominoMaker.getPoly(7);
-        fallingPosY = 0;
-        fallingPosX = width/2 - fallingPoly.getDimension()/2;
+	TetrominoMaker tetrominoMaker = new TetrominoMaker(this);
+        this.fallingPoly = tetrominoMaker.getPoly(randGen.nextInt(tetrominoMaker.getNumberOfTypes()));
         notifyListeners();
     }
 
-    public void moveDown() {
-        if (canMoveDown()) fallingPosY++;
-        else fixPolyToBoard();
-        notifyListeners();
+    public void moveLeft(){
+	if (doesPolyExist()) fallingPoly.moveLeft();
     }
 
-    public void moveRight() {
-        if (canMoveRight()) fallingPosX++;
-        notifyListeners();
-    }
-
-    public void moveLeft() {
-        if (canMoveLeft()) fallingPosX--;
-        notifyListeners();
+    public void moveRight(){
+       if (doesPolyExist()) fallingPoly.moveRight();
     }
 
     public void rotateRight(){
-        rotate(true);
-        notifyListeners();
+	if (doesPolyExist()){
+	    fallingPoly.rotate(true);
+	    notifyListeners();
+	}
     }
 
     public void rotateLeft(){
-        rotate(false);
-        notifyListeners();
+	if (doesPolyExist()){
+	    fallingPoly.rotate(false);
+	    notifyListeners();
+	}
     }
 
-    public void rotate(boolean rotateRight){
-        if (fallingPoly != null){
-            int dimension = fallingPoly.getDimension();
-            int maxIndex = dimension-1;
-            SquareType[][] newArray = new SquareType[dimension][dimension];
-            if (rotateRight) {
-                for (int i=0; i<dimension; i++) {
-                    for (int j=0; j<dimension; j++){
-                        if (fallingPoly.getSquare(maxIndex-j, i) != SquareType.EMPTY &&
-                                this.getBoardSquare(absolutePosYForFallingSquare(i), absolutePosXForFallingSquare(j)) != SquareType.EMPTY){
-                            return;
-                        }
-                        newArray[i][j] = fallingPoly.getSquare(maxIndex-j, i);//PolyArray[maxIndex-j][i];
-                    }
-                }
-
-            }
-            else {
-                for (int i=0; i<dimension; i++) {
-                    for (int j=0; j<dimension; j++){
-                        if (fallingPoly.getSquare(i, j) != SquareType.EMPTY &&
-                                this.getBoardSquare(absolutePosYForFallingSquare(maxIndex-j), absolutePosXForFallingSquare(i)) != SquareType.EMPTY){
-                            return;
-                        }
-                        newArray[maxIndex-j][i] = fallingPoly.getSquare(i,j);//PolyArray[i][j];
-                    }
-                }
-            }
-            fallingPoly.setPolyArray(newArray);
-        }
+    public int absolutePosXForFallingSquare(int x){
+        if (fallingPoly == null || x>=fallingPoly.getDimension()) return -1;
+        else return x + fallingPoly.getPosX();
     }
 
-    private int absolutePosXForFallingSquare(int x){
-        if (fallingPoly == null || x>=fallingPoly.getDimension()) throw new RuntimeException("No square in that position for fallingPoly");
-        else return x + fallingPosX;
+    public int absolutePosYForFallingSquare(int y){
+        if (fallingPoly == null || y>=fallingPoly.getDimension()) return -1;
+        else return y + fallingPoly.getPosY();
     }
 
-    private int absolutePosYForFallingSquare(int y){
-        if (fallingPoly == null || y>=fallingPoly.getDimension()) throw new RuntimeException("No square in that position for fallingPoly");
-        else return y + fallingPosY;
-    }
-
-    private void fixPolyToBoard(){
-        for(int y = 0; y < fallingPoly.getDimension(); y++){
-            for (int x = 0; x < fallingPoly.getDimension(); x++) {
+    public void fixPolyToBoard(Poly poly){
+        for(int y = 0; y < poly.getDimension(); y++){
+            for (int x = 0; x < poly.getDimension(); x++) {
                 int absX = absolutePosXForFallingSquare(x);
                 int absY = absolutePosYForFallingSquare(y);
-                SquareType squareType = fallingPoly.getSquare(y,x);
+                SquareType squareType = poly.getSquare(y,x);
                 if (squareType != SquareType.EMPTY) {
                     this.setBoardSquare(absY, absX, squareType);
                 }
@@ -216,7 +184,7 @@ public class Board {
 
     private boolean isGameOver(){
         for(int y = 0; y < START_AREA_HEIGHT; y++){
-            for (int x = 0; x < getWidth(); x++) {
+            for (int x = 0; x < width; x++) {
                 if(getBoardSquare(y, x) != SquareType.EMPTY){
                     return true;
                 }
@@ -230,71 +198,7 @@ public class Board {
         }
     }
 
-    private boolean canMoveDown(){
-        if (fallingPoly != null){
-            for(int y = 0; y < fallingPoly.getDimension(); y++){
-                for (int x = 0; x < fallingPoly.getDimension(); x++) {
-                    int absX = absolutePosXForFallingSquare(x);
-                    int absY = absolutePosYForFallingSquare(y);
-                    int nextHypoPos = absY+1;
-                    if (fallingPoly.getSquare(y,x) != SquareType.EMPTY &&
-                            this.getBoardSquare(nextHypoPos, absX) != SquareType.EMPTY ){
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-        return false;
-    }
 
-    private boolean canMoveRight(){
-        if (fallingPoly != null){
-            for(int y = 0; y < fallingPoly.getDimension(); y++){
-                for (int x = 0; x < fallingPoly.getDimension(); x++) {
-                    int absX = absolutePosXForFallingSquare(x);
-                    int absY = absolutePosYForFallingSquare(y);
-                    int nextHypoPos = absX+1;
-                    if (fallingPoly.getSquare(y,x) != SquareType.EMPTY &&
-                            this.getBoardSquare(absY, nextHypoPos) != SquareType.EMPTY ){
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
-    private boolean canMoveLeft(){
-        if (fallingPoly != null){
-            for(int y = 0; y < fallingPoly.getDimension(); y++){
-                for (int x = 0; x < fallingPoly.getDimension(); x++) {
-                    int absX = absolutePosXForFallingSquare(x);
-                    int absY = absolutePosYForFallingSquare(y);
-                    int nextHypoPos = absX-1;
-                    if (fallingPoly.getSquare(y,x) != SquareType.EMPTY &&
-                            this.getBoardSquare(absY, nextHypoPos) != SquareType.EMPTY ){
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
-    /*private boolean canRotateRight(){
-        if (fallingPoly != null){
-            for (int i=0; i<fallingPoly.getDimension(); i++) {
-                for (int j=0; j<fallingPoly.getDimension(); j++){
-
-                    newArray[i][j] = PolyArray[maxIndex-j][i];
-                }
-            }
-        }
-        return false;
-    }*/
 
     private void checkRowRemoval(){
         for (int i = START_AREA_HEIGHT; i < height+ START_AREA_HEIGHT; i++) {
@@ -322,8 +226,8 @@ public class Board {
     }
 
     public void tick(){
-        if (fallingPoly != null) {
-            moveDown();
+        if (doesPolyExist()) {
+	    fallingPoly.moveDown();
         }
         else {
             generateNewFallingPoly();

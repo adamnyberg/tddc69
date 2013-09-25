@@ -6,10 +6,9 @@ import java.util.ArrayList;
 public class Player {
 
     private String name;
-
     private Color color;
-
     private ArrayList<Region> regions;
+    private int armyReserve = 10;
 
     public Player(String name, Color color) {
         this(name, color, null);
@@ -50,6 +49,13 @@ public class Player {
         this.regions = new ArrayList<Region>();
         for (Region region : regions) {
             addRegion(region);
+        }
+    }
+
+    public void addArmyToRegion(Region region){
+        if (armyReserve > 0){
+            region.addArmy(1);
+            armyReserve--;
         }
     }
 }

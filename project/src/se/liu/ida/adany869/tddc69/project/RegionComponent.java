@@ -17,9 +17,20 @@ public class RegionComponent extends JComponent implements Observer{
     private int height;
     private int width;
     private JLabel armyText = new JLabel();
+    private boolean isFocused = false;
+    private Border border = new Border();
 
     private static final int INIT_HEIGHT = 100;
     private static final int INIT_WIDTH = 100;
+
+    private class Border extends JComponent{
+        public void paintComponent(Graphics g){
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setColor(new Color(255, 215, 0));
+            g2.setStroke(new BasicStroke(5));
+            g2.drawRect(0,0,height,width);
+        }
+    }
 
     public RegionComponent(Region region, int height, int width) {
         this.setLayout(new MigLayout());
@@ -43,12 +54,25 @@ public class RegionComponent extends JComponent implements Observer{
         return new Dimension(width, height);
     }
 
+    public void setFocused(boolean focused) {
+        isFocused = focused;
+    }
+
+    public void switchFocused(){
+        isFocused = !isFocused;
+        repaint();
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
+        System.out.println("Painting");
         Graphics2D g2 = (Graphics2D) g;
 
         g2.setColor(region.getPlayer().getColor());
         g2.fillRect(0,0, height, width);
+        if (isFocused){
+            drawBorder(g2);
+        }
     }
 
     public Region getRegion(){
@@ -96,4 +120,11 @@ public class RegionComponent extends JComponent implements Observer{
     public void updateArmy(){
         armyText.setText(Integer.toString(region.getArmies()));
     }
+
+    private void drawBorder(Graphics2D g2){
+        g2.setStroke(new BasicStroke(5));
+        g2.setColor(new Color(255,215,0));
+        g2.drawRect(0,0,width,height);
+    }
+
 }

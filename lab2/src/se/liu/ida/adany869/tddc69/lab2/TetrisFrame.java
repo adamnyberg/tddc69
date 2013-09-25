@@ -5,13 +5,17 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Creates the window where the game is displayed. Is also parent to the TetrisComponent.
+ */
 public class TetrisFrame extends JFrame{
 
     private final Board board;
 
     public TetrisFrame(Board board) {
         super("Tetris");
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	this.setResizable(false);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.board = board;
         this.setLayout(new MigLayout());
         createMenus();
@@ -20,9 +24,6 @@ public class TetrisFrame extends JFrame{
         this.pack();
         this.setVisible(true);
     }
-
-
-
 
     private void createMenus(){
         final JMenuBar menuBar = new JMenuBar();
@@ -36,14 +37,12 @@ public class TetrisFrame extends JFrame{
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Event: " + e);
-                System.out.println("cmd: " + e.getActionCommand());
-                String ObjButtons[] = {"Yes", "No"};
-                int PromptResult = JOptionPane.showOptionDialog(null,
+                String[] objButtons = {"Yes", "No"};
+                int promptResult = JOptionPane.showOptionDialog(null,
                         "Are you sure you want to exit?", "Tetris",
                         JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
-                        ObjButtons, ObjButtons[1]);
-                if (PromptResult == 0) {
+                        objButtons, objButtons[1]);
+                if (promptResult == 0) {
                     System.exit(0);
                 }
             }
