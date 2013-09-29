@@ -98,10 +98,10 @@ public class RiskPanel extends JComponent{
         int[] pos0 = {50, 50};
         regionPos.add(pos0);
 
-        int[] pos1 = {200, 50};
+        int[] pos1 = {300, 50};
         regionPos.add(pos1);
 
-        int[] pos2 = {50, 200};
+        int[] pos2 = {50, 300};
         regionPos.add(pos2);
 
         int[] pos3 = {300, 600};

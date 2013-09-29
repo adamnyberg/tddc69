@@ -19,9 +19,20 @@ public class RegionComponent extends JComponent implements Observer{
     private int xPos = 0;
     private int yPos = 0;
     private JLabel armyText = new JLabel();
+    private boolean isFocused = false;
+    private Border border = new Border();
 
     private static final int INIT_HEIGHT = 150;
     private static final int INIT_WIDTH = 150;
+
+    private class Border extends JComponent{
+        public void paintComponent(Graphics g){
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setColor(new Color(255, 215, 0));
+            g2.setStroke(new BasicStroke(5));
+            g2.drawRect(0,0,height,width);
+        }
+    }
 
     public RegionComponent(Region region, int yPos, int xPos, int height, int width) {
         this.setLayout(new MigLayout());
@@ -51,6 +62,15 @@ public class RegionComponent extends JComponent implements Observer{
         return new Dimension(width, height);
     }
 
+    public void setFocused(boolean focused) {
+        isFocused = focused;
+    }
+
+    public void switchFocused(){
+        isFocused = !isFocused;
+        repaint();
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -63,6 +83,10 @@ public class RegionComponent extends JComponent implements Observer{
         g2.setStroke(new BasicStroke(2));
         g2.drawRect(0, 0, this.getHeight(), this.getWidth());
         System.out.println("Painted region " + region.getName() + ": xPos: " + xPos + " yPos: " + yPos + " height: "  + height + " width: " + width);
+
+        if (isFocused){
+            drawBorder(g2);
+        }
     }
 
     public Region getRegion(){
@@ -110,4 +134,11 @@ public class RegionComponent extends JComponent implements Observer{
     public void updateArmy(){
         armyText.setText(Integer.toString(region.getArmies()));
     }
+
+    private void drawBorder(Graphics2D g2){
+        g2.setStroke(new BasicStroke(5));
+        g2.setColor(new Color(255,215,0));
+        g2.drawRect(0,0,width,height);
+    }
+
 }

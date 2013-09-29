@@ -5,14 +5,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.EnumMap;
 
+/**
+ * The graphical object of the game. Paints all squares.
+ */
 public class TetrisComponent extends JComponent implements BoardListener {
     private Board board;
 
     private int height;
     private int width;
 
-    private static final int INIT_HEIGHT = 600;
-    private static final int INIT_WIDTH = 450;
+    private static final int INIT_HEIGHT = 800;
+    private static final int INIT_WIDTH = 600;
+    private static final int UPDATE_RATE = 200;
 
     private EnumMap<SquareType, Color> colors= new EnumMap<SquareType, Color>(SquareType.class);
 
@@ -34,7 +38,6 @@ public class TetrisComponent extends JComponent implements BoardListener {
         colors.put(SquareType.S, Color.cyan);
         colors.put(SquareType.T, Color.orange);
         colors.put(SquareType.Z, Color.yellow);
-        colors.put(SquareType.A, Color.pink);
 
         this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "moveLeft");
         this.getActionMap().put("moveLeft", moveLeft);
@@ -47,7 +50,7 @@ public class TetrisComponent extends JComponent implements BoardListener {
         this.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "down");
         this.getActionMap().put("down", doOneStep);
 
-        final Timer clockTimer = new Timer(500, doOneStep);
+        final Timer clockTimer = new Timer(UPDATE_RATE, doOneStep);
         clockTimer.setCoalesce(true);
         clockTimer.start();
         board.addBoardListener(this);
@@ -58,10 +61,12 @@ public class TetrisComponent extends JComponent implements BoardListener {
     }
     @Override
     public Dimension getPreferredSize() {
+	super.getPreferredSize();
         return new Dimension(width, height);
     }
 
     public void paintComponent(Graphics g) {
+	super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         drawSquares(g2);
     }
@@ -69,13 +74,12 @@ public class TetrisComponent extends JComponent implements BoardListener {
     public void drawSquares(Graphics g2){
         int sizeX = this.width/board.getWidth();
         int sizeY= this.height/board.getHeight();
-        int posX;
-        int posY;
-        for (int height = Board.getStartAreaSize();  height < board.getFullHeight(); height++) {
-            for (int width = Board.getBorderWidth(); width < board.getFullWidth(); width++) {
-                SquareType squareType = board.getAllBoardSquare(height, width);
-                posX = (width-Board.getBorderWidth())*sizeX;
-                posY = (height-Board.getStartAreaSize())*sizeY;
+
+        for (int y = Board.getStartAreaSize();  y < board.getFullHeight(); y++) {
+            for (int x = Board.getBorderWidth(); x < board.getFullWidth(); x++) {
+                SquareType squareType = board.getBoardOrFallingSquare(y, x);
+                int posX = (x-Board.getBorderWidth())*sizeX;
+                int posY = (y-Board.getStartAreaSize())*sizeY;
                 g2.setColor(colors.get(squareType));
                 g2.fillRect(posX, posY, sizeX, sizeY);
             }

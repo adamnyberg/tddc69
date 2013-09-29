@@ -8,7 +8,7 @@ public class TetrisTextView {
 
         for (int height = 0;  height < board.getHeight(); height++) {
             for (int width = 0; width < board.getWidth(); width++) {
-                SquareType square = board.getSquare(height, width);
+                SquareType square = board.getBoardOrFallingSquare(height, width);
                 SquareType fallingSquare = board.getFallingSquare(height, width);
 
                 if (fallingSquare != SquareType.EMPTY) {
@@ -16,6 +16,7 @@ public class TetrisTextView {
                 }
 
                 if (square != SquareType.EMPTY) {
+		    // All cases except OUTSIDE does the same thing.
                     switch (square) {
 
                         case OUTSIDE :
