@@ -51,8 +51,6 @@ public class Region {
     }
 
     public void addNeighbour(Region region){
-        System.out.println("Region: " + region);
-        System.out.println("Regionname: " + region.name);
         neighbours.add(region);
     }
 

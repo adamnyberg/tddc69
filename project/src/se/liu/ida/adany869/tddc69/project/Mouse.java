@@ -7,6 +7,7 @@ public class Mouse implements MouseListener {
     public void mouseClicked(MouseEvent e){
         ((RegionComponent) e.getSource()).getRegion().attack(
                 ((RegionComponent) e.getSource()).getRegion().getNeighbours().get(0));
+        System.out.println(((RegionComponent) e.getSource()).getRegion().getName());
     }
 
     public void mouseReleased(MouseEvent e){

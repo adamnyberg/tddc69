@@ -19,8 +19,8 @@ public class Run {
 
         regions[0].addNeighbour(regions[1]);
         regions[1].addNeighbour(regions[0]);
-        //regions[0].addNeighbour(regions[3]);
-        //regions[3].addNeighbour(regions[0]);
+        regions[1].addNeighbour(regions[3]);
+        regions[3].addNeighbour(regions[1]);
         regions[2].addNeighbour(regions[3]);
         regions[3].addNeighbour(regions[2]);
 

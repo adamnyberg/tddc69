@@ -8,7 +8,7 @@ public class PlayerComponent extends JComponent{
 
     public PlayerComponent(Player player) {
         this.player = player;
-        this.add(new JLabel(player.getName()), "");
+        this.add(new JLabel(player.getName()));
     }
 
     @Override
