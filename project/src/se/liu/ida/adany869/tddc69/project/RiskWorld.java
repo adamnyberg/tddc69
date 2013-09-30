@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class RiskWorld {
     private Region[] regions;
     private Player[] players;
+    public RegionController regionController = new RegionController();
 
     public RiskWorld(Region[] regions, Player[] players) {
         this.regions = regions;

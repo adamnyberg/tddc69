@@ -12,7 +12,7 @@ public class Region {
     private ArrayList<Region> neighbours = new ArrayList<Region>();
     private ArrayList<Observer> regionObservers = new ArrayList<Observer>();
     private Random randGen = new Random();
-
+    private final ActionEvent UPDATE_ARMY_EVENT = new ActionEvent(this, 0, "updateArmy");
 
     public Region(String name) {
         this.name = name;
@@ -84,5 +84,4 @@ public class Region {
             observer.update(new ActionEvent(this, 0, "updateArmy"));
         }
     }
-
 }

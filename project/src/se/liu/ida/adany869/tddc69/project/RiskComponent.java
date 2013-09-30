@@ -53,9 +53,10 @@ public class RiskComponent extends JComponent{
     private void addRegions(){
         for (int i = 0; i < risk.getRegions().length; i++) {
             Region region = risk.getRegions()[i];
-
             int[] regionPos = regionPositions.get(i);
-            this.add(new RegionComponent(region, regionPos[0], regionPos[1]));
+            RegionComponent regionComponent = new RegionComponent(region, regionPos[0], regionPos[1]);
+            risk.regionController.mapRegionToComponent(region, regionComponent);
+            this.add(regionComponent);
         }
     }
 
