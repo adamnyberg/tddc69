@@ -42,12 +42,15 @@ public class Map {
         ArrayList<Region> playerRegions = new ArrayList<Region>();
         playerRegions.add(regions[0]);
         playerRegions.add(regions[1]);
+        playerRegions.add(regions[4]);
+        playerRegions.add(regions[6]);
         players[0].setRegions(playerRegions);
 
-        playerRegions.remove(1);
-        playerRegions.remove(0);
+        playerRegions = new ArrayList<Region>();
         playerRegions.add(regions[2]);
         playerRegions.add(regions[3]);
+        playerRegions.add(regions[5]);
+        playerRegions.add(regions[7]);
         players[1].setRegions(playerRegions);
     }
 

@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
-public class RiskPanel extends JComponent{
+public class RiskComponent extends JComponent{
     private RiskWorld risk;
     private int height;
     private int width;
@@ -15,7 +15,7 @@ public class RiskPanel extends JComponent{
     private static final int INIT_HEIGHT = 830;
     private static final int INIT_WIDTH = 1400;
 
-    public RiskPanel(RiskWorld risk, int height, int width) {
+    public RiskComponent(RiskWorld risk, int height, int width) {
         this.setLayout(null);
         this.risk = risk;
         this.height = height;
@@ -23,7 +23,7 @@ public class RiskPanel extends JComponent{
         relations = new RegionComponentRelations();
         setRegionPositions();
 
-        //addPlayersInfo();
+        addPlayersInfo();
         addRegions();
         setupRegionComponentRelations();
 
@@ -31,7 +31,7 @@ public class RiskPanel extends JComponent{
         this.getActionMap().put("attack", attack);
     }
 
-    public RiskPanel(RiskWorld risk) {
+    public RiskComponent(RiskWorld risk) {
         this(risk, INIT_HEIGHT, INIT_WIDTH);
     }
 
@@ -60,8 +60,8 @@ public class RiskPanel extends JComponent{
     }
 
     private void addPlayersInfo() {
-        this.add(new PlayerComponent(risk.getPlayers()[0]));
-        this.add(new PlayerComponent(risk.getPlayers()[1]));
+        this.add(new PlayerComponent(risk.getPlayers()[0], 30, 30));
+        this.add(new PlayerComponent(risk.getPlayers()[1], 30, 1150));
     }
 
     private void drawRelations(Graphics2D g2) {
@@ -95,7 +95,7 @@ public class RiskPanel extends JComponent{
     private void setRegionPositions() {
         ArrayList<int[]> regionPos = new ArrayList<int[]>();
 
-        int[] pos0 = {30, 30};
+        int[] pos0 = {100, 30};
         regionPos.add(pos0);
 
         int[] pos1 = {300, 50};

@@ -1,11 +1,8 @@
 package se.liu.ida.adany869.tddc69.project;
 
-import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class RiskFrame  extends JFrame{
     private final RiskWorld risk;
@@ -19,8 +16,8 @@ public class RiskFrame  extends JFrame{
         this.risk = risk;
         createMenus();
 
-        RiskPanel riskPanel = new RiskPanel(this.risk);
-        this.setContentPane(riskPanel);
+        RiskComponent riskComponent = new RiskComponent(this.risk);
+        this.setContentPane(riskComponent);
         this.pack();
         this.setVisible(true);
     }
