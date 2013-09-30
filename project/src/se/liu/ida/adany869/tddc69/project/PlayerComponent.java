@@ -9,14 +9,15 @@ public class PlayerComponent extends JComponent{
     private Player player = null;
     private int yPos;
     private int xPos;
-    private static int HEIGHT = 40;
+    private static int HEIGHT = 60;
     private static int WIDTH = 200;
     private static int BORDER_SIZE = 5;
 
     public PlayerComponent(Player player, int yPos, int xPos) {
         this.setLayout(new MigLayout());
         this.player = player;
-        this.add(new JLabel(player.getName()));
+        this.add(new JLabel(player.getName()), "wrap");
+        this.add(new JLabel("Reserv: " + Integer.toString(player.getArmyReserve())));
         this.yPos = yPos;
         this.xPos = xPos;
 

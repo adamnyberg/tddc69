@@ -36,6 +36,10 @@ public class Player {
         this.color = color;
     }
 
+    public int getArmyReserve() {
+        return armyReserve;
+    }
+
     public void addRegion(Region region) {
         region.setPlayer(this);
         this.regions.add(region);
