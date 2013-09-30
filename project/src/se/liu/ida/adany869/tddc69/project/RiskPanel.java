@@ -5,22 +5,25 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
-public class RiskPanel extends JPanel{
+public class RiskPanel extends JComponent{
     private RiskWorld risk;
     private int height;
     private int width;
     private RegionComponentRelations relations;
+    private ArrayList<int[]> regionPositions;
 
-    private static final int INIT_HEIGHT = 800;
-    private static final int INIT_WIDTH = 1000;
+    private static final int INIT_HEIGHT = 830;
+    private static final int INIT_WIDTH = 1400;
 
     public RiskPanel(RiskWorld risk, int height, int width) {
+        this.setLayout(null);
         this.risk = risk;
         this.height = height;
         this.width = width;
         relations = new RegionComponentRelations();
+        setRegionPositions();
 
-        addPlayersInfo();
+        //addPlayersInfo();
         addRegions();
         setupRegionComponentRelations();
 
@@ -33,30 +36,36 @@ public class RiskPanel extends JPanel{
     }
 
     @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(INIT_WIDTH, INIT_HEIGHT);
+    }
+
+    @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        super.paintComponent(g);
+        this.setBounds(0,0,width,height);
 
-        g2.setColor(new Color(0,0,0,0));
-        g2.fillRect(0,0, width, height);
-
-        drawBounds(g2);
+        drawRelations(g2);
+        //drawPlayers(g2);
     }
 
     private void addRegions(){
-        for (Region region : risk.getRegions()) {
-            RegionComponent regionComponent = new RegionComponent(region);
+        for (int i = 0; i < risk.getRegions().length; i++) {
+            Region region = risk.getRegions()[i];
+            int[] regionPos = regionPositions.get(i);
+            RegionComponent regionComponent = new RegionComponent(region, regionPos[0], regionPos[1]);
             risk.regionController.mapRegionToComponent(region, regionComponent);
-            this.add(regionComponent, "span");
+            this.add(regionComponent);
         }
     }
 
     private void addPlayersInfo() {
         this.add(new PlayerComponent(risk.getPlayers()[0]));
-        this.add(new PlayerComponent(risk.getPlayers()[1]), "wrap");
+        this.add(new PlayerComponent(risk.getPlayers()[1]));
     }
 
-    private void drawBounds(Graphics2D g2) {
+    private void drawRelations(Graphics2D g2) {
         g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(5));
 
@@ -70,6 +79,48 @@ public class RiskPanel extends JPanel{
                     regionComponent2.getX()+regionComponent2.getWidth()/2,
                     regionComponent2.getY()+regionComponent2.getHeight()/2);
         }
+    }
+
+    private void drawPlayers(Graphics2D g2) {
+        Player player1 = risk.getPlayers()[0];
+
+        g2.setColor(player1.getColor());
+        g2.drawRect(20, 100, 200, 100);
+
+        Player player2 = risk.getPlayers()[1];
+
+        g2.setColor(player2.getColor());
+        g2.drawRect(20, 300, 200, 100);
+    }
+
+    private void setRegionPositions() {
+        ArrayList<int[]> regionPos = new ArrayList<int[]>();
+
+        int[] pos0 = {30, 30};
+        regionPos.add(pos0);
+
+        int[] pos1 = {300, 50};
+        regionPos.add(pos1);
+
+        int[] pos2 = {50, 300};
+        regionPos.add(pos2);
+
+        int[] pos3 = {300, 600};
+        regionPos.add(pos3);
+
+        int[] pos4 = {500, 20};
+        regionPos.add(pos4);
+
+        int[] pos5 = {500, 1000};
+        regionPos.add(pos5);
+
+        int[] pos6 = {550, 800};
+        regionPos.add(pos6);
+
+        int[] pos7 = {50, 900};
+        regionPos.add(pos7);
+
+        this.regionPositions = regionPos;
     }
 
     private ArrayList<RegionComponent> getRegionComponents() { // TODO: maybe not need this
@@ -121,7 +172,7 @@ public class RiskPanel extends JPanel{
         }
     }
 
-    private final void updatePanel(){
+    private final void updateComponent(){
         this.repaint();
     }
 
@@ -134,7 +185,7 @@ public class RiskPanel extends JPanel{
             attacker.attack(attacked);
             /*getRegionComponent(attacker).repaint();
             getRegionComponent(attacked).repaint();*/
-            updatePanel();
+            updateComponent();
         }
     };
 }

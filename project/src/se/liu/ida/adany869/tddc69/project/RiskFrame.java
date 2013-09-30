@@ -2,6 +2,7 @@ package se.liu.ida.adany869.tddc69.project;
 
 import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -12,9 +13,10 @@ public class RiskFrame  extends JFrame{
 
     public RiskFrame(RiskWorld risk) {
         super("Rwhisky");
+        this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
         this.risk = risk;
-        this.setLayout(new MigLayout());
         createMenus();
 
         RiskPanel riskPanel = new RiskPanel(this.risk);

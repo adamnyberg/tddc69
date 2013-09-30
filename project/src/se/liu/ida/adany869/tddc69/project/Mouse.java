@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 
 public class Mouse implements MouseListener {
     public void mouseClicked(MouseEvent e){
+
         ((RegionComponent) e.getSource()).switchFocused();
         ((RegionComponent) e.getSource()).getRegion().getPlayer().
                 addArmyToRegion(((RegionComponent) e.getSource()).getRegion());

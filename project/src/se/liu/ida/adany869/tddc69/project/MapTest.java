@@ -13,7 +13,7 @@ public class MapTest {
             
         }
         
-        Map map = new Map(regions);
+        Map map = new Map();
         
     }
 }

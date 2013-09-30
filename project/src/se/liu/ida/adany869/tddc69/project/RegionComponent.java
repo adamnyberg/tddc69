@@ -13,28 +13,36 @@ public class RegionComponent extends JComponent implements Observer{
     private Region region;
     private int height;
     private int width;
+    private int xPos = 0;
+    private int yPos = 0;
     private JLabel armyText = new JLabel();
     private boolean isFocused = false;
 
-    private static final int INIT_HEIGHT = 100;
-    private static final int INIT_WIDTH = 100;
+    private static final int INIT_HEIGHT = 150;
+    private static final int INIT_WIDTH = 150;
 
-    public RegionComponent(Region region, int height, int width) {
+    public RegionComponent(Region region, int yPos, int xPos, int height, int width) {
         this.setLayout(new MigLayout());
         this.region = region;
+        this.yPos = yPos;
+        this.xPos = xPos;
         this.height = height;
         this.width = width;
+
+        this.setBounds(xPos, yPos, width, height);
+
         armyText.setText(Integer.toString(region.getArmies()));
-        this.add(new JLabel(region.getName()), "span");
-        this.add(armyText, "span");
+        this.add(new JLabel(region.getName()));
+        this.add(armyText);
         region.addObserver(this);
         Mouse mouseListener = new Mouse();
         this.addMouseListener(mouseListener);
+        this.setVisible(true);
     }
 
 
-    public RegionComponent(Region region) {
-        this(region, INIT_HEIGHT, INIT_WIDTH);
+    public RegionComponent(Region region, int yPos, int xPos) {
+        this(region, yPos, xPos, INIT_HEIGHT, INIT_WIDTH);
     }
 
     @Override
@@ -53,11 +61,16 @@ public class RegionComponent extends JComponent implements Observer{
 
     @Override
     protected void paintComponent(Graphics g) {
-        System.out.println("Painting");
+        super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
         g2.setColor(region.getPlayer().getColor());
-        g2.fillRect(0,0, height, width);
+        g2.fillRect(0, 0, this.getHeight(), this.getWidth());
+
+        g2.setColor(Color.BLACK);
+        g2.setStroke(new BasicStroke(2));
+        g2.drawRect(0, 0, this.getHeight(), this.getWidth());
+
         if (isFocused){
             drawBorder(g2);
         }
