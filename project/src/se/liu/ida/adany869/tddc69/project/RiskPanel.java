@@ -45,7 +45,9 @@ public class RiskPanel extends JPanel{
 
     private void addRegions(){
         for (Region region : risk.getRegions()) {
-            this.add(new RegionComponent(region), "span");
+            RegionComponent regionComponent = new RegionComponent(region);
+            risk.regionController.mapRegionToComponent(region, regionComponent);
+            this.add(regionComponent, "span");
         }
     }
 

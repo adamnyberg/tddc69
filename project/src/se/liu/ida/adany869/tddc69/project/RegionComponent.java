@@ -5,32 +5,19 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class RegionComponent extends JComponent implements Observer{
 
     private Region region;
-    private Mouse mouseListener = new Mouse();
     private int height;
     private int width;
     private JLabel armyText = new JLabel();
     private boolean isFocused = false;
-    private Border border = new Border();
 
     private static final int INIT_HEIGHT = 100;
     private static final int INIT_WIDTH = 100;
-
-    private class Border extends JComponent{
-        public void paintComponent(Graphics g){
-            Graphics2D g2 = (Graphics2D) g;
-            g2.setColor(new Color(255, 215, 0));
-            g2.setStroke(new BasicStroke(5));
-            g2.drawRect(0,0,height,width);
-        }
-    }
 
     public RegionComponent(Region region, int height, int width) {
         this.setLayout(new MigLayout());
@@ -41,6 +28,7 @@ public class RegionComponent extends JComponent implements Observer{
         this.add(new JLabel(region.getName()), "span");
         this.add(armyText, "span");
         region.addObserver(this);
+        Mouse mouseListener = new Mouse();
         this.addMouseListener(mouseListener);
     }
 
@@ -85,7 +73,6 @@ public class RegionComponent extends JComponent implements Observer{
     }
 
     public void invokeMethod(String methodName, Object[] params){
-        RegionComponent subClass = this;
         Class c = this.getClass();
 
         Class[] param;
