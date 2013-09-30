@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
-public class RiskPanel extends JComponent{
+public class RiskComponent extends JComponent{
     private RiskWorld risk;
     private int height;
     private int width;
@@ -15,7 +15,7 @@ public class RiskPanel extends JComponent{
     private static final int INIT_HEIGHT = 830;
     private static final int INIT_WIDTH = 1400;
 
-    public RiskPanel(RiskWorld risk, int height, int width) {
+    public RiskComponent(RiskWorld risk, int height, int width) {
         this.setLayout(null);
         this.risk = risk;
         this.height = height;
@@ -31,7 +31,7 @@ public class RiskPanel extends JComponent{
         this.getActionMap().put("attack", attack);
     }
 
-    public RiskPanel(RiskWorld risk) {
+    public RiskComponent(RiskWorld risk) {
         this(risk, INIT_HEIGHT, INIT_WIDTH);
     }
 

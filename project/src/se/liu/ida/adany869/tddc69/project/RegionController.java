@@ -21,8 +21,6 @@ public class RegionController extends AbstractController implements Observer{
     }
 
     public void update(ActionEvent e) {
-
-
         invokeMethod(e.getActionCommand(), new Object[]{region});
     }
 }

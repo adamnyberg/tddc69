@@ -5,7 +5,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Mouse implements MouseListener {
+    /*private RegionController regionController;
+
+    public void setRegionController(RegionController regionController){
+        this.regionController = regionController;
+    }*/
     public void mouseClicked(MouseEvent e){
+
 
         ((RegionComponent) e.getSource()).switchFocused();
         ((RegionComponent) e.getSource()).getRegion().getPlayer().
