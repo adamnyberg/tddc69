@@ -12,8 +12,8 @@ public class RiskPanel extends JComponent{
     private RegionComponentRelations relations;
     private ArrayList<int[]> regionPositions;
 
-    private static final int INIT_HEIGHT = 500;
-    private static final int INIT_WIDTH = 800;
+    private static final int INIT_HEIGHT = 830;
+    private static final int INIT_WIDTH = 1400;
 
     public RiskPanel(RiskWorld risk, int height, int width) {
         this.setLayout(null);
@@ -95,7 +95,7 @@ public class RiskPanel extends JComponent{
     private void setRegionPositions() {
         ArrayList<int[]> regionPos = new ArrayList<int[]>();
 
-        int[] pos0 = {50, 50};
+        int[] pos0 = {30, 30};
         regionPos.add(pos0);
 
         int[] pos1 = {300, 50};
@@ -107,11 +107,17 @@ public class RiskPanel extends JComponent{
         int[] pos3 = {300, 600};
         regionPos.add(pos3);
 
-        int[] pos4 = {300, 200};
+        int[] pos4 = {500, 20};
         regionPos.add(pos4);
 
-        int[] pos5 = {300, 300};
+        int[] pos5 = {500, 1000};
         regionPos.add(pos5);
+
+        int[] pos6 = {550, 800};
+        regionPos.add(pos6);
+
+        int[] pos7 = {50, 900};
+        regionPos.add(pos7);
 
         this.regionPositions = regionPos;
     }

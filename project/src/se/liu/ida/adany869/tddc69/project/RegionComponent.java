@@ -82,7 +82,6 @@ public class RegionComponent extends JComponent implements Observer{
         g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(2));
         g2.drawRect(0, 0, this.getHeight(), this.getWidth());
-        System.out.println("Painted region " + region.getName() + ": xPos: " + xPos + " yPos: " + yPos + " height: "  + height + " width: " + width);
 
         if (isFocused){
             drawBorder(g2);
