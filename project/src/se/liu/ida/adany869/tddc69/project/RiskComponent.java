@@ -23,7 +23,7 @@ public class RiskComponent extends JComponent{
         relations = new RegionComponentRelations();
         setRegionPositions();
 
-        //addPlayersInfo();
+        addPlayersInfo();
         addRegions();
         setupRegionComponentRelations();
 
@@ -61,8 +61,8 @@ public class RiskComponent extends JComponent{
     }
 
     private void addPlayersInfo() {
-        this.add(new PlayerComponent(risk.getPlayers()[0]));
-        this.add(new PlayerComponent(risk.getPlayers()[1]));
+        this.add(new PlayerComponent(risk.getPlayers()[0], 30, 30));
+        this.add(new PlayerComponent(risk.getPlayers()[1], 30, 1150));
     }
 
     private void drawRelations(Graphics2D g2) {
@@ -96,7 +96,7 @@ public class RiskComponent extends JComponent{
     private void setRegionPositions() {
         ArrayList<int[]> regionPos = new ArrayList<int[]>();
 
-        int[] pos0 = {30, 30};
+        int[] pos0 = {100, 30};
         regionPos.add(pos0);
 
         int[] pos1 = {300, 50};
