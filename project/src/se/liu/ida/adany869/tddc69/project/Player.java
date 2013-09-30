@@ -40,6 +40,10 @@ public class Player {
         return armyReserve;
     }
 
+    public void setArmyReserve(int armyReserve) {
+        this.armyReserve = armyReserve;
+    }
+
     public void addRegion(Region region) {
         region.setPlayer(this);
         this.regions.add(region);

@@ -12,7 +12,7 @@ public class RiskFrame  extends JFrame{
         super("Rwhisky");
         this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
+        //this.setResizable(false);
         this.risk = risk;
         createMenus();
 
