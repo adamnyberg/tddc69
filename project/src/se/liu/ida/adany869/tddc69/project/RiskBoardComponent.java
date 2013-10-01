@@ -5,25 +5,25 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
-public class RiskComponent extends JComponent{
+public class RiskBoardComponent extends JComponent{
     private RiskWorld risk;
     private int height;
     private int width;
     private RegionComponentRelations relations;
     private ArrayList<int[]> regionPositions;
+    private Container riskMenu = new Container();
+    private Container riskBoard = new Container();
 
     private static final int INIT_HEIGHT = 830;
     private static final int INIT_WIDTH = 1400;
 
-    public RiskComponent(RiskWorld risk, int height, int width) {
+    public RiskBoardComponent(RiskWorld risk, int height, int width) {
         this.setLayout(null);
         this.risk = risk;
         this.height = height;
         this.width = width;
         relations = new RegionComponentRelations();
         setRegionPositions();
-
-        addPlayersInfo();
         addRegions();
         setupRegionComponentRelations();
 
@@ -31,7 +31,7 @@ public class RiskComponent extends JComponent{
         this.getActionMap().put("attack", attack);
     }
 
-    public RiskComponent(RiskWorld risk) {
+    public RiskBoardComponent(RiskWorld risk) {
         this(risk, INIT_HEIGHT, INIT_WIDTH);
     }
 
@@ -47,7 +47,6 @@ public class RiskComponent extends JComponent{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        this.setBounds(0,0,width,height);
         //TODO: relations shouldn't have to call paintComponent itself
         this.relations.paintComponent(g);
     }
@@ -60,11 +59,6 @@ public class RiskComponent extends JComponent{
             risk.regionController.mapRegionToComponent(region, regionComponent);
             this.add(regionComponent);
         }
-    }
-
-    private void addPlayersInfo() {
-        this.add(new PlayerComponent(risk.getPlayers()[0], 30, 30));
-        this.add(new PlayerComponent(risk.getPlayers()[1], 30, 1150));
     }
 
     private void drawRelations(Graphics2D g2) {

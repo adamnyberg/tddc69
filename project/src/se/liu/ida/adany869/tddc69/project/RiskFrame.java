@@ -16,8 +16,8 @@ public class RiskFrame  extends JFrame{
         this.risk = risk;
         createMenus();
 
-        RiskComponent riskComponent = new RiskComponent(this.risk);
-        this.setContentPane(riskComponent);
+        RiskContainer riskContainer = new RiskContainer(this.risk);
+        this.setContentPane(riskContainer);
         this.pack();
         this.setVisible(true);
     }

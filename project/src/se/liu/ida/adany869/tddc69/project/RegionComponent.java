@@ -130,5 +130,4 @@ public class RegionComponent extends JComponent implements Observer {
         g2.setColor(new Color(255,215,0));
         g2.drawRect(0,0,width,height);
     }
-
 }

@@ -10,15 +10,27 @@ public class Player extends Observable{
     private Color color;
     private ArrayList<Region> regions;
     private int armyReserve = 10;
+    private boolean isActive = false;
 
     public Player(String name, Color color) {
-        this(name, color, null);
+        this(name, color, false);
     }
-    public Player(String name, Color color, ArrayList<Region> regions) {
+
+    public Player(String name, Color color, Boolean isActive) {
         System.out.println("Added player: " + name);
         this.name = name;
         this.color = color;
-        this.regions = regions;
+        this.isActive = isActive;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+        setChanged();
+        notifyObservers();
     }
 
     public String getName() {

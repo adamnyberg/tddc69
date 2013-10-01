@@ -19,4 +19,22 @@ public class RiskWorld {
     public Player[] getPlayers() {
         return players;
     }
+
+    public void switchPlayer(){
+        System.out.println("switchPlayer");
+        for (int i = 0; i < players.length; i++) {
+            Player player = players[i];
+            if (player.isActive()){
+                System.out.println("Player " + player.getName() + " was active");
+                player.setActive(false);
+                if (i == players.length-1){
+                    players[0].setActive(true);
+                }
+                else{
+                    players[i+1].setActive(true);
+                }
+                return;
+            }
+        }
+    }
 }
