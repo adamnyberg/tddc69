@@ -5,11 +5,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Mouse implements MouseListener {
-    /*private RegionController regionController;
+    private RegionController regionController;
 
     public void setRegionController(RegionController regionController){
         this.regionController = regionController;
-    }*/
+    }
+
     public void mouseClicked(MouseEvent e){
 
 

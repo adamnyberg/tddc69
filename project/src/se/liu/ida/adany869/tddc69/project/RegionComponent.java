@@ -9,7 +9,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class RegionComponent extends JComponent implements Observer{
-
     private Region region;
     private int height;
     private int width;

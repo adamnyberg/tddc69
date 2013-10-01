@@ -5,6 +5,7 @@ import java.util.*;
 
 public class RegionController extends AbstractController implements Observer{
     private HashMap regionToComponentMap = new HashMap<Region, RegionComponent>();
+    private Region focused;
     private Region region;
     private RegionComponent regionComponent;
 

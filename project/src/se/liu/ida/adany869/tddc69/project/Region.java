@@ -3,9 +3,10 @@ package se.liu.ida.adany869.tddc69.project;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Random;
 
-public class Region {
+public class Region extends Observable {
     private int armies;
     private Player player = new Player("none", Color.DARK_GRAY);
     private String name;
