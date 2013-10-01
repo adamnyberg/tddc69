@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 public class RiskFrame  extends JFrame{
     private final RiskWorld risk;
-    private Observer menuObserver;
+    private MenuObserver menuObserver;
 
     public RiskFrame(RiskWorld risk) {
         super("Rwhisky");
@@ -22,12 +22,12 @@ public class RiskFrame  extends JFrame{
         this.setVisible(true);
     }
 
-    public void setMenuObserver(Observer observer){
+    public void setMenuObserver(MenuObserver observer){
         this.menuObserver = observer;
     }
 
     public void notifyMenuObserver(ActionEvent e){
-        menuObserver.update(e);
+        this.menuObserver.update(e);
     }
 
     public final void closeFrame() {

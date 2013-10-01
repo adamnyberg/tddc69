@@ -35,6 +35,10 @@ public class RiskComponent extends JComponent{
         this(risk, INIT_HEIGHT, INIT_WIDTH);
     }
 
+    public RiskWorld getRisk() {
+        return risk;
+    }
+
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(INIT_WIDTH, INIT_HEIGHT);
@@ -42,19 +46,17 @@ public class RiskComponent extends JComponent{
 
     @Override
     protected void paintComponent(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
         super.paintComponent(g);
         this.setBounds(0,0,width,height);
-
-        drawRelations(g2);
-        //drawPlayers(g2);
+        //TODO: relations shouldn't have to call paintComponent itself
+        this.relations.paintComponent(g);
     }
 
     private void addRegions(){
         for (int i = 0; i < risk.getRegions().length; i++) {
             Region region = risk.getRegions()[i];
             int[] regionPos = regionPositions.get(i);
-            RegionComponent regionComponent = new RegionComponent(region, regionPos[0], regionPos[1]);
+            RegionComponent regionComponent = new RegionComponent(region, regionPos[0], regionPos[1], risk.regionController);
             risk.regionController.mapRegionToComponent(region, regionComponent);
             this.add(regionComponent);
         }
@@ -152,24 +154,10 @@ public class RiskComponent extends JComponent{
             RegionComponent regionComponentA = getRegionComponent(region);
             RegionComponent regionComponentB = null;
             for (int i = 0; i < neighbourRegions.size(); i++) {
-                 relations.addRelation(regionComponentA, getRegionComponent(neighbourRegions.get(i)));
+                 this.relations.addRelation(regionComponentA, getRegionComponent(neighbourRegions.get(i)));
             }
-            /*for (Component component : this.getRegionComponents()) {
-
-                    if (((RegionComponent) component).getRegion() == neighbourRegions.get(0)){
-                        regionComponentA = (RegionComponent) component;
-                    }
-                    else if (((RegionComponent) component).getRegion() == neighbourRegions.get(1)){
-                        regionComponentB = (RegionComponent) component;
-                    }
-                if (regionComponentA != null && regionComponentB != null){
-                    this.relations.addRelation(regionComponentA, regionComponentB);
-                }
-
-            }*/
-
-
         }
+        this.add(this.relations);
     }
 
     private final void updateComponent(){

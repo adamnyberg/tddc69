@@ -4,9 +4,12 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
-public class PlayerComponent extends JComponent{
+public class PlayerComponent extends JComponent implements Observer {
     private Player player = null;
+    private JLabel armyReserveLabel;
     private int yPos;
     private int xPos;
     private static int HEIGHT = 60;
@@ -16,12 +19,14 @@ public class PlayerComponent extends JComponent{
     public PlayerComponent(Player player, int yPos, int xPos) {
         this.setLayout(new MigLayout());
         this.player = player;
+        this.player.addObserver(this);
+        this.armyReserveLabel = new JLabel("Reserv: " + Integer.toString(player.getArmyReserve()));
         this.add(new JLabel(player.getName()), "wrap");
-        this.add(new JLabel("Reserv: " + Integer.toString(player.getArmyReserve())));
+        this.add(this.armyReserveLabel);
         this.yPos = yPos;
         this.xPos = xPos;
 
-        this.setBounds(xPos, yPos, WIDTH + 2*BORDER_SIZE, HEIGHT + 2*BORDER_SIZE);
+        this.setBounds(xPos, yPos, WIDTH + 2 * BORDER_SIZE, HEIGHT + 2 * BORDER_SIZE);
     }
 
     @Override
@@ -39,6 +44,12 @@ public class PlayerComponent extends JComponent{
 
         g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(BORDER_SIZE));
-        g2.drawRect(0,0, WIDTH, HEIGHT);
+        g2.drawRect(0, 0, WIDTH, HEIGHT);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        this.armyReserveLabel.setText("Reserv: " + Integer.toString(player.getArmyReserve()));
+        this.repaint();
     }
 }

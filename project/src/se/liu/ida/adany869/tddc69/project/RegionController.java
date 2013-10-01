@@ -1,13 +1,13 @@
 package se.liu.ida.adany869.tddc69.project;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.*;
 
-public class RegionController extends AbstractController implements Observer{
+public class RegionController extends AbstractController implements MouseListener{
     private HashMap regionToComponentMap = new HashMap<Region, RegionComponent>();
     private Region focused;
-    private Region region;
-    private RegionComponent regionComponent;
 
 
     public RegionController() {
@@ -22,6 +22,43 @@ public class RegionController extends AbstractController implements Observer{
     }
 
     public void update(ActionEvent e) {
-        invokeMethod(e.getActionCommand(), new Object[]{region});
+        invokeMethod(e.getActionCommand(), null);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        RegionComponent regionComponent = (RegionComponent) e.getSource();
+        Region region = regionComponent.getRegion();
+        if (focused == null){
+            focused = region;
+            System.out.println("Set focus");
+            regionComponent.setFocused(true);
+        }
+        else if (region == focused){
+            System.out.println("Reset focus");
+            focused = null;
+            regionComponent.setFocused(false);
+        }
+        region.getPlayer().addArmyToRegion(region);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

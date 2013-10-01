@@ -3,7 +3,7 @@ package se.liu.ida.adany869.tddc69.project;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-public class MenuController extends AbstractController implements Observer {
+public class MenuController extends AbstractController implements MenuObserver {
 
     public MenuController() {
 

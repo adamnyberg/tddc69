@@ -1,36 +1,10 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
-public class RegionComponentRelations {
-    private class Relation{
-        RegionComponent regionComponentA;
-        RegionComponent regionComponentB;
-
-        private Relation(RegionComponent regionComponentA, RegionComponent regionComponentB) {
-            this.regionComponentA = regionComponentA;
-            this.regionComponentB = regionComponentB;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            Relation comparingRelation = (Relation) o;
-
-            if (this.regionComponentA == null || this.regionComponentB == null) return false;
-            if (this.regionComponentA == comparingRelation.regionComponentA ||
-                    this.regionComponentA == comparingRelation.regionComponentB){
-                if (this.regionComponentB == comparingRelation.regionComponentB ||
-                        this.regionComponentB == comparingRelation.regionComponentA){
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
-
+public class RegionComponentRelations extends JComponent{
     private ArrayList<RegionComponent[]> relations = new ArrayList<RegionComponent[]>();
 
     private boolean isInArray(RegionComponent regionA, RegionComponent regionB){
@@ -40,6 +14,23 @@ public class RegionComponentRelations {
              }
         }
         return false;
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.BLACK);
+        g2.setStroke(new BasicStroke(5));
+
+        for (RegionComponent[] regionTupel : relations) {
+            RegionComponent regionComponent1 = regionTupel[0];
+            RegionComponent regionComponent2 = regionTupel[1];
+            g2.drawLine(regionComponent1.getX()+regionComponent1.getWidth()/2,
+                    regionComponent1.getY()+regionComponent1.getHeight()/2,
+                    regionComponent2.getX()+regionComponent2.getWidth()/2,
+                    regionComponent2.getY()+regionComponent2.getHeight()/2);
+        }
     }
 
     public void addRelation(RegionComponent regionA, RegionComponent regionB){

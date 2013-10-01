@@ -2,8 +2,9 @@ package se.liu.ida.adany869.tddc69.project;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class Player {
+public class Player extends Observable{
 
     private String name;
     private Color color;
@@ -65,5 +66,7 @@ public class Player {
             region.addArmy(1);
             armyReserve--;
         }
+        setChanged();
+        notifyObservers();
     }
 }

@@ -11,7 +11,6 @@ public class Region extends Observable {
     private Player player = new Player("none", Color.DARK_GRAY);
     private String name;
     private ArrayList<Region> neighbours = new ArrayList<Region>();
-    private ArrayList<Observer> regionObservers = new ArrayList<Observer>();
     private Random randGen = new Random();
     private final ActionEvent UPDATE_ARMY_EVENT = new ActionEvent(this, 0, "updateArmy");
 
@@ -41,11 +40,14 @@ public class Region extends Observable {
 
     public void setArmies(int armies) {
         this.armies = armies;
+        setChanged();
         notifyObservers();
     }
 
     public void addArmy(int armies){
         this.armies += armies;
+        System.out.println("addArmy");
+        setChanged();
         notifyObservers();
     }
 
@@ -74,15 +76,17 @@ public class Region extends Observable {
 
         this.setArmies(attackerArmiesAfter);
         attacked.setArmies(defenderArmiesAfter);
+
     }
 
-    public void addObserver(Observer o){
+    /*public void addObserver(Observer o){
         regionObservers.add(o);
-    }
+        this.
+    }*/
 
-    public void notifyObservers(){
+    /*public void notifyObservers(){
         for (Observer observer : regionObservers) {
             observer.update(new ActionEvent(this, 0, "updateArmy"));
         }
-    }
+    }*/
 }

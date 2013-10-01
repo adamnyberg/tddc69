@@ -1,8 +1,7 @@
 package se.liu.ida.adany869.tddc69.project;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-public interface Observer {
+public interface MenuObserver {
     public void update(ActionEvent e);
 }

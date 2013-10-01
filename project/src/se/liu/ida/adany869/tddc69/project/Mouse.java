@@ -1,10 +1,11 @@
 package se.liu.ida.adany869.tddc69.project;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class Mouse implements MouseListener {
+public class Mouse extends MouseAdapter {
     private RegionController regionController;
 
     public void setRegionController(RegionController regionController){
@@ -12,8 +13,6 @@ public class Mouse implements MouseListener {
     }
 
     public void mouseClicked(MouseEvent e){
-
-
         ((RegionComponent) e.getSource()).switchFocused();
         ((RegionComponent) e.getSource()).getRegion().getPlayer().
                 addArmyToRegion(((RegionComponent) e.getSource()).getRegion());
