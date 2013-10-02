@@ -63,20 +63,51 @@ public class Region extends Observable {
         neighbours.add(region);
     }
 
-    public void attack(Region attacked){
-        System.out.println("RegionAttack");
-        int attackDmg = randGen.nextInt(this.getArmies()+1)/3;
-        int defDmg =  randGen.nextInt(attacked.getArmies()+1)/3;
+    public boolean isNeighbour(Region region){
+        return neighbours.contains(region);
+    }
 
-        int attackerArmiesAfter = this.getArmies()-defDmg;
-        int defenderArmiesAfter = attacked.getArmies()-attackDmg;
+    public int attack(Region attacked, int attackSize){
+        System.out.println("Attack");
+        ArrayList<Dice> attackerDices = new ArrayList<Dice>();
+        ArrayList<Dice> defenderDices = new ArrayList<Dice>();
+        for (int i = 0; i < attackSize; i++) {
+            attackerDices.add(new Dice());
+        }
+        for (int i = 0; i < (attacked.getArmies() >= 2 ? 2 : 1); i++){
+            defenderDices.add(new Dice());
+        }
 
-        if(attackerArmiesAfter < 0) attackerArmiesAfter = 0;
-        if(defenderArmiesAfter < 0) defenderArmiesAfter = 0;
+        /*System.out.println("Attackerdices:");
+        for (Dice dice : attackerDices) {
+            System.out.println(dice.getValue());
+        }
+        System.out.println("Defenderdices:");
+        for (Dice dice : defenderDices) {
+            System.out.println(dice.getValue());
+        }*/
 
-        this.setArmies(attackerArmiesAfter);
-        attacked.setArmies(defenderArmiesAfter);
+        int attackerLoss = 0;
+        int defenderLoss = 0;
+        while (!(attackerDices.isEmpty() || defenderDices.isEmpty())){
+            if (popMax(attackerDices) > popMax(defenderDices)) defenderLoss++;
+            else attackerLoss++;
+        }
+        System.out.println("Attackerloss: " + attackerLoss);
+        System.out.println("Defenderloss: " + defenderLoss);
+        this.addArmy(-attackerLoss);
+        attacked.addArmy(-defenderLoss);
+        System.out.println("Attacksize: " + attackSize);
+        return attackerLoss;
+    }
 
+    private int popMax(ArrayList<Dice> dices){
+        Dice max = dices.get(0);
+        for (Dice dice : dices) {
+            if (max.getValue() < dice.getValue()) max = dice;
+        }
+        dices.remove(max);
+        return max.getValue();
     }
 
     /*public void addObserver(Observer o){

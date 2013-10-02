@@ -32,28 +32,29 @@ public class RegionController extends AbstractController implements MouseListene
         RegionComponent regionComponent = (RegionComponent) e.getSource();
         Region region = regionComponent.getRegion();
         if (risk.getActionState() == "reinforce" && region.getPlayer().isActive()) {
-            System.out.println("reinforce state");
             region.getPlayer().addArmyToRegion(region);
         }
         else if (risk.getActionState() == "attack") {
-            System.out.println("attack state");
             changeFocus(regionComponent);
+            if (focused != region && !region.getPlayer().isActive()){
+                Battle battle = new Battle(focused, focused.getArmies()-1, region);
+                battle.runBattle();
+            }
+
         }
 
     }
 
     public void changeFocus(RegionComponent regionComponent){
         Region region = regionComponent.getRegion();
-        if (focused == null){
-            focused = region;
-            System.out.println("Set focus");
-            regionComponent.setFocused(true);
-        }
-        else if (region == focused){
-            System.out.println("Reset focus");
-            resetFocus();
-            /*focused = null;
-            regionComponent.setFocused(false);*/
+        if (region.getPlayer().isActive()){
+            if (focused == null){
+                focused = region;
+                regionComponent.setFocused(true);
+                }
+            else if (focused == region){
+                resetFocus();
+            }
         }
     }
 

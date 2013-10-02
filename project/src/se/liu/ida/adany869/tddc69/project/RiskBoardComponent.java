@@ -161,7 +161,7 @@ public class RiskBoardComponent extends JComponent{
             System.out.println("asd");
             Region attacker = risk.getRegions()[0];
             Region attacked = risk.getRegions()[0].getNeighbours().get(0);
-            attacker.attack(attacked);
+            //attacker.attack(attacked);
             /*getRegionComponent(attacker).repaint();
             getRegionComponent(attacked).repaint();*/
             updateComponent();
