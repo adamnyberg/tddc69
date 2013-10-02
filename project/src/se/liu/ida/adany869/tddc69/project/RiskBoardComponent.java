@@ -113,6 +113,24 @@ public class RiskBoardComponent extends JComponent{
         int[] pos7 = {50, 900};
         regionPos.add(pos7);
 
+        int[] pos = {350, 500}; // 8
+        regionPos.add(pos);
+
+        pos =  new int[]{550, 300}; // 9
+        regionPos.add(pos);
+
+        pos =  new int[]{550, 460}; // 10
+        regionPos.add(pos);
+
+        pos =  new int[]{800, 470}; // 11
+        regionPos.add(pos);
+
+        pos =  new int[]{900, 120}; // 12
+        regionPos.add(pos);
+
+        pos =  new int[]{700, 700}; // 13
+        regionPos.add(pos);
+
         this.regionPositions = regionPos;
     }
 

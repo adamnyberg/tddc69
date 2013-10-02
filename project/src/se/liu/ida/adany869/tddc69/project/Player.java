@@ -17,7 +17,6 @@ public class Player extends Observable{
     }
 
     public Player(String name, Color color, Boolean isActive) {
-        System.out.println("Added player: " + name);
         this.name = name;
         this.color = color;
         this.isActive = isActive;

@@ -41,6 +41,7 @@ public class RegionComponent extends JComponent implements Observer {
         region.addObserver(this);
         this.addMouseListener(regionController);
         this.setVisible(true);
+        System.out.println("yPos: " + yPos + " xPos: " + xPos);
     }
 
     public RegionComponent(Region region, int yPos, int xPos, RegionController regionController) {
@@ -66,6 +67,7 @@ public class RegionComponent extends JComponent implements Observer {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        System.out.println("Painted reagion: " + region.getName());
         Graphics2D g2 = (Graphics2D) g;
 
         g2.setColor(region.getPlayer().getColor());

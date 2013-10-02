@@ -6,14 +6,20 @@ import java.util.Random;
 
 public class Map {
     private Region[] regions = {
-        new Region("SWEDEN"),       // 0
-        new Region("MOTHER RUSSIA"),// 1
-        new Region("MONGOLA"),      // 2
-        new Region("US&A"),         // 3
-        new Region("NORTH KOREA"),  // 4
-        new Region("CHINA"),        // 5
-        new Region("EGYPT"),        // 6
-        new Region("SIBIRIA")       // 7
+            new Region("SWEDEN"),       // 0
+            new Region("MOTHER RUSSIA"),// 1
+            new Region("MONGOLA"),      // 2
+            new Region("US&A"),         // 3
+            new Region("NORTH KOREA"),  // 4
+            new Region("CHINA"),        // 5
+            new Region("EGYPT"),        // 6
+            new Region("SIBIRIA"),      // 7
+            new Region("ENGLAND"),      // 8
+            new Region("IRAN"),         // 9
+            new Region("FINLAND"),      // 10
+            new Region("CYPRUS"),       // 11
+            new Region("MOON"),         // 12
+            new Region("MARS")          // 13
     };
 
     private Player[] players = {
