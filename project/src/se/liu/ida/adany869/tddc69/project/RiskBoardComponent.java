@@ -11,8 +11,6 @@ public class RiskBoardComponent extends JComponent{
     private int width;
     private RegionComponentRelations relations;
     private ArrayList<int[]> regionPositions;
-    private Container riskMenu = new Container();
-    private Container riskBoard = new Container();
 
     private static final int INIT_HEIGHT = 830;
     private static final int INIT_WIDTH = 1400;
@@ -26,7 +24,6 @@ public class RiskBoardComponent extends JComponent{
         setRegionPositions();
         addRegions();
         setupRegionComponentRelations();
-
         this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "attack");
         this.getActionMap().put("attack", attack);
     }
@@ -41,7 +38,7 @@ public class RiskBoardComponent extends JComponent{
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(INIT_WIDTH, INIT_HEIGHT);
+        return new Dimension(width, height);
     }
 
     @Override

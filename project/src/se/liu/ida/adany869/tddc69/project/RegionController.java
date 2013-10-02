@@ -6,11 +6,13 @@ import java.awt.event.MouseListener;
 import java.util.*;
 
 public class RegionController extends AbstractController implements MouseListener{
+    private RiskWorld risk;
     private HashMap regionToComponentMap = new HashMap<Region, RegionComponent>();
     private Region focused;
 
 
-    public RegionController() {
+    public RegionController(RiskWorld risk) {
+        this.risk = risk;
     }
 
     public void mapRegionToComponent(Region region, RegionComponent regionComponent){
