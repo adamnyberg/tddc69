@@ -37,7 +37,7 @@ public class RegionComponent extends JComponent implements Observer {
         this.setBounds(xPos, yPos, width, height);
         armyText.setText(Integer.toString(region.getArmies()));
         this.add(new JLabel(region.getName()));
-        this.add(armyText);
+        this.add(armyText, "wrap");
         region.addObserver(this);
         this.addMouseListener(regionController);
         this.setVisible(true);
@@ -46,7 +46,7 @@ public class RegionComponent extends JComponent implements Observer {
 
     public RegionComponent(Region region, int yPos, int xPos, RegionController regionController, int index) {
         this(region, yPos, xPos, INIT_HEIGHT, INIT_WIDTH, regionController);
-        this.add(new JLabel(Integer.toString(index)));
+        this.add(new JLabel("Index: " + Integer.toString(index)));
     }
 
 
