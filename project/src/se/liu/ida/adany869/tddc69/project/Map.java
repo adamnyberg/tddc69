@@ -36,14 +36,27 @@ public class Map {
 
         addRelation(0, 1);
         addRelation(0, 2);
+        addRelation(1, 2);
         addRelation(1, 4);
-        addRelation(4, 6);
-        addRelation(3, 4);
-        addRelation(2, 3);
+        addRelation(4, 8);
+        addRelation(2, 7);
+        addRelation(2, 8);
+        addRelation(3, 8);
         addRelation(3, 6);
+        addRelation(3, 7);
+        addRelation(3, 10);
+        addRelation(8, 9);
+        addRelation(4, 9);
+        addRelation(9, 10);
+        addRelation(10, 6);
         addRelation(5, 6);
         addRelation(5, 7);
-        addRelation(2, 7);
+        addRelation(11, 5);
+        addRelation(11,6);
+        addRelation(12, 7);
+        addRelation(12, 13);
+        addRelation(13, 7);
+
 
         ArrayList<Region> playerRegions = new ArrayList<Region>();
         playerRegions.add(regions[0]);

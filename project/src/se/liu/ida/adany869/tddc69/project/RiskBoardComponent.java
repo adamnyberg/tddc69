@@ -52,7 +52,7 @@ public class RiskBoardComponent extends JComponent{
         for (int i = 0; i < risk.getRegions().length; i++) {
             Region region = risk.getRegions()[i];
             int[] regionPos = regionPositions.get(i);
-            RegionComponent regionComponent = new RegionComponent(region, regionPos[0], regionPos[1], risk.regionController);
+            RegionComponent regionComponent = new RegionComponent(region, regionPos[0], regionPos[1], risk.regionController, i);
             risk.regionController.mapRegionToComponent(region, regionComponent);
             this.add(regionComponent);
         }
@@ -98,13 +98,13 @@ public class RiskBoardComponent extends JComponent{
         int[] pos2 = {50, 300};
         regionPos.add(pos2);
 
-        int[] pos3 = {300, 600};
+        int[] pos3 = {250, 800};
         regionPos.add(pos3);
 
         int[] pos4 = {500, 20};
         regionPos.add(pos4);
 
-        int[] pos5 = {500, 1000};
+        int[] pos5 = {300, 1030};
         regionPos.add(pos5);
 
         int[] pos6 = {550, 800};
@@ -113,7 +113,7 @@ public class RiskBoardComponent extends JComponent{
         int[] pos7 = {50, 900};
         regionPos.add(pos7);
 
-        int[] pos = {350, 500}; // 8
+        int[] pos = {300, 350}; // 8
         regionPos.add(pos);
 
         pos =  new int[]{550, 300}; // 9
@@ -122,13 +122,13 @@ public class RiskBoardComponent extends JComponent{
         pos =  new int[]{550, 460}; // 10
         regionPos.add(pos);
 
-        pos =  new int[]{800, 470}; // 11
+        pos =  new int[]{480, 1280}; // 11
         regionPos.add(pos);
 
-        pos =  new int[]{900, 120}; // 12
+        pos =  new int[]{190, 1230}; // 12
         regionPos.add(pos);
 
-        pos =  new int[]{700, 700}; // 13
+        pos =  new int[]{10, 1250}; // 13
         regionPos.add(pos);
 
         this.regionPositions = regionPos;

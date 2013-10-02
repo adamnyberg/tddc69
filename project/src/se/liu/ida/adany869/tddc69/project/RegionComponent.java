@@ -44,8 +44,9 @@ public class RegionComponent extends JComponent implements Observer {
         System.out.println("yPos: " + yPos + " xPos: " + xPos);
     }
 
-    public RegionComponent(Region region, int yPos, int xPos, RegionController regionController) {
+    public RegionComponent(Region region, int yPos, int xPos, RegionController regionController, int index) {
         this(region, yPos, xPos, INIT_HEIGHT, INIT_WIDTH, regionController);
+        this.add(new JLabel(Integer.toString(index)));
     }
 
 
