@@ -29,8 +29,7 @@ public class Player extends Observable{
 
     public void setActive(boolean active) {
         isActive = active;
-        setChanged();
-        notifyObservers();
+        updateObservers();
     }
 
     public String getName() {
@@ -57,9 +56,18 @@ public class Player extends Observable{
         this.armyReserve = armyReserve;
     }
 
+    public void addReserve(int size){
+        armyReserve += size;
+        updateObservers();
+    }
+
     public void addRegion(Region region) {
         region.setPlayer(this);
         this.regions.add(region);
+    }
+
+    public void removeRegion(Region region){
+        this.regions.remove(region);
     }
 
     public ArrayList<Region> getRegions() {
@@ -78,6 +86,16 @@ public class Player extends Observable{
             region.addArmy(1);
             armyReserve--;
         }
+        updateObservers();
+    }
+
+    public void addReinforcement(){
+        for (int i = 0; i < regions.size(); i++) {
+            this.addReserve(10);
+        }
+    }
+
+    public void updateObservers(){
         setChanged();
         notifyObservers();
     }

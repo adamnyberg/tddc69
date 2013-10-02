@@ -36,9 +36,10 @@ public class RegionController extends AbstractController implements MouseListene
         }
         else if (risk.getActionState() == "attack") {
             changeFocus(regionComponent);
-            if (focused != region && !region.getPlayer().isActive()){
+            if (focused != null && !region.getPlayer().isActive()){
                 Battle battle = new Battle(focused, focused.getArmies()-1, region);
                 battle.runBattle();
+                resetFocus();
             }
 
         }
@@ -48,13 +49,9 @@ public class RegionController extends AbstractController implements MouseListene
     public void changeFocus(RegionComponent regionComponent){
         Region region = regionComponent.getRegion();
         if (region.getPlayer().isActive()){
-            if (focused == null){
-                focused = region;
-                regionComponent.setFocused(true);
-                }
-            else if (focused == region){
-                resetFocus();
-            }
+            resetFocus();
+            focused = region;
+            regionComponent.setFocused(true);
         }
     }
 

@@ -22,7 +22,8 @@ public class Battle {
             System.out.println("regionB army: " + regionB.getArmies());
         }
         if (regionB.getArmies() <= 0){
-            regionB.setPlayer(regionA.getPlayer());
+            regionB.getPlayer().removeRegion(regionB);
+            regionA.getPlayer().addRegion(regionB);
             regionB.setArmies(armiesA);
             regionA.addArmy(-armiesA);
         }

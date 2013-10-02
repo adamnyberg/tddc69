@@ -37,9 +37,11 @@ public class RiskWorld {
                 player.setActive(false);
                 if (i == players.length-1){
                     players[0].setActive(true);
+                    players[0].addReinforcement();
                 }
                 else{
                     players[i+1].setActive(true);
+                    players[i+1].addReinforcement();
                 }
                 return;
             }
