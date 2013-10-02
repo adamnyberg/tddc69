@@ -23,9 +23,22 @@ public class Map {
 
     public Map() {
         Random randGen = new Random();
+        ArrayList<Integer> listOfRegionIndexes = new ArrayList<>();
+        for (int i = 0; i < regions.length; i++) {
+            System.out.println("i: " + i);
+            listOfRegionIndexes.add(i);
+        }
 
-        for (Region region : regions) {
-            region.setArmies(randGen.nextInt(100));
+        while (!listOfRegionIndexes.isEmpty()) {
+            for (Player player : players) {
+
+                int random = randGen.nextInt(listOfRegionIndexes.size());
+                int randomRegionIndex = listOfRegionIndexes.get(random);
+                System.out.println("random: " + randomRegionIndex);
+                regions[randomRegionIndex].setArmies(1);
+                player.addRegion(regions[randomRegionIndex]);
+                listOfRegionIndexes.remove(random);
+            }
         }
 
         addRelation(0, 1);
@@ -38,20 +51,6 @@ public class Map {
         addRelation(5, 6);
         addRelation(5, 7);
         addRelation(2, 7);
-
-        ArrayList<Region> playerRegions = new ArrayList<Region>();
-        playerRegions.add(regions[0]);
-        playerRegions.add(regions[1]);
-        playerRegions.add(regions[4]);
-        playerRegions.add(regions[6]);
-        players[0].setRegions(playerRegions);
-
-        playerRegions = new ArrayList<Region>();
-        playerRegions.add(regions[2]);
-        playerRegions.add(regions[3]);
-        playerRegions.add(regions[5]);
-        playerRegions.add(regions[7]);
-        players[1].setRegions(playerRegions);
     }
 
     public Region[] getRegions() {
