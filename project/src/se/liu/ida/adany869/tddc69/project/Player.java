@@ -9,7 +9,7 @@ public class Player extends Observable{
     private String name;
     private Color color;
     private ArrayList<Region> regions;
-    private int armyReserve = 10;
+    private int armyReserve = 30;
     private boolean isActive = false;
 
     public Player(String name, Color color) {
@@ -20,6 +20,7 @@ public class Player extends Observable{
         this.name = name;
         this.color = color;
         this.isActive = isActive;
+        this.regions = new ArrayList<Region>();
     }
 
     public boolean isActive() {
@@ -74,7 +75,6 @@ public class Player extends Observable{
     }
 
     public void setRegions(ArrayList<Region> regions) {
-        this.regions = new ArrayList<Region>();
         for (Region region : regions) {
             addRegion(region);
         }

@@ -29,9 +29,22 @@ public class Map {
 
     public Map() {
         Random randGen = new Random();
+        ArrayList<Integer> listOfRegionIndexes = new ArrayList<>();
+        for (int i = 0; i < regions.length; i++) {
+            System.out.println("i: " + i);
+            listOfRegionIndexes.add(i);
+        }
 
-        for (Region region : regions) {
-            region.setArmies(randGen.nextInt(100));
+        while (!listOfRegionIndexes.isEmpty()) {
+            for (Player player : players) {
+
+                int random = randGen.nextInt(listOfRegionIndexes.size());
+                int randomRegionIndex = listOfRegionIndexes.get(random);
+                System.out.println("random: " + randomRegionIndex);
+                regions[randomRegionIndex].setArmies(1);
+                player.addRegion(regions[randomRegionIndex]);
+                listOfRegionIndexes.remove(random);
+            }
         }
 
         addRelation(0, 1);
