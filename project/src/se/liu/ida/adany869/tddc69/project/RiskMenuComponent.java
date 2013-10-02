@@ -11,6 +11,7 @@ public class RiskMenuComponent extends JComponent{
     private JRadioButton reinforceRadioButton = new JRadioButton(new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            risk.regionController.resetFocus();
             risk.setActionState("reinforce");
         }
     });
@@ -23,6 +24,8 @@ public class RiskMenuComponent extends JComponent{
     private JButton nextPlayerButton = new JButton(new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            risk.regionController.resetFocus();
+            stateGroup.setSelected(reinforceRadioButton.getModel(), true);
             risk.switchPlayer();
         }
     });

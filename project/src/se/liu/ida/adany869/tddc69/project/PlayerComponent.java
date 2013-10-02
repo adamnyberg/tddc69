@@ -38,7 +38,6 @@ public class PlayerComponent extends JComponent implements Observer {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        System.out.println("player " + player.getName() + " got painted.");
         g2.setColor(player.getColor());
         g2.fillRect(0,0, WIDTH, HEIGHT);
 
@@ -52,7 +51,6 @@ public class PlayerComponent extends JComponent implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         this.armyReserveLabel.setText("Reserv: " + Integer.toString(player.getArmyReserve()));
-        System.out.println("hit kommer viu aldrig!=?!?!");
         this.repaint();
     }
 

@@ -7,7 +7,7 @@ import java.util.*;
 
 public class RegionController extends AbstractController implements MouseListener{
     private RiskWorld risk;
-    private HashMap regionToComponentMap = new HashMap<Region, RegionComponent>();
+    private HashMap<Region, RegionComponent> regionToComponentMap = new HashMap<Region, RegionComponent>();
     private Region focused;
 
 
@@ -32,21 +32,37 @@ public class RegionController extends AbstractController implements MouseListene
         RegionComponent regionComponent = (RegionComponent) e.getSource();
         Region region = regionComponent.getRegion();
         if (risk.getActionState() == "reinforce" && region.getPlayer().isActive()) {
+            System.out.println("reinforce state");
             region.getPlayer().addArmyToRegion(region);
         }
         else if (risk.getActionState() == "attack") {
-            if (focused == null){
-                focused = region;
-                System.out.println("Set focus");
-                regionComponent.setFocused(true);
-            }
-            else if (region == focused){
-                System.out.println("Reset focus");
-                focused = null;
-                regionComponent.setFocused(false);
-            }
+            System.out.println("attack state");
+            changeFocus(regionComponent);
         }
 
+    }
+
+    public void changeFocus(RegionComponent regionComponent){
+        Region region = regionComponent.getRegion();
+        if (focused == null){
+            focused = region;
+            System.out.println("Set focus");
+            regionComponent.setFocused(true);
+        }
+        else if (region == focused){
+            System.out.println("Reset focus");
+            resetFocus();
+            /*focused = null;
+            regionComponent.setFocused(false);*/
+        }
+    }
+
+    public void resetFocus(){
+        if (focused != null){
+            RegionComponent regionComponent = regionToComponentMap.get(focused);
+            focused = null;
+            regionComponent.setFocused(false);
+        }
     }
 
     @Override
