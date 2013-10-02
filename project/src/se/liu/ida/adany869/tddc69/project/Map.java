@@ -69,21 +69,6 @@ public class Map {
         addRelation(12, 7);
         addRelation(12, 13);
         addRelation(13, 7);
-
-
-        ArrayList<Region> playerRegions = new ArrayList<Region>();
-        playerRegions.add(regions[0]);
-        playerRegions.add(regions[1]);
-        playerRegions.add(regions[4]);
-        playerRegions.add(regions[6]);
-        players[0].setRegions(playerRegions);
-
-        playerRegions = new ArrayList<Region>();
-        playerRegions.add(regions[2]);
-        playerRegions.add(regions[3]);
-        playerRegions.add(regions[5]);
-        playerRegions.add(regions[7]);
-        players[1].setRegions(playerRegions);
     }
 
     public Region[] getRegions() {
