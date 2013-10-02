@@ -1,10 +1,9 @@
 package se.liu.ida.adany869.tddc69.project;
 
-import java.util.ArrayList;
-
 public class RiskWorld {
     private Region[] regions;
     private Player[] players;
+    private String actionState = "reinforce";
     public RegionController regionController = new RegionController(this);
 
     public RiskWorld(Region[] regions, Player[] players) {
@@ -18,6 +17,14 @@ public class RiskWorld {
 
     public Player[] getPlayers() {
         return players;
+    }
+
+    public String getActionState() {
+        return actionState;
+    }
+
+    public void setActionState(String actionState) {
+        this.actionState = actionState;
     }
 
     public void switchPlayer(){
