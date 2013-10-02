@@ -131,7 +131,7 @@ public class RiskBoardComponent extends JComponent{
     }
 
     public RegionComponent getRegionComponent(Region region){
-        ArrayList<RegionComponent> components = getRegionComponents(); //TODO: chache regionComponents
+        ArrayList<RegionComponent> components = getRegionComponents(); //TODO: cache regionComponents
         for (int i = 0; i < components.size(); i++) {
              if (components.get(i).getRegion().equals(region)){
                  return components.get(i);

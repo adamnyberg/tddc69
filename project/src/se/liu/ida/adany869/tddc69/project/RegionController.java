@@ -6,11 +6,13 @@ import java.awt.event.MouseListener;
 import java.util.*;
 
 public class RegionController extends AbstractController implements MouseListener{
+    private RiskWorld risk;
     private HashMap regionToComponentMap = new HashMap<Region, RegionComponent>();
     private Region focused;
 
 
-    public RegionController() {
+    public RegionController(RiskWorld risk) {
+        this.risk = risk;
     }
 
     public void mapRegionToComponent(Region region, RegionComponent regionComponent){
@@ -29,17 +31,22 @@ public class RegionController extends AbstractController implements MouseListene
     public void mouseClicked(MouseEvent e) {
         RegionComponent regionComponent = (RegionComponent) e.getSource();
         Region region = regionComponent.getRegion();
-        if (focused == null){
-            focused = region;
-            System.out.println("Set focus");
-            regionComponent.setFocused(true);
+        if (risk.getActionState() == "reinforce" && region.getPlayer().isActive()) {
+            region.getPlayer().addArmyToRegion(region);
         }
-        else if (region == focused){
-            System.out.println("Reset focus");
-            focused = null;
-            regionComponent.setFocused(false);
+        else if (risk.getActionState() == "attack") {
+            if (focused == null){
+                focused = region;
+                System.out.println("Set focus");
+                regionComponent.setFocused(true);
+            }
+            else if (region == focused){
+                System.out.println("Reset focus");
+                focused = null;
+                regionComponent.setFocused(false);
+            }
         }
-        region.getPlayer().addArmyToRegion(region);
+
     }
 
     @Override

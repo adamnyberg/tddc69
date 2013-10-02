@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class RiskWorld {
     private Region[] regions;
     private Player[] players;
-    public RegionController regionController = new RegionController();
+    private String actionState = "reinforce";
+    public RegionController regionController = new RegionController(this);
 
     public RiskWorld(Region[] regions, Player[] players) {
         this.regions = regions;
@@ -18,6 +19,14 @@ public class RiskWorld {
 
     public Player[] getPlayers() {
         return players;
+    }
+
+    public String getActionState() {
+        return actionState;
+    }
+
+    public void setActionState(String actionState) {
+        this.actionState = actionState;
     }
 
     public void switchPlayer(){
