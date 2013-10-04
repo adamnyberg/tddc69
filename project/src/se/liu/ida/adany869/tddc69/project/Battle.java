@@ -14,12 +14,8 @@ public class Battle {
     public void runBattle(){
         boolean ongoingBattle = true;
         while (ongoingBattle){
-            System.out.println("Before armiesA: " + armiesA);
-            System.out.println("regionB army: " + regionB.getArmies());
             armiesA -= regionA.attack(regionB, (armiesA >= 3 ? 3 : armiesA));
             ongoingBattle = (armiesA > 0 && regionB.getArmies() > 0);
-            System.out.println("armiesA: " + armiesA);
-            System.out.println("regionB army: " + regionB.getArmies());
         }
         if (regionB.getArmies() <= 0){
             regionB.getPlayer().removeRegion(regionB);

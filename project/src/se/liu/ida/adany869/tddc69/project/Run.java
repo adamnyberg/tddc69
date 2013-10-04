@@ -11,5 +11,6 @@ public class Run {
         RiskWorld risk = new RiskWorld(map.getRegions(), map.getPlayers());
         RiskFrame riskFrame = new RiskFrame(risk);
         riskFrame.setMenuObserver(new MenuController());
+
     }
 }

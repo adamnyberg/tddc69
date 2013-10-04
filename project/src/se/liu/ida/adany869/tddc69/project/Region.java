@@ -10,7 +10,7 @@ public class Region extends Observable {
     private int armies;
     private Player player = new Player("none", Color.DARK_GRAY);
     private String name;
-    private ArrayList<Region> neighbours = new ArrayList<Region>();
+    private ArrayList<Region> neighbours = new ArrayList<>();
     private Random randGen = new Random();
     private final ActionEvent UPDATE_ARMY_EVENT = new ActionEvent(this, 0, "updateArmy");
 
@@ -46,7 +46,6 @@ public class Region extends Observable {
 
     public void addArmy(int armies){
         this.armies += armies;
-        System.out.println("addArmy");
         setChanged();
         notifyObservers();
     }
@@ -68,7 +67,6 @@ public class Region extends Observable {
     }
 
     public int attack(Region attacked, int attackSize){
-        System.out.println("Attack");
         ArrayList<Dice> attackerDices = new ArrayList<Dice>();
         ArrayList<Dice> defenderDices = new ArrayList<Dice>();
         for (int i = 0; i < attackSize; i++) {
@@ -93,11 +91,8 @@ public class Region extends Observable {
             if (popMax(attackerDices) > popMax(defenderDices)) defenderLoss++;
             else attackerLoss++;
         }
-        System.out.println("Attackerloss: " + attackerLoss);
-        System.out.println("Defenderloss: " + defenderLoss);
         this.addArmy(-attackerLoss);
         attacked.addArmy(-defenderLoss);
-        System.out.println("Attacksize: " + attackSize);
         return attackerLoss;
     }
 
