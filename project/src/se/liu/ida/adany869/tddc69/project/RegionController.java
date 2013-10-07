@@ -1,7 +1,6 @@
 package se.liu.ida.adany869.tddc69.project;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.*;
@@ -26,14 +25,14 @@ public class RegionController extends AbstractController implements MouseListene
         RegionComponent regionComponent = (RegionComponent) e.getSource();
         Region region = regionComponent.getRegion();
         this.riskBoardComponent = (RiskBoardComponent) regionComponent.getParent();
-        if (risk.getActionState().equals("reinforce") && region.getPlayer().isActive()) {
+        if (risk.getActionStringState().equals("reinforce") && region.getPlayer().isActive()) {
             region.getPlayer().addArmyToRegion(region);
         }
-        else if (risk.getActionState().equals("attack")) {
+        else if (risk.getActionStringState().equals("attack")) {
             changeFocus(regionComponent);
             if (focused != null && !region.getPlayer().isActive() && region.isNeighbour(focused)){
-                SliderOptionPane slider = new SliderOptionPane(focused.getArmies()-1);
-                int armySize = slider.getArmySize();
+                SliderOptionPane slider = new SliderOptionPane(0, focused.getArmies()-1, "Select amount to attack with: ");
+                int armySize = slider.getValue();
                 Battle battle = new Battle(focused, armySize, region);
                 battle.runBattle();
                 resetFocus();
@@ -42,7 +41,7 @@ public class RegionController extends AbstractController implements MouseListene
                 }
             }
         }
-        else if (risk.getActionState().equals("fortify")) {
+        /*else if (risk.getActionStringState().equals("fortify")) {
             if (focused == null) {
                 changeFocus(regionComponent);
                 for (Region neighbour : region.getNeighbours()) {
@@ -60,7 +59,7 @@ public class RegionController extends AbstractController implements MouseListene
             if (region.isNeighbour(focused) && region.getPlayer() == focused.getPlayer()){
                 System.out.println("fortify");
             }
-        }
+        }*/
     }
 
     public void changeFocus(RegionComponent regionComponent){

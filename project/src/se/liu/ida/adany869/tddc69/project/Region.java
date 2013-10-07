@@ -39,7 +39,7 @@ public class Region extends Observable {
         return armies;
     }
 
-    public void setArmies(int armies) {
+    public void setArmy(int armies) {
         this.armies = armies;
         setChanged();
         notifyObservers();

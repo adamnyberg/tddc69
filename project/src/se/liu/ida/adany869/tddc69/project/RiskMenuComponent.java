@@ -3,7 +3,6 @@ package se.liu.ida.adany869.tddc69.project;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class RiskMenuComponent extends JComponent{
@@ -26,7 +25,7 @@ public class RiskMenuComponent extends JComponent{
         public void actionPerformed(ActionEvent e) {
             setActiveButton(reinforceButton);
             risk.regionController.resetFocus();
-            risk.setActionState("reinforce");
+            risk.setActionStringState("reinforce");
         }
     });
 
@@ -35,7 +34,7 @@ public class RiskMenuComponent extends JComponent{
         public void actionPerformed(ActionEvent e) {
             setActiveButton(attackButton);
             reinforceButton.setEnabled(false);
-            risk.setActionState("attack");
+            risk.setActionStringState("attack");
         }
     });
 
@@ -46,7 +45,7 @@ public class RiskMenuComponent extends JComponent{
             reinforceButton.setEnabled(false);
             attackButton.setEnabled(false);
             risk.regionController.resetFocus();
-            risk.setActionState("fortify");
+            risk.setActionStringState("fortify");
         }
     });
 
