@@ -1,6 +1,8 @@
 package se.liu.ida.adany869.tddc69.project;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -24,8 +26,6 @@ public class RiskBoardComponent extends JComponent{
         setRegionPositions();
         addRegions();
         setupRegionComponentRelations();
-        this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "attack");
-        this.getActionMap().put("attack", attack);
     }
 
     public RiskBoardComponent(RiskWorld risk) {
@@ -161,7 +161,6 @@ public class RiskBoardComponent extends JComponent{
         for (Region region : risk.getRegions()) {
             ArrayList<Region> neighbourRegions = region.getNeighbours();
             RegionComponent regionComponentA = getRegionComponent(region);
-            RegionComponent regionComponentB = null;
             for (int i = 0; i < neighbourRegions.size(); i++) {
                  this.relations.addRelation(regionComponentA, getRegionComponent(neighbourRegions.get(i)));
             }
@@ -176,7 +175,6 @@ public class RiskBoardComponent extends JComponent{
     final private Action attack = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("asd");
             Region attacker = risk.getRegions()[0];
             Region attacked = risk.getRegions()[0].getNeighbours().get(0);
             //attacker.attack(attacked);
@@ -185,4 +183,5 @@ public class RiskBoardComponent extends JComponent{
             updateComponent();
         }
     };
+
 }

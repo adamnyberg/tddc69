@@ -28,12 +28,10 @@ public class RiskWorld {
     }
 
     public void switchPlayer(){
-        System.out.println("switchPlayer");
         this.actionState = "reinforce";
         for (int i = 0; i < players.length; i++) {
             Player player = players[i];
             if (player.isActive()){
-                System.out.println("Player " + player.getName() + " was active");
                 player.setActive(false);
                 if (i == players.length-1){
                     players[0].setActive(true);

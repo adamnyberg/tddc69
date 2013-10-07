@@ -33,7 +33,6 @@ public class RegionComponent extends JComponent implements Observer {
         this.region = region;
         this.height = height;
         this.width = width;
-
         this.setBounds(xPos, yPos, width, height);
         armyText.setText(Integer.toString(region.getArmies()));
         this.add(new JLabel(region.getName()));
@@ -41,7 +40,6 @@ public class RegionComponent extends JComponent implements Observer {
         region.addObserver(this);
         this.addMouseListener(regionController);
         this.setVisible(true);
-        System.out.println("yPos: " + yPos + " xPos: " + xPos);
     }
 
     public RegionComponent(Region region, int yPos, int xPos, RegionController regionController, int index) {
@@ -67,7 +65,7 @@ public class RegionComponent extends JComponent implements Observer {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        System.out.println("Painted reagion: " + region.getName());
+        //System.out.println("Painted region: " + region.getName());
         Graphics2D g2 = (Graphics2D) g;
 
         g2.setColor(region.getPlayer().getColor());
@@ -132,4 +130,52 @@ public class RegionComponent extends JComponent implements Observer {
         g2.setColor(new Color(255,215,0));
         g2.drawRect(0,0,width,height);
     }
+
+
+
+    /*public class Slider extends JComponent{
+        int armySize = 0;
+
+        final JSlider armySlider = new JSlider(0, region.getArmies()-1);
+
+        JButton sliderTerminateButton = new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                remove(armySlider);
+                remove(sliderTerminateButton);
+                remove(sliderConfirmButton);
+                resetArmySize();
+            }
+        });
+
+
+
+        JButton sliderConfirmButton = new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setArmySize();
+
+            }
+        });
+
+        public Slider() {
+            this.setLayout(new MigLayout());
+            sliderTerminateButton.setText("Cancel");
+            sliderConfirmButton.setText("OK");
+            this.add(armySlider, "wrap");
+            this.add(sliderTerminateButton);
+            this.add(sliderConfirmButton);
+        }
+
+        private void resetArmySize(){
+            armySize = 0;
+        }
+
+        private void setArmySize(){
+            armySize = armySlider.getValue();
+        }
+    }*/
+
+
+
 }

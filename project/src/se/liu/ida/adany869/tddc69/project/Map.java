@@ -24,14 +24,13 @@ public class Map {
 
     private Player[] players = {
             new Player("Adam", Color.blue, true),
-            new Player("Daniel", Color.green)
+            new Player("Harald", Color.green)
     };
 
     public Map() {
         Random randGen = new Random();
         ArrayList<Integer> listOfRegionIndexes = new ArrayList<>();
         for (int i = 0; i < regions.length; i++) {
-            System.out.println("i: " + i);
             listOfRegionIndexes.add(i);
         }
 
@@ -40,35 +39,38 @@ public class Map {
 
                 int random = randGen.nextInt(listOfRegionIndexes.size());
                 int randomRegionIndex = listOfRegionIndexes.get(random);
-                System.out.println("random: " + randomRegionIndex);
-                regions[randomRegionIndex].setArmies(1);
+                regions[randomRegionIndex].setArmies(3);
                 player.addRegion(regions[randomRegionIndex]);
                 listOfRegionIndexes.remove(random);
             }
         }
-
-        addRelation(0, 1);
-        addRelation(0, 2);
-        addRelation(1, 2);
-        addRelation(1, 4);
-        addRelation(4, 8);
-        addRelation(2, 7);
-        addRelation(2, 8);
-        addRelation(3, 8);
-        addRelation(3, 6);
-        addRelation(3, 7);
-        addRelation(3, 10);
-        addRelation(8, 9);
-        addRelation(4, 9);
-        addRelation(9, 10);
-        addRelation(10, 6);
-        addRelation(5, 6);
-        addRelation(5, 7);
-        addRelation(11, 5);
-        addRelation(11,6);
-        addRelation(12, 7);
-        addRelation(12, 13);
-        addRelation(13, 7);
+        for (Player player : players) {
+            player.addReinforcement();
+        }
+        addRelations(new int[][]{
+                {0,1},
+                {0,2},
+                {1,2},
+                {1,4},
+                {4,8},
+                {2,7},
+                {2,8},
+                {3,8},
+                {3,6},
+                {3,7},
+                {3,10},
+                {8,9},
+                {4,9},
+                {9,10},
+                {10,6},
+                {5,6},
+                {5,7},
+                {11,5},
+                {11,6},
+                {12,7},
+                {12,13},
+                {13,7}
+        });
     }
 
     public Region[] getRegions() {
@@ -82,5 +84,11 @@ public class Map {
     private void addRelation(int region1, int region2) {
         regions[region1].addNeighbour(regions[region2]);
         regions[region2].addNeighbour(regions[region1]);
+    }
+
+    private void addRelations(int[][] relations){
+        for (int[] relation : relations) {
+            addRelation(relation[0], relation[1]);
+        }
     }
 }

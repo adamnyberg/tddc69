@@ -9,7 +9,8 @@ public class Player extends Observable{
     private String name;
     private Color color;
     private ArrayList<Region> regions;
-    private int armyReserve = 30;
+    private int armyReserve;
+    private boolean hasAttacked;
     private boolean isActive = false;
 
     public Player(String name, Color color) {
@@ -20,7 +21,7 @@ public class Player extends Observable{
         this.name = name;
         this.color = color;
         this.isActive = isActive;
-        this.regions = new ArrayList<Region>();
+        this.regions = new ArrayList<>();
     }
 
     public boolean isActive() {
@@ -68,6 +69,9 @@ public class Player extends Observable{
 
     public void removeRegion(Region region){
         this.regions.remove(region);
+        for (Region region1 : regions) {
+            System.out.println(region1.getName());
+        }
     }
 
     public ArrayList<Region> getRegions() {
@@ -89,9 +93,8 @@ public class Player extends Observable{
     }
 
     public void addReinforcement(){
-        for (int i = 0; i < regions.size(); i++) {
-            this.addReserve(10);
-        }
+        int regionSize = regions.size();
+        this.addReserve(regionSize > 4 ? regionSize : 4);
     }
 
     public void updateObservers(){
