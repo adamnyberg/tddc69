@@ -33,7 +33,6 @@ public class RegionComponent extends JComponent implements Observer {
         this.region = region;
         this.height = height;
         this.width = width;
-
         this.setBounds(xPos, yPos, width, height);
         armyText.setText(Integer.toString(region.getArmies()));
         this.add(new JLabel(region.getName()));
@@ -132,4 +131,60 @@ public class RegionComponent extends JComponent implements Observer {
         g2.setColor(new Color(255,215,0));
         g2.drawRect(0,0,width,height);
     }
+
+    public int slider(){
+        int armySize = 0;
+        Slider slider = new Slider(region.getArmies()-1, this);
+        this.add(slider);
+        while (slider.isAncestorOf(this)){
+            armySize = slider.getValue();
+        }
+        return armySize;
+    }
+
+    /*public class Slider extends JComponent{
+        int armySize = 0;
+
+        final JSlider armySlider = new JSlider(0, region.getArmies()-1);
+
+        JButton sliderTerminateButton = new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                remove(armySlider);
+                remove(sliderTerminateButton);
+                remove(sliderConfirmButton);
+                resetArmySize();
+            }
+        });
+
+
+
+        JButton sliderConfirmButton = new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setArmySize();
+
+            }
+        });
+
+        public Slider() {
+            this.setLayout(new MigLayout());
+            sliderTerminateButton.setText("Cancel");
+            sliderConfirmButton.setText("OK");
+            this.add(armySlider, "wrap");
+            this.add(sliderTerminateButton);
+            this.add(sliderConfirmButton);
+        }
+
+        private void resetArmySize(){
+            armySize = 0;
+        }
+
+        private void setArmySize(){
+            armySize = armySlider.getValue();
+        }
+    }*/
+
+
+
 }

@@ -8,6 +8,7 @@ import java.util.Random;
 
 public class Region extends Observable {
     private int armies;
+    private int armiesReadyToBeDeployed = 0;
     private Player player = new Player("none", Color.DARK_GRAY);
     private String name;
     private ArrayList<Region> neighbours = new ArrayList<>();
