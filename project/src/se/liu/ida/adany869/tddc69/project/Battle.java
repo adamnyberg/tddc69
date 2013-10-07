@@ -13,6 +13,8 @@ public class Battle {
 
     public void runBattle(){
         boolean ongoingBattle = true;
+        Player playerA = regionA.getPlayer();
+        Player playerB = regionB.getPlayer();
         while (ongoingBattle){
             System.out.println("Before armiesA: " + armiesA);
             System.out.println("regionB army: " + regionB.getArmies());
@@ -22,8 +24,8 @@ public class Battle {
             System.out.println("regionB army: " + regionB.getArmies());
         }
         if (regionB.getArmies() <= 0){
-            regionB.getPlayer().removeRegion(regionB);
-            regionA.getPlayer().addRegion(regionB);
+            playerB.removeRegion(regionB);
+            playerA.addRegion(regionB);
             regionB.setArmies(armiesA);
             regionA.addArmy(-armiesA);
         }

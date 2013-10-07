@@ -1,5 +1,6 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -40,6 +41,9 @@ public class RegionController extends AbstractController implements MouseListene
                 Battle battle = new Battle(focused, focused.getArmies()-1, region);
                 battle.runBattle();
                 resetFocus();
+                if (risk.checkGameOver()) {
+                    gameOver();
+                }
             }
 
         }
@@ -81,5 +85,18 @@ public class RegionController extends AbstractController implements MouseListene
     @Override
     public void mouseExited(MouseEvent e) {
         //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    private void gameOver() {
+        String ObjButtons[] = {"Restart", "Quit"};
+        int promptResult = JOptionPane.showOptionDialog(null,
+                "Game Over\n" + risk.getRegions()[0].getPlayer().getName() + " won!", "Rwhisky",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
+                ObjButtons, ObjButtons[1]);
+        if (promptResult == 0) {
+            Run.main(null);
+        } else if (promptResult == 1) {
+            System.exit(1);
+        }
     }
 }

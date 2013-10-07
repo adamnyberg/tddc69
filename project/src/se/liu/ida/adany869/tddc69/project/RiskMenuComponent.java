@@ -57,6 +57,4 @@ public class RiskMenuComponent extends JComponent{
         if (reinforceRadioButton.getModel().isSelected()) return reinforceRadioButton.getName();
         return "";
     }
-
-
 }

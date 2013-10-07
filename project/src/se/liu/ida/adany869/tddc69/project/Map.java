@@ -24,7 +24,7 @@ public class Map {
 
     private Player[] players = {
             new Player("Adam", Color.blue, true),
-            new Player("Harald", Color.green)
+            new Player("Daniel", Color.green)
     };
 
     public Map() {
