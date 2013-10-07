@@ -3,7 +3,8 @@ package se.liu.ida.adany869.tddc69.project;
 public class RiskWorld {
     private Region[] regions;
     private Player[] players;
-    private String actionState = "reinforce";
+    private ActionState actionState = new ReinforceState();
+    private String actionStringState = "reinforce";
     public RegionController regionController = new RegionController(this);
 
     public RiskWorld(Region[] regions, Player[] players) {
@@ -19,16 +20,24 @@ public class RiskWorld {
         return players;
     }
 
-    public String getActionState() {
+    public ActionState getActionState() {
         return actionState;
     }
 
-    public void setActionState(String actionState) {
+    public void setActionState(ActionState actionState) {
         this.actionState = actionState;
     }
 
+    public String getActionStringState() {
+        return actionStringState;
+    }
+
+    public void setActionStringState(String actionStringState) {
+        this.actionStringState = actionStringState;
+    }
+
     public void switchPlayer(){
-        this.actionState = "reinforce";
+        this.actionStringState = "reinforce";
         for (int i = 0; i < players.length; i++) {
             Player player = players[i];
             if (player.isActive()){

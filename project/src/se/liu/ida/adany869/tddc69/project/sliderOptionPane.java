@@ -3,37 +3,46 @@ package se.liu.ida.adany869.tddc69.project;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.awt.*;
 
 public class SliderOptionPane {
-    int armySize = 0;
+    int value = 0;
     int maxSize;
-    public SliderOptionPane(int maxSize) {
+    int minSize;
+    public SliderOptionPane(int minSize, int maxSize, String descriptiveText) {
         JFrame parent = new JFrame();
         this.maxSize = maxSize;
+        this.minSize = minSize;
 
         JOptionPane optionPane = new JOptionPane();
         JTextField textField = new JTextField();
         JSlider slider = getSlider(optionPane, textField);
         textField.setText(new Integer(slider.getValue()).toString());
-        optionPane.setMessage(new Object[]{"Select amount to attack with:", slider, textField});
+        optionPane.setMessage(new Object[]{descriptiveText, slider, textField});
         optionPane.setMessageType(JOptionPane.QUESTION_MESSAGE);
         optionPane.setOptionType(JOptionPane.OK_CANCEL_OPTION);
-        optionPane.setInputValue(0);
+        optionPane.setInputValue(minSize);
+
         JDialog dialog = optionPane.createDialog(parent, "My Slider");
+        dialog.setAlwaysOnTop (true);
         dialog.setVisible(true);
-        armySize = Integer.valueOf(textField.getText());
+
+        if(optionPane.getValue() != null && optionPane.getValue().equals(JOptionPane.OK_OPTION)){
+            value = Integer.valueOf(textField.getText());
+            if (value > maxSize){
+                value = maxSize;
+            }
+        };
     }
 
     private JSlider getSlider(final JOptionPane optionPane, final JTextField textField){
         JSlider slider = new JSlider();
         slider.setMaximum(maxSize);
-        slider.setValue(0);
+        slider.setMinimum(minSize);
+        slider.setValue(minSize);
         slider.setMajorTickSpacing(maxSize);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
-
 
         ChangeListener changeListener = new ChangeListener() {
             @Override
@@ -51,7 +60,7 @@ public class SliderOptionPane {
         return slider;
     }
 
-    public int getArmySize() {
-        return armySize;
+    public int getValue() {
+        return value;
     }
 }

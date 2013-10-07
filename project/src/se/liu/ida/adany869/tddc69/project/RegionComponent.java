@@ -134,7 +134,7 @@ public class RegionComponent extends JComponent implements Observer {
 
 
     /*public class Slider extends JComponent{
-        int armySize = 0;
+        int value = 0;
 
         final JSlider armySlider = new JSlider(0, region.getArmies()-1);
 
@@ -168,11 +168,11 @@ public class RegionComponent extends JComponent implements Observer {
         }
 
         private void resetArmySize(){
-            armySize = 0;
+            value = 0;
         }
 
         private void setArmySize(){
-            armySize = armySlider.getValue();
+            value = armySlider.getValue();
         }
     }*/
 
