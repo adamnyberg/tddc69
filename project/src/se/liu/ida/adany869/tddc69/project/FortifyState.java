@@ -13,7 +13,7 @@ public class FortifyState extends ActionState {
             if (this.parent.getFocused() == region){
                 this.parent.resetFocus();
             }
-            else {
+            else if (parent.getActivePlayer() == region.getPlayer()){
                 Region fortifier = this.parent.getFocused();
                 SliderOptionPane slider = new SliderOptionPane(0, fortifier.getArmies()-1, "Select amount to move: ");
                 int fortifySize = slider.getValue();
