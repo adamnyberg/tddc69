@@ -13,13 +13,15 @@ public class Battle {
 
     public void runBattle(){
         boolean ongoingBattle = true;
+        Player playerA = regionA.getPlayer();
+        Player playerB = regionB.getPlayer();
         while (ongoingBattle){
             armiesA -= regionA.attack(regionB, (armiesA >= 3 ? 3 : armiesA));
             ongoingBattle = (armiesA > 0 && regionB.getArmies() > 0);
         }
         if (regionB.getArmies() <= 0){
-            regionB.getPlayer().removeRegion(regionB);
-            regionA.getPlayer().addRegion(regionB);
+            playerB.removeRegion(regionB);
+            playerA.addRegion(regionB);
             regionB.setArmies(armiesA);
             regionA.addArmy(-armiesA);
         }

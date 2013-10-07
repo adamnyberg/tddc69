@@ -16,7 +16,7 @@ public class MenuController extends AbstractController implements MenuObserver {
     public void Quit(){
         String ObjButtons[] = {"Yes", "No"};
         int PromptResult = JOptionPane.showOptionDialog(null,
-                "Are you sure you want to exit?", "Tetris",
+                "Are you sure you want to exit?", "Rwhisky",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
                 ObjButtons, ObjButtons[1]);
         if (PromptResult == 0) {
@@ -27,7 +27,7 @@ public class MenuController extends AbstractController implements MenuObserver {
     public void Restart(){
         String ObjButtons[] = {"Yes", "No"};
         int PromptResult = JOptionPane.showOptionDialog(null,
-                "Are you sure you want to restart game and delete current play?", "Tetris",
+                "Are you sure you want to restart game and delete current play?", "Rwhisky",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
                 ObjButtons, ObjButtons[1]);
         if (PromptResult == 0) {

@@ -47,30 +47,30 @@ public class Map {
         for (Player player : players) {
             player.addReinforcement();
         }
-        addRelations(new int[][]{{0,1},{0,2},{1,2},{1,4},{4,8},{2,7},{2,8},{3,8},{3,6},{3,7},{3,10},{8,9},
-                {4,9},{9,10},{10,6},{5,6},{5,7},{11,5},{11,6},{12,7},{12,13},{13,7}});
-        /*addRelation(0, 1);
-        addRelation(0, 2);
-        addRelation(1, 2);
-        addRelation(1, 4);
-        addRelation(4, 8);
-        addRelation(2, 7);
-        addRelation(2, 8);
-        addRelation(3, 8);
-        addRelation(3, 6);
-        addRelation(3, 7);
-        addRelation(3, 10);
-        addRelation(8, 9);
-        addRelation(4, 9);
-        addRelation(9, 10);
-        addRelation(10, 6);
-        addRelation(5, 6);
-        addRelation(5, 7);
-        addRelation(11, 5);
-        addRelation(11,6);
-        addRelation(12, 7);
-        addRelation(12, 13);
-        addRelation(13, 7);*/
+        addRelations(new int[][]{
+                {0,1},
+                {0,2},
+                {1,2},
+                {1,4},
+                {4,8},
+                {2,7},
+                {2,8},
+                {3,8},
+                {3,6},
+                {3,7},
+                {3,10},
+                {8,9},
+                {4,9},
+                {9,10},
+                {10,6},
+                {5,6},
+                {5,7},
+                {11,5},
+                {11,6},
+                {12,7},
+                {12,13},
+                {13,7}
+        });
     }
 
     public Region[] getRegions() {

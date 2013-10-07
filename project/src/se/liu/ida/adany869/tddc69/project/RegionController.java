@@ -1,5 +1,6 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -9,7 +10,6 @@ public class RegionController extends AbstractController implements MouseListene
     private RiskWorld risk;
     private HashMap<Region, RegionComponent> regionToComponentMap = new HashMap<>();
     private Region focused;
-    private Region defender;
     private RiskBoardComponent riskBoardComponent;
 
 
@@ -19,14 +19,6 @@ public class RegionController extends AbstractController implements MouseListene
 
     public void mapRegionToComponent(Region region, RegionComponent regionComponent){
         regionToComponentMap.put(region, regionComponent);
-    }
-
-    private void updateArmyRegionComponent(RegionComponent regionComponent){
-        regionComponent.updateArmy();
-    }
-
-    public void update(ActionEvent e) {
-        invokeMethod(e.getActionCommand(), null);
     }
 
     @Override
@@ -45,6 +37,22 @@ public class RegionController extends AbstractController implements MouseListene
                 Battle battle = new Battle(focused, armySize, region);
                 battle.runBattle();
                 resetFocus();
+                if (risk.checkGameOver()) {
+                    gameOver();
+                }
+            }
+        }
+        else if (risk.getActionState().equals("fortify")) {
+            if (focused == null) {
+                changeFocus(regionComponent);
+                return;
+            }
+            if (region == focused) {
+                resetFocus();
+                return;
+            }
+            if (region.isNeighbour(focused) && region.getPlayer() == focused.getPlayer()){
+                System.out.println("fortify");
             }
         }
     }
@@ -84,5 +92,18 @@ public class RegionController extends AbstractController implements MouseListene
     @Override
     public void mouseExited(MouseEvent e) {
         //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    private void gameOver() {
+        String ObjButtons[] = {"Restart", "Quit"};
+        int promptResult = JOptionPane.showOptionDialog(null,
+                "Game Over\n" + risk.getRegions()[0].getPlayer().getName() + " won!", "Rwhisky",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
+                ObjButtons, ObjButtons[1]);
+        if (promptResult == 0) {
+            Run.main(null);
+        } else if (promptResult == 1) {
+            System.exit(1);
+        }
     }
 }
