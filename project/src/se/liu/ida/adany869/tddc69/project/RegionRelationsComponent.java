@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class RegionComponentRelations extends JComponent{
+public class RegionRelationsComponent extends JComponent{
     private ArrayList<RegionComponent[]> relations = new ArrayList<RegionComponent[]>();
 
     private boolean isInArray(RegionComponent regionA, RegionComponent regionB){

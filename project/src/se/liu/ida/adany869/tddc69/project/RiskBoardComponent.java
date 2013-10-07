@@ -1,17 +1,14 @@
 package se.liu.ida.adany869.tddc69.project;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 public class RiskBoardComponent extends JComponent{
     private RiskWorld risk;
     private int height;
     private int width;
-    private RegionComponentRelations relations;
+    private RegionRelationsComponent relations;
     private ArrayList<int[]> regionPositions;
 
     private static final int INIT_HEIGHT = 830;
@@ -22,7 +19,7 @@ public class RiskBoardComponent extends JComponent{
         this.risk = risk;
         this.height = height;
         this.width = width;
-        relations = new RegionComponentRelations();
+        relations = new RegionRelationsComponent();
         setRegionPositions();
         addRegions();
         setupRegionComponentRelations();
@@ -30,10 +27,6 @@ public class RiskBoardComponent extends JComponent{
 
     public RiskBoardComponent(RiskWorld risk) {
         this(risk, INIT_HEIGHT, INIT_WIDTH);
-    }
-
-    public RiskWorld getRisk() {
-        return risk;
     }
 
     @Override
@@ -58,32 +51,38 @@ public class RiskBoardComponent extends JComponent{
         }
     }
 
-    private void drawRelations(Graphics2D g2) {
-        g2.setColor(Color.BLACK);
-        g2.setStroke(new BasicStroke(5));
+    private ArrayList<RegionComponent> getRegionComponents() { // TODO: maybe not need this
+        ArrayList<RegionComponent> regionComponents = new ArrayList<RegionComponent>();
 
-
-        for (RegionComponent[] regionTupel : this.relations.getRelations()) {
-
-            RegionComponent regionComponent1 = regionTupel[0];
-            RegionComponent regionComponent2 = regionTupel[1];
-            g2.drawLine(regionComponent1.getX()+regionComponent1.getWidth()/2,
-                    regionComponent1.getY()+regionComponent1.getHeight()/2,
-                    regionComponent2.getX()+regionComponent2.getWidth()/2,
-                    regionComponent2.getY()+regionComponent2.getHeight()/2);
+        for (Component component : this.getComponents()) {
+            if (component instanceof RegionComponent) { // TODO: bad OO
+                regionComponents.add( (RegionComponent) component);
+            }
         }
+        return regionComponents;
     }
 
-    private void drawPlayers(Graphics2D g2) {
-        Player player1 = risk.getPlayers()[0];
+    public RegionComponent getRegionComponent(Region region){
+        ArrayList<RegionComponent> components = getRegionComponents(); //TODO: cache regionComponents
+        for (int i = 0; i < components.size(); i++) {
+             if (components.get(i).getRegion().equals(region)){
+                 return components.get(i);
+             }
 
-        g2.setColor(player1.getColor());
-        g2.drawRect(20, 100, 200, 100);
+        }
+        return null;
+    }
 
-        Player player2 = risk.getPlayers()[1];
-
-        g2.setColor(player2.getColor());
-        g2.drawRect(20, 300, 200, 100);
+    public void setupRegionComponentRelations(){
+        this.relations = new RegionRelationsComponent();
+        for (Region region : risk.getRegions()) {
+            ArrayList<Region> neighbourRegions = region.getNeighbours();
+            RegionComponent regionComponentA = getRegionComponent(region);
+            for (int i = 0; i < neighbourRegions.size(); i++) {
+                 this.relations.addRelation(regionComponentA, getRegionComponent(neighbourRegions.get(i)));
+            }
+        }
+        this.add(this.relations);
     }
 
     private void setRegionPositions() {
@@ -133,55 +132,4 @@ public class RiskBoardComponent extends JComponent{
 
         this.regionPositions = regionPos;
     }
-
-    private ArrayList<RegionComponent> getRegionComponents() { // TODO: maybe not need this
-        ArrayList<RegionComponent> regionComponents = new ArrayList<RegionComponent>();
-
-        for (Component component : this.getComponents()) {
-            if (component instanceof RegionComponent) { // TODO: bad OO
-                regionComponents.add( (RegionComponent) component);
-            }
-        }
-        return regionComponents;
-    }
-
-    public RegionComponent getRegionComponent(Region region){
-        ArrayList<RegionComponent> components = getRegionComponents(); //TODO: cache regionComponents
-        for (int i = 0; i < components.size(); i++) {
-             if (components.get(i).getRegion().equals(region)){
-                 return components.get(i);
-             }
-
-        }
-        return null;
-    }
-
-    public void setupRegionComponentRelations(){
-        this.relations = new RegionComponentRelations();
-        for (Region region : risk.getRegions()) {
-            ArrayList<Region> neighbourRegions = region.getNeighbours();
-            RegionComponent regionComponentA = getRegionComponent(region);
-            for (int i = 0; i < neighbourRegions.size(); i++) {
-                 this.relations.addRelation(regionComponentA, getRegionComponent(neighbourRegions.get(i)));
-            }
-        }
-        this.add(this.relations);
-    }
-
-    private final void updateComponent(){
-        this.repaint();
-    }
-
-    final private Action attack = new AbstractAction() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            Region attacker = risk.getRegions()[0];
-            Region attacked = risk.getRegions()[0].getNeighbours().get(0);
-            //attacker.attack(attacked);
-            /*getRegionComponent(attacker).repaint();
-            getRegionComponent(attacked).repaint();*/
-            updateComponent();
-        }
-    };
-
 }

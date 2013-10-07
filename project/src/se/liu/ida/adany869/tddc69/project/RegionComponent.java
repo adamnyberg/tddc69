@@ -18,6 +18,7 @@ public class RegionComponent extends JComponent implements Observer {
     private int width;
     private JLabel armyText = new JLabel();
     private boolean isFocused = false;
+    private Color backgroundColor;
 
     private static final int INIT_HEIGHT = 150;
     private static final int INIT_WIDTH = 150;
@@ -33,6 +34,7 @@ public class RegionComponent extends JComponent implements Observer {
         this.region = region;
         this.height = height;
         this.width = width;
+        this.backgroundColor = this.region.getPlayer().getColor();
         this.setBounds(xPos, yPos, width, height);
         armyText.setText(Integer.toString(region.getArmies()));
         this.add(new JLabel(region.getName()));
@@ -65,10 +67,9 @@ public class RegionComponent extends JComponent implements Observer {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        //System.out.println("Painted region: " + region.getName());
         Graphics2D g2 = (Graphics2D) g;
 
-        g2.setColor(region.getPlayer().getColor());
+        g2.setColor(backgroundColor);
         g2.fillRect(0, 0, this.getHeight(), this.getWidth());
 
         g2.setColor(Color.BLACK);
@@ -82,6 +83,17 @@ public class RegionComponent extends JComponent implements Observer {
 
     public Region getRegion(){
         return region;
+    }
+
+    public void highlightNeighbours() {
+        
+        this.backgroundColor = Color.red;
+        this.repaint();
+    }
+
+    public void unHighlightNeighbours() {
+        this.backgroundColor = region.getPlayer().getColor();
+        this.repaint();
     }
 
     public void update(ActionEvent e){
@@ -130,52 +142,4 @@ public class RegionComponent extends JComponent implements Observer {
         g2.setColor(new Color(255,215,0));
         g2.drawRect(0,0,width,height);
     }
-
-
-
-    /*public class Slider extends JComponent{
-        int armySize = 0;
-
-        final JSlider armySlider = new JSlider(0, region.getArmies()-1);
-
-        JButton sliderTerminateButton = new JButton(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                remove(armySlider);
-                remove(sliderTerminateButton);
-                remove(sliderConfirmButton);
-                resetArmySize();
-            }
-        });
-
-
-
-        JButton sliderConfirmButton = new JButton(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setArmySize();
-
-            }
-        });
-
-        public Slider() {
-            this.setLayout(new MigLayout());
-            sliderTerminateButton.setText("Cancel");
-            sliderConfirmButton.setText("OK");
-            this.add(armySlider, "wrap");
-            this.add(sliderTerminateButton);
-            this.add(sliderConfirmButton);
-        }
-
-        private void resetArmySize(){
-            armySize = 0;
-        }
-
-        private void setArmySize(){
-            armySize = armySlider.getValue();
-        }
-    }*/
-
-
-
 }

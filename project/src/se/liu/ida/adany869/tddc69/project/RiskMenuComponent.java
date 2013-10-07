@@ -16,6 +16,7 @@ public class RiskMenuComponent extends JComponent{
             reinforceButton.setEnabled(true);
             reinforceButton.setActive(true);
             setActiveButton(reinforceButton);
+            attackButton.setEnabled(true);
             risk.switchPlayer();
         }
     });

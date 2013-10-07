@@ -43,6 +43,12 @@ public class RegionController extends AbstractController implements MouseListene
         else if (risk.getActionState().equals("fortify")) {
             if (focused == null) {
                 changeFocus(regionComponent);
+                for (Region neighbour : region.getNeighbours()) {
+                    RegionComponent neighbourComponent = regionToComponentMap.get(neighbour);
+                    if (region.getPlayer() == neighbour.getPlayer()) {
+                        //neighbourComponent.highlight();
+                    }
+                }
                 return;
             }
             if (region == focused) {
@@ -66,6 +72,13 @@ public class RegionController extends AbstractController implements MouseListene
 
     public void resetFocus(){
         if (focused != null){
+            for (Region neighbour : focused.getNeighbours()) {
+                RegionComponent neighbourComponent = regionToComponentMap.get(neighbour);
+                if (focused.getPlayer() == neighbour.getPlayer()) {
+                    neighbourComponent.unHighlightNeighbours();
+                }
+            }
+
             RegionComponent regionComponent = regionToComponentMap.get(focused);
             focused = null;
             regionComponent.setFocused(false);
