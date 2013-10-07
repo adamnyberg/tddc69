@@ -8,20 +8,7 @@ import java.awt.event.ActionEvent;
 
 public class RiskMenuComponent extends JComponent{
     private RiskWorld risk;
-    private ButtonGroup stateGroup = new ButtonGroup();
-    private JRadioButton reinforceRadioButton = new JRadioButton(new AbstractAction() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            risk.regionController.resetFocus();
-            risk.setActionState("reinforce");
-        }
-    });
-    private JRadioButton attackRadioButton = new JRadioButton(new AbstractAction() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            risk.setActionState("attack");
-        }
-    });
+
     private JButton nextPlayerButton = new JButton(new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -29,7 +16,6 @@ public class RiskMenuComponent extends JComponent{
             reinforceButton.setEnabled(true);
             reinforceButton.setActive(true);
             setActiveButton(reinforceButton);
-            stateGroup.setSelected(reinforceRadioButton.getModel(), true);
             risk.switchPlayer();
         }
     });
@@ -37,7 +23,6 @@ public class RiskMenuComponent extends JComponent{
     private actionButton reinforceButton = new actionButton(true, new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //reinforceButton.add(new ButtonBorder(reinforceButton.getWidth(), reinforceButton.getHeight()));
             setActiveButton(reinforceButton);
             risk.regionController.resetFocus();
             risk.setActionState("reinforce");
@@ -47,10 +32,20 @@ public class RiskMenuComponent extends JComponent{
     private actionButton attackButton = new actionButton(false, new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //attackButton.add(new ButtonBorder(attackButton.getWidth(), attackButton.getHeight()));
             setActiveButton(attackButton);
             reinforceButton.setEnabled(false);
             risk.setActionState("attack");
+        }
+    });
+
+    private actionButton fortifyButton = new actionButton(true, new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            setActiveButton(reinforceButton);
+            reinforceButton.setEnabled(false);
+            attackButton.setEnabled(false);
+            risk.regionController.resetFocus();
+            risk.setActionState("fortify");
         }
     });
 
@@ -67,33 +62,23 @@ public class RiskMenuComponent extends JComponent{
     }
 
     private void addStateButtons(){
-        /*this.stateGroup.add(reinforceRadioButton);
-        this.stateGroup.add(attackRadioButton);
-        reinforceRadioButton.setText("Reinforce");
-        attackRadioButton.setText("Attack");*/
         reinforceButton.setText("Reinforce");
-        attackButton.setText("Attack");
-        stateGroup.setSelected(reinforceRadioButton.getModel(), true);
-        //this.add(reinforceRadioButton);
-        //this.add(attackRadioButton);
         this.add(reinforceButton);
+
+        attackButton.setText("Attack");
         this.add(attackButton);
+
+        fortifyButton.setText("Fortify");
+        this.add(fortifyButton);
+
         nextPlayerButton.setText("Next Player");
         this.add(nextPlayerButton);
-    }
-
-    private String getSelectedActionButton(){
-        if (reinforceRadioButton.getModel().isSelected()) return reinforceRadioButton.getName();
-        return "";
-    }
-
-    public RiskMenuComponent getRiskMenuComponent() {
-        return this;
     }
 
     public void setActiveButton(actionButton actionButton){
         attackButton.setActive(false);
         reinforceButton.setActive(false);
+        fortifyButton.setActive(false);
         actionButton.setActive(true);
     }
 }
