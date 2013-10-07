@@ -132,15 +132,7 @@ public class RegionComponent extends JComponent implements Observer {
         g2.drawRect(0,0,width,height);
     }
 
-    public int slider(){
-        int armySize = 0;
-        Slider slider = new Slider(region.getArmies()-1, this);
-        this.add(slider);
-        while (slider.isAncestorOf(this)){
-            armySize = slider.getValue();
-        }
-        return armySize;
-    }
+
 
     /*public class Slider extends JComponent{
         int armySize = 0;

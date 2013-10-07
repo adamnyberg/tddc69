@@ -9,6 +9,8 @@ public class RegionController extends AbstractController implements MouseListene
     private RiskWorld risk;
     private HashMap<Region, RegionComponent> regionToComponentMap = new HashMap<>();
     private Region focused;
+    private Region defender;
+    private RiskBoardComponent riskBoardComponent;
 
 
     public RegionController(RiskWorld risk) {
@@ -31,13 +33,14 @@ public class RegionController extends AbstractController implements MouseListene
     public void mouseClicked(MouseEvent e) {
         RegionComponent regionComponent = (RegionComponent) e.getSource();
         Region region = regionComponent.getRegion();
+        this.riskBoardComponent = (RiskBoardComponent) regionComponent.getParent();
         if (risk.getActionState().equals("reinforce") && region.getPlayer().isActive()) {
             region.getPlayer().addArmyToRegion(region);
         }
         else if (risk.getActionState().equals("attack")) {
             changeFocus(regionComponent);
             if (focused != null && !region.getPlayer().isActive() && region.isNeighbour(focused)){
-                int armySize = riskBoardComponent.slider(regionComponent, regionToComponentMap.get(focused));
+                this.defender = region;
                 Battle battle = new Battle(focused, focused.getArmies()-1, region);
                 battle.runBattle();
                 resetFocus();
