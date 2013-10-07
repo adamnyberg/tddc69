@@ -11,12 +11,12 @@ public class RiskMenuComponent extends JComponent{
     private JButton nextPlayerButton = new JButton(new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            risk.regionController.resetFocus();
             reinforceButton.setEnabled(true);
-            reinforceButton.setActive(true);
             setActiveButton(reinforceButton);
             attackButton.setEnabled(true);
             risk.switchPlayer();
+            risk.resetFocus();
+            risk.setActionState(new ReinforceState(risk));
         }
     });
 
@@ -25,7 +25,7 @@ public class RiskMenuComponent extends JComponent{
         public void actionPerformed(ActionEvent e) {
             setActiveButton(reinforceButton);
             risk.regionController.resetFocus();
-            risk.setActionStringState("reinforce");
+            risk.setActionState(new ReinforceState(risk));
         }
     });
 
@@ -34,7 +34,7 @@ public class RiskMenuComponent extends JComponent{
         public void actionPerformed(ActionEvent e) {
             setActiveButton(attackButton);
             reinforceButton.setEnabled(false);
-            risk.setActionStringState("attack");
+            risk.setActionState(new AttackState(risk));
         }
     });
 
@@ -44,8 +44,7 @@ public class RiskMenuComponent extends JComponent{
             setActiveButton(reinforceButton);
             reinforceButton.setEnabled(false);
             attackButton.setEnabled(false);
-            risk.regionController.resetFocus();
-            risk.setActionStringState("fortify");
+            risk.setActionState(new FortifyState(risk));
         }
     });
 

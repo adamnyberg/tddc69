@@ -1,15 +1,21 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import se.liu.ida.adany869.tddc69.project.regions.Region;
+import se.liu.ida.adany869.tddc69.project.regions.RegionController;
+
 public class RiskWorld {
     private Region[] regions;
     private Player[] players;
-    private ActionState actionState = new ReinforceState();
+    private ActionState actionState = new ReinforceState(this);
     private String actionStringState = "reinforce";
     public RegionController regionController = new RegionController(this);
+    private Region focused;
+    private Player activePlayer;
 
     public RiskWorld(Region[] regions, Player[] players) {
         this.regions = regions;
         this.players = players;
+        activePlayer = this.players[0];
     }
 
     public Region[] getRegions() {
@@ -36,20 +42,51 @@ public class RiskWorld {
         this.actionStringState = actionStringState;
     }
 
+    public boolean hasFocused(){
+        return focused != null;
+    }
+
+    public Region getFocused() {
+        return focused;
+    }
+
+    public void setFocused(Region newFocused){
+        resetFocus();
+        focused = newFocused;
+        focused.setFocused(true);
+    }
+
+    public void resetFocus(){
+        if(hasFocused()){
+            focused.setFocused(false);
+            focused = null;
+        }
+    }
+
+    public Player getActivePlayer() {
+        return activePlayer;
+    }
+
+    public void setActivePlayer(Player activePlayer) {
+        this.activePlayer = activePlayer;
+    }
+
     public void switchPlayer(){
         this.actionStringState = "reinforce";
+        Player nextPlayer;
         for (int i = 0; i < players.length; i++) {
             Player player = players[i];
             if (player.isActive()){
                 player.setActive(false);
                 if (i == players.length-1){
-                    players[0].setActive(true);
-                    players[0].addReinforcement();
+                    nextPlayer = players[0];
                 }
                 else{
-                    players[i+1].setActive(true);
-                    players[i+1].addReinforcement();
+                    nextPlayer = players[i+1];
                 }
+                nextPlayer.setActive(true);
+                nextPlayer.addReinforcement();
+                activePlayer = nextPlayer;
                 return;
             }
         }

@@ -1,12 +1,10 @@
-package se.liu.ida.adany869.tddc69.project;
+package se.liu.ida.adany869.tddc69.project.regions;
 
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Observable;
@@ -26,6 +24,8 @@ public class RegionComponent extends JComponent implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         updateArmy();
+        updateFocus();
+        this.backgroundColor = this.region.getPlayer().getColor();
         repaint();
     }
 
@@ -135,6 +135,10 @@ public class RegionComponent extends JComponent implements Observer {
     //Used through invokeMethod().
     public void updateArmy(){
         armyText.setText(Integer.toString(region.getArmies()));
+    }
+
+    public void updateFocus(){
+        isFocused = region.isFocused();
     }
 
     private void drawBorder(Graphics2D g2){

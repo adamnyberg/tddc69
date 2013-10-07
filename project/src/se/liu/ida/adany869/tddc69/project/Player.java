@@ -1,5 +1,7 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import se.liu.ida.adany869.tddc69.project.regions.Region;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -69,9 +71,6 @@ public class Player extends Observable{
 
     public void removeRegion(Region region){
         this.regions.remove(region);
-        for (Region region1 : regions) {
-            System.out.println(region1.getName());
-        }
     }
 
     public ArrayList<Region> getRegions() {

@@ -1,6 +1,13 @@
 package se.liu.ida.adany869.tddc69.project;
 
-public interface ActionState {
-    public void doSomething(Region regionA, Region regionB);
-    public void highlightRelevantNeighbours();
+import se.liu.ida.adany869.tddc69.project.regions.Region;
+
+public abstract class ActionState {
+    protected RiskWorld parent;
+    protected ActionState(RiskWorld parent) {
+        this.parent = parent;
+    }
+
+    public abstract void doSomething(Region region);
+    public abstract void highlightRelevantNeighbours();
 }

@@ -1,4 +1,9 @@
-package se.liu.ida.adany869.tddc69.project;
+package se.liu.ida.adany869.tddc69.project.regions;
+
+import se.liu.ida.adany869.tddc69.project.AbstractController;
+import se.liu.ida.adany869.tddc69.project.RiskBoardComponent;
+import se.liu.ida.adany869.tddc69.project.RiskWorld;
+import se.liu.ida.adany869.tddc69.project.Run;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -25,7 +30,11 @@ public class RegionController extends AbstractController implements MouseListene
         RegionComponent regionComponent = (RegionComponent) e.getSource();
         Region region = regionComponent.getRegion();
         this.riskBoardComponent = (RiskBoardComponent) regionComponent.getParent();
-        if (risk.getActionStringState().equals("reinforce") && region.getPlayer().isActive()) {
+        risk.getActionState().doSomething(region);
+        if (risk.checkGameOver()) {
+            gameOver();
+        }
+        /*if (risk.getActionStringState().equals("reinforce") && region.getPlayer().isActive()) {
             region.getPlayer().addArmyToRegion(region);
         }
         else if (risk.getActionStringState().equals("attack")) {
@@ -40,7 +49,7 @@ public class RegionController extends AbstractController implements MouseListene
                     gameOver();
                 }
             }
-        }
+        }*/
         /*else if (risk.getActionStringState().equals("fortify")) {
             if (focused == null) {
                 changeFocus(regionComponent);
@@ -65,7 +74,7 @@ public class RegionController extends AbstractController implements MouseListene
     public void changeFocus(RegionComponent regionComponent){
         Region region = regionComponent.getRegion();
         if (region.getPlayer().isActive()){
-            resetFocus();
+            //resetFocus();
             focused = region;
             regionComponent.setFocused(true);
         }

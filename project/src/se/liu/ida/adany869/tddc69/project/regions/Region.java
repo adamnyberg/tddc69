@@ -1,4 +1,7 @@
-package se.liu.ida.adany869.tddc69.project;
+package se.liu.ida.adany869.tddc69.project.regions;
+
+import se.liu.ida.adany869.tddc69.project.Dice;
+import se.liu.ida.adany869.tddc69.project.Player;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +17,7 @@ public class Region extends Observable {
     private ArrayList<Region> neighbours = new ArrayList<>();
     private Random randGen = new Random();
     private final ActionEvent UPDATE_ARMY_EVENT = new ActionEvent(this, 0, "updateArmy");
+    private boolean isFocused;
 
     public Region(String name) {
         this.name = name;
@@ -57,6 +61,8 @@ public class Region extends Observable {
 
     public void setPlayer(Player player) {
         this.player = player;
+        setChanged();
+        notifyObservers();
     }
 
     public void addNeighbour(Region region){
@@ -65,6 +71,16 @@ public class Region extends Observable {
 
     public boolean isNeighbour(Region region){
         return neighbours.contains(region);
+    }
+
+    public boolean isFocused() {
+        return isFocused;
+    }
+
+    public void setFocused(boolean focused) {
+        isFocused = focused;
+        setChanged();
+        notifyObservers();
     }
 
     public int attack(Region attacked, int attackSize){
