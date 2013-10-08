@@ -56,7 +56,6 @@ public class CardComponent extends JComponent implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         CardComponent cardComponent = (CardComponent) e.getSource();
         cardComponent.pressed();
-        System.out.println("click");
     }
 
     @Override

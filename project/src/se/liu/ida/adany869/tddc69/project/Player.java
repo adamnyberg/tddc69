@@ -16,7 +16,7 @@ public class Player extends Observable{
     private ArrayList<Region> regions;
     private ArrayList<Cards> cards;
     private int armyReserve;
-    private boolean hasAttacked;
+    private boolean hasAttackedAndWon = false;
     private boolean isActive = false;
 
     public Player(String name, Color color) {

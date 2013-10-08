@@ -33,7 +33,7 @@ public class CardsPane {
             }
 
         } else {
-            System.out.println("no trade");
+            // no trade
         }
     }
 

@@ -34,7 +34,6 @@ public class PlayerComponent extends JComponent implements Observer {
         this.add(this.armyReserveLabel, "wrap");
 
         this.cardsButton.setText("Cards: " + this.player.getCards().size());
-        //this.cardsButton.setEnabled(false);
         this.add(this.cardsButton);
 
         this.setBounds(0, 0, WIDTH + 2 * BORDER_SIZE, HEIGHT + 2 * BORDER_SIZE);
@@ -52,6 +51,7 @@ public class PlayerComponent extends JComponent implements Observer {
         g2.setColor(player.getColor());
         g2.fillRect(0,0, WIDTH, HEIGHT);
 
+        this.cardsButton.setEnabled(player.isActive());
         if (this.player.isActive()) g2.setColor(new Color(255,215,0));
         else g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(BORDER_SIZE));
