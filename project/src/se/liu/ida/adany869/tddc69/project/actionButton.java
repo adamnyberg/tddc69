@@ -4,11 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class actionButton extends JButton {
+public class ActionButton extends JButton {
     private boolean isActive;
 
-    public actionButton(boolean active,
-                          AbstractAction abstractAction) {
+    public ActionButton(boolean active,
+                        AbstractAction abstractAction) {
         super(abstractAction);
         isActive = active;
     }

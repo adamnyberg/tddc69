@@ -1,5 +1,7 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import se.liu.ida.adany869.tddc69.project.card.Deck;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;

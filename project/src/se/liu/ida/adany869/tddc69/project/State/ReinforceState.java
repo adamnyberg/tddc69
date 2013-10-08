@@ -1,6 +1,8 @@
-package se.liu.ida.adany869.tddc69.project;
+package se.liu.ida.adany869.tddc69.project.state;
 
-public class ReinforceState implements  ActionState{
+import se.liu.ida.adany869.tddc69.project.Region;
+
+public class ReinforceState implements ActionState {
     @Override
     public void doSomething(Region regionA, Region regionB) {
         regionA.getPlayer().addArmyToRegion(regionA);

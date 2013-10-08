@@ -1,5 +1,8 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import se.liu.ida.adany869.tddc69.project.card.Cards;
+import se.liu.ida.adany869.tddc69.project.card.Deck;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -9,6 +12,7 @@ public class Player extends Observable{
     private String name;
     private Color color;
     private ArrayList<Region> regions;
+    private ArrayList<Cards> cards;
     private int armyReserve;
     private boolean hasAttacked;
     private boolean isActive = false;
@@ -22,6 +26,7 @@ public class Player extends Observable{
         this.color = color;
         this.isActive = isActive;
         this.regions = new ArrayList<>();
+        this.cards = new ArrayList<>();
     }
 
     public boolean isActive() {
@@ -78,18 +83,20 @@ public class Player extends Observable{
         return regions;
     }
 
-    public void setRegions(ArrayList<Region> regions) {
-        for (Region region : regions) {
-            addRegion(region);
-        }
-    }
-
     public void addArmyToRegion(Region region){
         if (armyReserve > 0){
             region.addArmy(1);
             armyReserve--;
         }
         updateObservers();
+    }
+
+    public void addCard() {
+        this.cards.add(Deck.getInstance().getCard());
+    }
+
+    public ArrayList<Cards> getCards() {
+        return this.cards;
     }
 
     public void addReinforcement(){
