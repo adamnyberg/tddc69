@@ -16,7 +16,7 @@ public class Player extends Observable{
     private ArrayList<Region> regions;
     private ArrayList<Cards> cards;
     private int armyReserve;
-    private boolean hasAttackedAndWon = false;
+    private boolean attackedAndWon = false;
     private boolean isActive = false;
 
     public Player(String name, Color color) {
@@ -38,6 +38,14 @@ public class Player extends Observable{
     public void setActive(boolean active) {
         isActive = active;
         updateObservers();
+    }
+
+    public boolean hasAttackedAndWon() {
+        return this.attackedAndWon;
+    }
+
+    public void setAttackedAndWon(boolean b) {
+        this.attackedAndWon = b;
     }
 
     public String getName() {
