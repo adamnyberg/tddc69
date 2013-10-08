@@ -28,7 +28,7 @@ public class Battle {
             if (armiesA > 3){
                 regionB.setArmy(3);
                 regionA.addArmy(-3);
-                SliderOptionPane slider = new SliderOptionPane(0, armiesA-3, "Select amount to move: ");
+                SliderPane slider = new SliderPane(0, armiesA-3, "Select amount to move: ");
                 int fortifySize = slider.getValue();
                 regionB.addArmy(fortifySize);
                 regionA.addArmy(-fortifySize);

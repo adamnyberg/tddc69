@@ -1,8 +1,7 @@
-package se.liu.ida.adany869.tddc69.project;
+package se.liu.ida.adany869.tddc69.project.state;
+import se.liu.ida.adany869.tddc69.project.*;
 
 import se.liu.ida.adany869.tddc69.project.regions.Region;
-
-import java.awt.*;
 
 public class AttackState extends ActionState {
 
@@ -18,7 +17,7 @@ public class AttackState extends ActionState {
             }
             else if (parent.getActivePlayer() != region.getPlayer()){
                 Region attacker = this.parent.getFocused();
-                SliderOptionPane slider = new SliderOptionPane(0, attacker.getArmies()-1, "Select amount to attack with: ");
+                SliderPane slider = new SliderPane(0, attacker.getArmies()-1, "Select amount to attack with: ");
                 int armySize = slider.getValue();
                 Battle battle = new Battle(attacker, armySize, region);
                 battle.runBattle();

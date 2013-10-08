@@ -1,5 +1,7 @@
-package se.liu.ida.adany869.tddc69.project;
+package se.liu.ida.adany869.tddc69.project.state;
 
+import se.liu.ida.adany869.tddc69.project.RiskWorld;
+import se.liu.ida.adany869.tddc69.project.SliderPane;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 
 public class FortifyState extends ActionState {
@@ -15,7 +17,7 @@ public class FortifyState extends ActionState {
             }
             else if (parent.getActivePlayer() == region.getPlayer()){
                 Region fortifier = this.parent.getFocused();
-                SliderOptionPane slider = new SliderOptionPane(0, fortifier.getArmies()-1, "Select amount to move: ");
+                SliderPane slider = new SliderPane(0, fortifier.getArmies()-1, "Select amount to move: ");
                 int fortifySize = slider.getValue();
                 region.addArmy(fortifySize);
                 fortifier.addArmy(-fortifySize);

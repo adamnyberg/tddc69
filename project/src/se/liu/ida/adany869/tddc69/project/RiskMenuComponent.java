@@ -1,6 +1,7 @@
 package se.liu.ida.adany869.tddc69.project;
 
 import net.miginfocom.swing.MigLayout;
+import se.liu.ida.adany869.tddc69.project.state.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -57,7 +58,11 @@ public class RiskMenuComponent extends JComponent{
     }
 
     private void addPlayersInfo() {
-        this.add(new PlayerComponent(risk.getPlayers()[0]));
+        risk.getPlayers()[0].addCard();
+        risk.getPlayers()[0].addCard();
+        PlayerComponent player0 = new PlayerComponent(risk.getPlayers()[0]);
+        //player0.enableCardsButton(true);
+        this.add(player0);
         this.add(new PlayerComponent(risk.getPlayers()[1]));
     }
 
@@ -75,10 +80,10 @@ public class RiskMenuComponent extends JComponent{
         this.add(nextPlayerButton);
     }
 
-    public void setActiveButton(ActionButton ActionButton){
+    public void setActiveButton(ActionButton actionButton){
         attackButton.setActive(false);
         reinforceButton.setActive(false);
         fortifyButton.setActive(false);
-        ActionButton.setActive(true);
+        actionButton.setActive(true);
     }
 }

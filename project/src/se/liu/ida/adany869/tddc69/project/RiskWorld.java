@@ -1,5 +1,7 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import se.liu.ida.adany869.tddc69.project.state.ActionState;
+import se.liu.ida.adany869.tddc69.project.state.ReinforceState;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 import se.liu.ida.adany869.tddc69.project.regions.RegionController;
 
@@ -8,6 +10,7 @@ public class RiskWorld {
     private Player[] players;
     private ActionState actionState = new ReinforceState(this);
     private String actionStringState = "reinforce";
+    private int tradedCards = 0;
     public RegionController regionController = new RegionController(this);
     private Region focused;
     private Player activePlayer;
@@ -24,6 +27,14 @@ public class RiskWorld {
 
     public Player[] getPlayers() {
         return players;
+    }
+
+    public int getTradedCards() {
+        return tradedCards;
+    }
+
+    public void increaseTradedCards() {
+        this.tradedCards++;
     }
 
     public ActionState getActionState() {
@@ -74,6 +85,7 @@ public class RiskWorld {
     public void switchPlayer(){
         this.actionStringState = "reinforce";
         Player nextPlayer;
+        activePlayer.addCard();
         for (int i = 0; i < players.length; i++) {
             Player player = players[i];
             if (player.isActive()){

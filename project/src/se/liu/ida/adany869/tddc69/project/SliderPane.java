@@ -5,11 +5,11 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 
-public class SliderOptionPane {
+public class SliderPane {
     int value = 0;
     int maxSize;
     int minSize;
-    public SliderOptionPane(int minSize, int maxSize, String descriptiveText) {
+    public SliderPane(int minSize, int maxSize, String descriptiveText) {
         JFrame parent = new JFrame();
         this.maxSize = maxSize;
         this.minSize = minSize;
@@ -19,7 +19,7 @@ public class SliderOptionPane {
         JSlider slider = getSlider(optionPane, textField);
         textField.setText(new Integer(slider.getValue()).toString());
         optionPane.setMessage(new Object[]{descriptiveText, slider, textField});
-        optionPane.setMessageType(JOptionPane.QUESTION_MESSAGE);
+        optionPane.setMessageType(JOptionPane.DEFAULT_OPTION);
         optionPane.setOptionType(JOptionPane.OK_CANCEL_OPTION);
         optionPane.setInputValue(minSize);
 

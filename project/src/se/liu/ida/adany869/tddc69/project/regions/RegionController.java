@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.*;
 
-public class RegionController extends AbstractController implements MouseListener{
+public class RegionController extends AbstractController implements MouseListener {
     private RiskWorld risk;
     private HashMap<Region, RegionComponent> regionToComponentMap = new HashMap<>();
     private Region focused;
@@ -40,7 +40,7 @@ public class RegionController extends AbstractController implements MouseListene
         else if (risk.getActionStringState().equals("attack")) {
             changeFocus(regionComponent);
             if (focused != null && !region.getPlayer().isActive() && region.isNeighbour(focused)){
-                SliderOptionPane slider = new SliderOptionPane(0, focused.getArmies()-1, "Select amount to attack with: ");
+                SliderPane slider = new SliderPane(0, focused.getArmies()-1, "Select amount to attack with: ");
                 int armySize = slider.getValue();
                 Battle battle = new Battle(focused, armySize, region);
                 battle.runBattle();
