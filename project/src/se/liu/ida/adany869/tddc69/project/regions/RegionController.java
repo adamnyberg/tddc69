@@ -34,41 +34,6 @@ public class RegionController extends AbstractController implements MouseListene
         if (risk.checkGameOver()) {
             gameOver();
         }
-        /*if (risk.getActionStringState().equals("reinforce") && region.getPlayer().isActive()) {
-            region.getPlayer().addArmyToRegion(region);
-        }
-        else if (risk.getActionStringState().equals("attack")) {
-            changeFocus(regionComponent);
-            if (focused != null && !region.getPlayer().isActive() && region.isNeighbour(focused)){
-                SliderPane slider = new SliderPane(0, focused.getArmies()-1, "Select amount to attack with: ");
-                int armySize = slider.getValue();
-                Battle battle = new Battle(focused, armySize, region);
-                battle.runBattle();
-                resetFocus();
-                if (risk.checkGameOver()) {
-                    gameOver();
-                }
-            }
-        }*/
-        /*else if (risk.getActionStringState().equals("fortify")) {
-            if (focused == null) {
-                changeFocus(regionComponent);
-                for (Region neighbour : region.getNeighbours()) {
-                    RegionComponent neighbourComponent = regionToComponentMap.get(neighbour);
-                    if (region.getPlayer() == neighbour.getPlayer()) {
-                        //neighbourComponent.highlight();
-                    }
-                }
-                return;
-            }
-            if (region == focused) {
-                resetFocus();
-                return;
-            }
-            if (region.isNeighbour(focused) && region.getPlayer() == focused.getPlayer()){
-                System.out.println("fortify");
-            }
-        }*/
     }
 
     public void changeFocus(RegionComponent regionComponent){
