@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class CardComponent extends JComponent implements MouseListener {
+
     private Cards card;
     private static final int WIDTH = 180;
     private static final int HEIGHT = 60;
@@ -20,6 +21,10 @@ public class CardComponent extends JComponent implements MouseListener {
 
         this.add(new JLabel(card.toString()));
         this.addMouseListener(this);
+    }
+
+    public Cards getCard() {
+        return card;
     }
 
     @Override

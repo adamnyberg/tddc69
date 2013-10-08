@@ -8,18 +8,16 @@ import java.util.ArrayList;
 public class CardsPane {
     Player player;
     CardComponent[] cardComponents = null;
+    ArrayList<CardComponent> selectedCards = new ArrayList<>();
 
     public CardsPane(Player player) {
         this.player = player;
-
-        JButton tradeCardsButton = new JButton("Trade cards");
-        tradeCardsButton.setEnabled(false);
 
         JOptionPane cardsPane = new JOptionPane();
         cardsPane.setMessageType(JOptionPane.DEFAULT_OPTION);
         cardsPane.setMessage(new Object[]{this.getCardComponents()});
         cardsPane.setOptionType(JOptionPane.OK_CANCEL_OPTION);
-        cardsPane.setOptions(new Object[]{"Cancel", tradeCardsButton});
+        cardsPane.setOptions(new Object[]{"Cancel", "Trade cards"});
 
         JDialog dialog = cardsPane.createDialog(cardsPane, "Trade cards");
         dialog.setAlwaysOnTop(true);
@@ -28,12 +26,11 @@ public class CardsPane {
         if(cardsPane.getValue() != null &&
                 cardsPane.getValue().equals("Trade cards") &&
                 this.isSelectedTradable()){
-            System.out.println("trade");
-            if (isSelectedTradable()) {
-                player.addReserve(Deck.getInstance().tradeCards());
-                System.out.println("Tradable");
-            }
 
+            player.addReserve(Deck.getInstance().tradeCards());
+            for (CardComponent selectedCard : selectedCards) {
+                player.removeCard(selectedCard.getCard());
+            }
 
         } else {
             System.out.println("no trade");
@@ -52,15 +49,21 @@ public class CardsPane {
     }
 
     private boolean isSelectedTradable() {
-        ArrayList<CardComponent> selectedCards = new ArrayList<>();
+        this.selectedCards = new ArrayList<>();
         for (CardComponent cardComponent : this.cardComponents) {
             if (cardComponent.isSelected()) {
-                selectedCards.add(cardComponent);
+                this.selectedCards.add(cardComponent);
+                System.out.println(cardComponent.getCard());
             }
         }
-        if (selectedCards.size() != 3) return false;
-        if ((selectedCards.get(0) == selectedCards.get(1) && selectedCards.get(1) == selectedCards.get(2)) ||
-                (selectedCards.get(0) != selectedCards.get(1) && selectedCards.get(1) != selectedCards.get(2))) {
+        if (this.selectedCards.size() != 3) return false;
+        if (this.selectedCards.get(0).getCard() == this.selectedCards.get(1).getCard() &&
+                this.selectedCards.get(1).getCard() == this.selectedCards.get(2).getCard()) {
+            return true;
+        }
+        if (this.selectedCards.get(0).getCard() != this.selectedCards.get(1).getCard() &&
+                this.selectedCards.get(0).getCard() != this.selectedCards.get(2).getCard() &&
+                this.selectedCards.get(1).getCard() != this.selectedCards.get(2).getCard()) {
             return true;
         }
         return false;

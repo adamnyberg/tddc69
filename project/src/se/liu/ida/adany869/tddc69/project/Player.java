@@ -1,5 +1,6 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import se.liu.ida.adany869.tddc69.project.card.CardComponent;
 import se.liu.ida.adany869.tddc69.project.card.Cards;
 import se.liu.ida.adany869.tddc69.project.card.Deck;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
@@ -95,6 +96,11 @@ public class Player extends Observable{
 
     public ArrayList<Cards> getCards() {
         return this.cards;
+    }
+
+    public void removeCard(Cards card) {
+        this.cards.remove(card);
+        updateObservers();
     }
 
     public void addReinforcement(){
