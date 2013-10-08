@@ -1,5 +1,8 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import se.liu.ida.adany869.tddc69.project.regions.Region;
+import se.liu.ida.adany869.tddc69.project.regions.RegionComponent;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -86,7 +89,7 @@ public class RiskBoardComponent extends JComponent{
     }
 
     private void setRegionPositions() {
-        ArrayList<int[]> regionPos = new ArrayList<int[]>();
+        ArrayList<int[]> regionPos = new ArrayList<>();
 
         int[] pos0 = {100, 30};
         regionPos.add(pos0);

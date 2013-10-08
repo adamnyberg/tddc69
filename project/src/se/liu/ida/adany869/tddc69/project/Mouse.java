@@ -1,9 +1,10 @@
 package se.liu.ida.adany869.tddc69.project;
 
-import java.awt.event.ActionEvent;
+import se.liu.ida.adany869.tddc69.project.regions.RegionComponent;
+import se.liu.ida.adany869.tddc69.project.regions.RegionController;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class Mouse extends MouseAdapter {
     private RegionController regionController;

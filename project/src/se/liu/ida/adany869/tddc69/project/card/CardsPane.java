@@ -22,7 +22,7 @@ public class CardsPane {
         if(cardsPane.getValue().equals("Trade cards")){
             System.out.println("trade");
             System.out.println(Deck.getInstance().tradeCards());
-            
+
 
         } else {
             System.out.println("no trade");

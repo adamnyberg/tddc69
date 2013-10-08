@@ -42,7 +42,6 @@ public class SliderPane {
         slider.setValue(maxSize);
         slider.setMajorTickSpacing(maxSize);
         slider.setPaintTicks(true);
-        slider.setPaintLabels(true);
 
         ChangeListener changeListener = new ChangeListener() {
             @Override
@@ -52,10 +51,10 @@ public class SliderPane {
                 textField.setText(value.toString());
                 if (!theSlider.getValueIsAdjusting()){
                     optionPane.setInputValue(value);
-
                 }
             }
         };
+
         slider.addChangeListener(changeListener);
         return slider;
     }

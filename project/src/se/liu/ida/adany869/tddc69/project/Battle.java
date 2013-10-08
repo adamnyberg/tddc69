@@ -1,5 +1,7 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import se.liu.ida.adany869.tddc69.project.regions.Region;
+
 public class Battle {
     private Region regionA;
     private int armiesA;
@@ -25,6 +27,7 @@ public class Battle {
             playerA.addRegion(regionB);
             if (armiesA > 3){
                 regionB.setArmy(3);
+                regionA.addArmy(-3);
                 SliderPane slider = new SliderPane(0, armiesA-3, "Select amount to move: ");
                 int fortifySize = slider.getValue();
                 regionB.addArmy(fortifySize);
