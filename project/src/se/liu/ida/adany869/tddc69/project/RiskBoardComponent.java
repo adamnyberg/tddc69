@@ -89,7 +89,7 @@ public class RiskBoardComponent extends JComponent{
     }
 
     private void setRegionPositions() {
-        ArrayList<int[]> regionPos = new ArrayList<int[]>();
+        ArrayList<int[]> regionPos = new ArrayList<>();
 
         int[] pos0 = {100, 30};
         regionPos.add(pos0);

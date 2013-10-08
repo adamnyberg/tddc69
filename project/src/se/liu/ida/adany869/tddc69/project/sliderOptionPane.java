@@ -39,10 +39,9 @@ public class SliderOptionPane {
         JSlider slider = new JSlider();
         slider.setMaximum(maxSize);
         slider.setMinimum(minSize);
-        slider.setValue(minSize);
+        slider.setValue(maxSize);
         slider.setMajorTickSpacing(maxSize);
         slider.setPaintTicks(true);
-        slider.setPaintLabels(true);
 
         ChangeListener changeListener = new ChangeListener() {
             @Override
@@ -52,10 +51,10 @@ public class SliderOptionPane {
                 textField.setText(value.toString());
                 if (!theSlider.getValueIsAdjusting()){
                     optionPane.setInputValue(value);
-
                 }
             }
         };
+
         slider.addChangeListener(changeListener);
         return slider;
     }
