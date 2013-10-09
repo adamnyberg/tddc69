@@ -1,5 +1,6 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import se.liu.ida.adany869.tddc69.project.Continents.Continent;
 import se.liu.ida.adany869.tddc69.project.state.ActionState;
 import se.liu.ida.adany869.tddc69.project.state.ReinforceState;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
@@ -8,15 +9,24 @@ import se.liu.ida.adany869.tddc69.project.regions.RegionController;
 public class RiskWorld {
     private Region[] regions;
     private Player[] players;
+    private Continent[] continents;
     private ActionState actionState = new ReinforceState(this);
     public RegionController regionController = new RegionController(this);
     private Region focused;
     private Player activePlayer;
 
-    public RiskWorld(Region[] regions, Player[] players) {
+    public RiskWorld(Region[] regions, Player[] players, Continent[] continents) {
         this.regions = regions;
         this.players = players;
-        activePlayer = this.players[0];
+        this.continents = continents;
+        this.activePlayer = this.players[0];
+        //Set Player 1's initial armies
+        this.activePlayer.addReinforcement();
+        for (Continent continent : continents) {
+            continent.giveReserves(activePlayer);
+        }
+
+        //TODO: add continental extra reinforcement
     }
 
     public Region[] getRegions() {
@@ -77,6 +87,9 @@ public class RiskWorld {
                 }
                 nextPlayer.setActive(true);
                 nextPlayer.addReinforcement();
+                for (Continent continent : continents) {
+                    continent.giveReserves(nextPlayer);
+                }
                 activePlayer = nextPlayer;
                 return;
             }

@@ -5,19 +5,26 @@ import se.liu.ida.adany869.tddc69.project.Player;
 import java.util.ArrayList;
 
 public class Continent implements TopArea{
-    protected ArrayList<SubArea> subAreas;
+    protected SubArea[] subAreas;
     protected Player owner = null;
     protected int continentValue;
+    protected String name;
 
-    public Continent(ArrayList<SubArea> subContinents, int value) {
+    public Continent(SubArea[] subContinents, int value, String name) {
         this.subAreas = subContinents;
         this.continentValue = value;
+        this.name = name;
     }
 
     @Override
-    public void giveReserves() {
-        if (hasOwner()){
-
+    public void giveReserves(Player player) {
+        if (checkAndSetOwner()){
+            if (owner == player){
+                owner.addReserve(continentValue);
+            }
+        }
+        for (SubArea subArea : subAreas) {
+            subArea.addAreaReserves(player);
         }
     }
 
@@ -34,9 +41,14 @@ public class Continent implements TopArea{
                 owner = subArea.getOwner();
             }
             else if(owner != subArea.getOwner()){
+                owner = null;
                 return false;
             }
         }
         return true;
+    }
+
+    public String getName() {
+        return name;
     }
 }

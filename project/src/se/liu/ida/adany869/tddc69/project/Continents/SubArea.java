@@ -6,5 +6,5 @@ import java.util.ArrayList;
 
 public interface SubArea {
     public Player getOwner();
-    public void addAreaReserves();
+    public void addAreaReserves(Player player);
 }

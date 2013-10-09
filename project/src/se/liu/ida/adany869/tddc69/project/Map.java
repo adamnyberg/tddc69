@@ -1,5 +1,9 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import se.liu.ida.adany869.tddc69.project.Continents.Continent;
+import se.liu.ida.adany869.tddc69.project.Continents.ContinentFactory;
+import se.liu.ida.adany869.tddc69.project.Continents.SubArea;
+import se.liu.ida.adany869.tddc69.project.Continents.SubContinent;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 
 import java.awt.*;
@@ -24,16 +28,24 @@ public class Map {
             new Region("MARS")          // 13
     };
 
+
+
     private Player[] players = {
             new Player("Adam", Color.blue, true),
             new Player("Harald", Color.green)
     };
 
 
+    private SubContinent westWest = new SubContinent(new Region[]{regions[0], regions[1], regions[4]}, 5, "West Western");
+    private SubContinent eastWest = new SubContinent(new Region[]{regions[2], regions[8], regions[9]}, 5, "East Western");
+    private Continent west = new Continent(new SubContinent[]{westWest, eastWest}, 7, "Western");
+    private Continent outerSpace = new Continent(new Region[]{regions[12], regions[13]}, 3, "Outer Space");
+    private SubContinent southEast = new SubContinent(new Region[]{regions[5], regions[6], regions[11]}, 3, "southEast");
+    private Continent east = new Continent(new SubArea[]{southEast, regions[3], regions[7]}, 7, "East");
+    private Continent[] continents = new Continent[]{west, east, outerSpace};
 
     public Map() {
-        //Set Player 1's initial armies
-        players[0].addReinforcement();
+
 
         Random randGen = new Random();
         ArrayList<Integer> listOfRegionIndexes = new ArrayList<>();
@@ -83,6 +95,10 @@ public class Map {
 
     public Player[] getPlayers() {
         return players;
+    }
+
+    public Continent[] getContinents() {
+        return continents;
     }
 
     private void addRelation(int region1, int region2) {

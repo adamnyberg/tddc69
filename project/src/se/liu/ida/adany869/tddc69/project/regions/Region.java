@@ -119,7 +119,7 @@ public class Region extends Observable implements SubArea{
     }
 
     @Override
-    public void addAreaReserves() {
+    public void addAreaReserves(Player player) {
         return;
     }
 /*public void addObserver(Observer o){
