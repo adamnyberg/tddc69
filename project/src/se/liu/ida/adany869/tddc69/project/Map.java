@@ -29,7 +29,12 @@ public class Map {
             new Player("Harald", Color.green)
     };
 
+
+
     public Map() {
+        //Set Player 1's initial armies
+        players[0].addReinforcement();
+
         Random randGen = new Random();
         ArrayList<Integer> listOfRegionIndexes = new ArrayList<>();
         for (int i = 0; i < regions.length; i++) {
@@ -45,9 +50,6 @@ public class Map {
                 player.addRegion(regions[randomRegionIndex]);
                 listOfRegionIndexes.remove(random);
             }
-        }
-        for (Player player : players) {
-            player.addReinforcement();
         }
         addRelations(new int[][]{
                 {0,1},
