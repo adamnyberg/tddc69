@@ -6,21 +6,26 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class CardsPane {
-    Player player;
-    CardComponent[] cardComponents = null;
-    ArrayList<CardComponent> selectedCards = new ArrayList<>();
+    private Player player;
+    private CardComponent[] cardComponents = null;
+    private ArrayList<CardComponent> selectedCards = new ArrayList<>();
+    private JOptionPane cardsPane = new JOptionPane();
+    private JDialog dialog;
 
     public CardsPane(Player player) {
         this.player = player;
 
-        JOptionPane cardsPane = new JOptionPane();
-        cardsPane.setMessageType(JOptionPane.DEFAULT_OPTION);
-        cardsPane.setMessage(new Object[]{this.getCardComponents()});
-        cardsPane.setOptionType(JOptionPane.OK_CANCEL_OPTION);
-        cardsPane.setOptions(new Object[]{"Cancel", "Trade cards"});
+        this.cardsPane.setMessageType(JOptionPane.DEFAULT_OPTION);
+        this.cardsPane.setMessage(new Object[]{this.getCardComponents()});
+        this.cardsPane.setOptionType(JOptionPane.OK_CANCEL_OPTION);
+        this.cardsPane.setOptions(new Object[]{"Cancel", "Trade cards"});
 
         JDialog dialog = cardsPane.createDialog(cardsPane, "Trade cards");
         dialog.setAlwaysOnTop(true);
+        this.showDialog();
+    }
+
+    private void showDialog() {
         dialog.setVisible(true);
 
         if(cardsPane.getValue() != null &&
@@ -32,8 +37,9 @@ public class CardsPane {
                 player.removeCard(selectedCard.getCard());
             }
 
-        } else {
+        } else if (!cardsPane.getValue().equals("Cancel")) {
             // no trade
+            showDialog();
         }
     }
 

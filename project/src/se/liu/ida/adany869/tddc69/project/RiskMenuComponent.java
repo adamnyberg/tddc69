@@ -15,9 +15,8 @@ public class RiskMenuComponent extends JComponent{
             reinforceButton.setEnabled(true);
             setActiveButton(reinforceButton);
             attackButton.setEnabled(true);
+            fortifyButton.setEnabled(true);
             risk.switchPlayer();
-            risk.resetFocus();
-            risk.setActionState(new ReinforceState(risk));
         }
     });
 
@@ -58,11 +57,7 @@ public class RiskMenuComponent extends JComponent{
     }
 
     private void addPlayersInfo() {
-        risk.getPlayers()[0].addCard();
-        risk.getPlayers()[0].addCard();
-        PlayerComponent player0 = new PlayerComponent(risk.getPlayers()[0]);
-        player0.enableCardsButton(true);
-        this.add(player0);
+        this.add(new PlayerComponent(risk.getPlayers()[0]));
         this.add(new PlayerComponent(risk.getPlayers()[1]));
     }
 
