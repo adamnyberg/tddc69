@@ -78,14 +78,10 @@ public class RiskWorld {
         return activePlayer;
     }
 
-    public void setActivePlayer(Player activePlayer) {
-        this.activePlayer = activePlayer;
-    }
-
     public void switchPlayer(){
         this.actionStringState = "reinforce";
         Player nextPlayer;
-        activePlayer.addCard();
+        if (activePlayer.hasAttackedAndWon()) activePlayer.addCard();
         for (int i = 0; i < players.length; i++) {
             Player player = players[i];
             if (player.isActive()){

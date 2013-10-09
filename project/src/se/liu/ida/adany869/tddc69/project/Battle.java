@@ -25,6 +25,7 @@ public class Battle {
         if (regionB.getArmies() <= 0){
             playerB.removeRegion(regionB);
             playerA.addRegion(regionB);
+            playerA.setAttackedAndWon(true);
             if (armiesA > 3){
                 regionB.setArmy(3);
                 regionA.addArmy(-3);
