@@ -15,13 +15,15 @@ public class FortifyState extends ActionState {
             if (this.parent.getFocused() == region){
                 this.parent.resetFocus();
             }
-            else if (parent.getActivePlayer() == region.getPlayer()){
+            else if (parent.getActivePlayer() == region.getOwner()){
                 Region fortifier = this.parent.getFocused();
-                SliderPane slider = new SliderPane(0, fortifier.getArmies()-1, "Select amount to move: ");
-                int fortifySize = slider.getValue();
-                region.addArmy(fortifySize);
-                fortifier.addArmy(-fortifySize);
-                this.parent.resetFocus();
+                if (fortifier.isNeighbour(region)){
+                    SliderPane slider = new SliderPane(0, fortifier.getArmies()-1, "Select amount to move: ");
+                    int fortifySize = slider.getValue();
+                    region.addArmy(fortifySize);
+                    fortifier.addArmy(-fortifySize);
+                    this.parent.resetFocus();
+                }
             }
         }
         else parent.setFocused(region);

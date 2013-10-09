@@ -15,8 +15,8 @@ public class Battle {
 
     public void runBattle(){
         boolean ongoingBattle = true;
-        Player playerA = regionA.getPlayer();
-        Player playerB = regionB.getPlayer();
+        Player playerA = regionA.getOwner();
+        Player playerB = regionB.getOwner();
         while (ongoingBattle){
 
             armiesA -= regionA.attack(regionB, (armiesA >= 3 ? 3 : armiesA));

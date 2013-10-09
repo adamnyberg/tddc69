@@ -25,7 +25,7 @@ public class RegionComponent extends JComponent implements Observer {
     public void update(Observable o, Object arg) {
         updateArmy();
         updateFocus();
-        this.backgroundColor = this.region.getPlayer().getColor();
+        this.backgroundColor = this.region.getOwner().getColor();
         repaint();
     }
 
@@ -34,7 +34,7 @@ public class RegionComponent extends JComponent implements Observer {
         this.region = region;
         this.height = height;
         this.width = width;
-        this.backgroundColor = this.region.getPlayer().getColor();
+        this.backgroundColor = this.region.getOwner().getColor();
         this.setBounds(xPos, yPos, width, height);
         armyText.setText(Integer.toString(region.getArmies()));
         this.add(new JLabel(region.getName()));
@@ -92,7 +92,7 @@ public class RegionComponent extends JComponent implements Observer {
     }
 
     public void unHighlightNeighbours() {
-        this.backgroundColor = region.getPlayer().getColor();
+        this.backgroundColor = region.getOwner().getColor();
         this.repaint();
     }
 

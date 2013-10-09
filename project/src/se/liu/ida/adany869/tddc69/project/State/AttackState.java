@@ -15,16 +15,18 @@ public class AttackState extends ActionState {
             if (this.parent.getFocused() == region){
                 this.parent.resetFocus();
             }
-            else if (parent.getActivePlayer() != region.getPlayer()){
+            else if (parent.getActivePlayer() != region.getOwner()){
                 Region attacker = this.parent.getFocused();
-                SliderPane slider = new SliderPane(0, attacker.getArmies()-1, "Select amount to attack with: ");
-                int armySize = slider.getValue();
-                Battle battle = new Battle(attacker, armySize, region);
-                battle.runBattle();
-                this.parent.resetFocus();
+                if (attacker.isNeighbour(region)){
+                    SliderPane slider = new SliderPane(0, attacker.getArmies()-1, "Select amount to attack with: ");
+                    int armySize = slider.getValue();
+                    Battle battle = new Battle(attacker, armySize, region);
+                    battle.runBattle();
+                    this.parent.resetFocus();
+                }
             }
         }
-        else if (parent.getActivePlayer() == region.getPlayer()) {
+        else if (parent.getActivePlayer() == region.getOwner()) {
             parent.setFocused(region);
         }
     }

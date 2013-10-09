@@ -1,6 +1,5 @@
 package se.liu.ida.adany869.tddc69.project;
 
-import se.liu.ida.adany869.tddc69.project.card.CardComponent;
 import se.liu.ida.adany869.tddc69.project.card.Cards;
 import se.liu.ida.adany869.tddc69.project.card.Deck;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
@@ -78,7 +77,7 @@ public class Player extends Observable{
     }
 
     public void addRegion(Region region) {
-        region.setPlayer(this);
+        region.setOwner(this);
         this.regions.add(region);
     }
 

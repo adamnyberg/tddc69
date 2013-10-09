@@ -15,7 +15,7 @@ public class Mouse extends MouseAdapter {
 
     public void mouseClicked(MouseEvent e){
         ((RegionComponent) e.getSource()).switchFocused();
-        ((RegionComponent) e.getSource()).getRegion().getPlayer().
+        ((RegionComponent) e.getSource()).getRegion().getOwner().
                 addArmyToRegion(((RegionComponent) e.getSource()).getRegion());
         //((RegionComponent) e.getSource()).getRegion().attack(
         //        ((RegionComponent) e.getSource()).getRegion().getNeighbours().get(0));

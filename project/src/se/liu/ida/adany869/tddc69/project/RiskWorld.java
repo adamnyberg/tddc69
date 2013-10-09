@@ -78,8 +78,9 @@ public class RiskWorld {
         return activePlayer;
     }
 
-    public void switchPlayer(){
-        this.actionStringState = "reinforce";
+    public void nextPlayer(){
+        this.actionState = new ReinforceState(this);
+        resetFocus();
         Player nextPlayer;
         if (activePlayer.hasAttackedAndWon()) activePlayer.addCard();
         for (int i = 0; i < players.length; i++) {
@@ -103,14 +104,14 @@ public class RiskWorld {
     public boolean checkGameOver() {
         boolean gameOver = true;
         for (int i = 0; i < regions.length - 1; i++) {
-            if (regions[i].getPlayer() != regions[i + 1].getPlayer()) {
+            if (regions[i].getOwner() != regions[i + 1].getOwner()) {
                 gameOver = false;
             }
         }
         if (gameOver) {
             System.out.println("");
             System.out.println("GAME OVER");
-            System.out.println(regions[0].getPlayer().getName() + " won!");
+            System.out.println(regions[0].getOwner().getName() + " won!");
             System.out.println("");
         }
         return gameOver;

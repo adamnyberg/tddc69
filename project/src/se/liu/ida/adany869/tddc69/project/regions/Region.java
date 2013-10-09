@@ -1,5 +1,6 @@
 package se.liu.ida.adany869.tddc69.project.regions;
 
+import se.liu.ida.adany869.tddc69.project.Continents.SubArea;
 import se.liu.ida.adany869.tddc69.project.Dice;
 import se.liu.ida.adany869.tddc69.project.Player;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Random;
 
-public class Region extends Observable {
+public class Region extends Observable implements SubArea{
     private int armies;
     private int armiesReadyToBeDeployed = 0;
     private Player player = new Player("none", Color.DARK_GRAY);
@@ -55,14 +56,18 @@ public class Region extends Observable {
         notifyObservers();
     }
 
-    public Player getPlayer() {
+    public Player getOwner() {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    public void setOwner(Player player) {
         this.player = player;
         setChanged();
         notifyObservers();
+    }
+
+    public boolean hasOwner(){
+        return player != null;
     }
 
     public void addNeighbour(Region region){
@@ -93,15 +98,6 @@ public class Region extends Observable {
             defenderDices.add(new Dice());
         }
 
-        /*System.out.println("Attackerdices:");
-        for (Dice dice : attackerDices) {
-            System.out.println(dice.getValue());
-        }
-        System.out.println("Defenderdices:");
-        for (Dice dice : defenderDices) {
-            System.out.println(dice.getValue());
-        }*/
-
         int attackerLoss = 0;
         int defenderLoss = 0;
         while (!(attackerDices.isEmpty() || defenderDices.isEmpty())){
@@ -122,7 +118,11 @@ public class Region extends Observable {
         return max.getValue();
     }
 
-    /*public void addObserver(Observer o){
+    @Override
+    public void addAreaReserves() {
+        return;
+    }
+/*public void addObserver(Observer o){
         regionObservers.add(o);
         this.
     }*/

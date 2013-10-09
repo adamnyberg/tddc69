@@ -38,7 +38,7 @@ public class RegionController extends AbstractController implements MouseListene
 
     public void changeFocus(RegionComponent regionComponent){
         Region region = regionComponent.getRegion();
-        if (region.getPlayer().isActive()){
+        if (region.getOwner().isActive()){
             //resetFocus();
             focused = region;
             regionComponent.setFocused(true);
@@ -49,7 +49,7 @@ public class RegionController extends AbstractController implements MouseListene
         if (focused != null){
             for (Region neighbour : focused.getNeighbours()) {
                 RegionComponent neighbourComponent = regionToComponentMap.get(neighbour);
-                if (focused.getPlayer() == neighbour.getPlayer()) {
+                if (focused.getOwner() == neighbour.getOwner()) {
                     neighbourComponent.unHighlightNeighbours();
                 }
             }
@@ -83,7 +83,7 @@ public class RegionController extends AbstractController implements MouseListene
     private void gameOver() {
         String ObjButtons[] = {"Restart", "Quit"};
         int promptResult = JOptionPane.showOptionDialog(null,
-                "Game Over\n" + risk.getRegions()[0].getPlayer().getName() + " won!", "Rwhisky",
+                "Game Over\n" + risk.getRegions()[0].getOwner().getName() + " won!", "Rwhisky",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
                 ObjButtons, ObjButtons[1]);
         if (promptResult == 0) {
