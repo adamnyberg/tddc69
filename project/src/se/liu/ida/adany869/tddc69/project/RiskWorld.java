@@ -9,8 +9,6 @@ public class RiskWorld {
     private Region[] regions;
     private Player[] players;
     private ActionState actionState = new ReinforceState(this);
-    private String actionStringState = "reinforce";
-    private int tradedCards = 0;
     public RegionController regionController = new RegionController(this);
     private Region focused;
     private Player activePlayer;
@@ -29,28 +27,12 @@ public class RiskWorld {
         return players;
     }
 
-    public int getTradedCards() {
-        return tradedCards;
-    }
-
-    public void increaseTradedCards() {
-        this.tradedCards++;
-    }
-
     public ActionState getActionState() {
         return actionState;
     }
 
     public void setActionState(ActionState actionState) {
         this.actionState = actionState;
-    }
-
-    public String getActionStringState() {
-        return actionStringState;
-    }
-
-    public void setActionStringState(String actionStringState) {
-        this.actionStringState = actionStringState;
     }
 
     public boolean hasFocused(){
@@ -68,7 +50,7 @@ public class RiskWorld {
     }
 
     public void resetFocus(){
-        if(hasFocused()){
+        if(this.hasFocused()){
             focused.setFocused(false);
             focused = null;
         }
