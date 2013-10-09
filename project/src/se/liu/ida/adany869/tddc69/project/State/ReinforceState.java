@@ -10,13 +10,13 @@ public class ReinforceState extends ActionState{
 
     @Override
     public void doSomething(Region region) {
-        if (region.getOwner() == this.parent.getActivePlayer()){
+        if (region.getOwner() == this.risk.getActivePlayer()){
             region.getOwner().addArmyToRegion(region);
         }
     }
 
     @Override
-    public void highlightRelevantNeighbours() {
-
+    public boolean isRelevantNeighbour(Region focused, Region neighbour) {
+        return false;
     }
 }

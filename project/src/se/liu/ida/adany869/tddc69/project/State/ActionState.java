@@ -5,11 +5,11 @@ import se.liu.ida.adany869.tddc69.project.*;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 
 public abstract class ActionState {
-    protected RiskWorld parent;
-    protected ActionState(RiskWorld parent) {
-        this.parent = parent;
+    protected RiskWorld risk;
+    protected ActionState(RiskWorld risk) {
+        this.risk = risk;
     }
 
     public abstract void doSomething(Region region);
-    public abstract void highlightRelevantNeighbours();
+    public abstract boolean isRelevantNeighbour(Region focused, Region neighbour);
 }

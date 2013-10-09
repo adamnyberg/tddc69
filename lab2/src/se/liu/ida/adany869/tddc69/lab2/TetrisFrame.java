@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Creates the window where the game is displayed. Is also parent to the TetrisComponent.
+ * Creates the window where the game is displayed. Is also risk to the TetrisComponent.
  */
 public class TetrisFrame extends JFrame{
 

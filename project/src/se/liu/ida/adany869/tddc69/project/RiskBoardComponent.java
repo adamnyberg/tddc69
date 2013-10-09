@@ -6,12 +6,15 @@ import se.liu.ida.adany869.tddc69.project.regions.RegionComponent;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
-public class RiskBoardComponent extends JComponent{
+public class RiskBoardComponent extends JComponent implements Observer {
     private RiskWorld risk;
     private int height;
     private int width;
     private RegionRelationsComponent relations;
+    private ArrayList<RegionComponent> regionComponents = new ArrayList<>();
     private ArrayList<int[]> regionPositions;
 
     private static final int INIT_HEIGHT = 830;
@@ -22,10 +25,11 @@ public class RiskBoardComponent extends JComponent{
         this.risk = risk;
         this.height = height;
         this.width = width;
-        relations = new RegionRelationsComponent();
+        this.relations = new RegionRelationsComponent(risk);
         setRegionPositions();
         addRegions();
         setupRegionComponentRelations();
+        this.risk.addObserver(this);
     }
 
     public RiskBoardComponent(RiskWorld risk) {
@@ -41,6 +45,7 @@ public class RiskBoardComponent extends JComponent{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         //TODO: relations shouldn't have to call paintComponent itself
+        this.relations.setFocused(this.getRegionComponent(risk.getFocused()));
         this.relations.paintComponent(g);
     }
 
@@ -50,34 +55,23 @@ public class RiskBoardComponent extends JComponent{
             int[] regionPos = regionPositions.get(i);
             RegionComponent regionComponent = new RegionComponent(region, regionPos[0], regionPos[1], risk.regionController, i);
             risk.regionController.mapRegionToComponent(region, regionComponent);
+
+            this.regionComponents.add(regionComponent);
             this.add(regionComponent);
         }
     }
 
-    private ArrayList<RegionComponent> getRegionComponents() { // TODO: maybe not need this
-        ArrayList<RegionComponent> regionComponents = new ArrayList<RegionComponent>();
-
-        for (Component component : this.getComponents()) {
-            if (component instanceof RegionComponent) { // TODO: bad OO
-                regionComponents.add( (RegionComponent) component);
-            }
-        }
-        return regionComponents;
-    }
-
     public RegionComponent getRegionComponent(Region region){
-        ArrayList<RegionComponent> components = getRegionComponents(); //TODO: cache regionComponents
-        for (int i = 0; i < components.size(); i++) {
-             if (components.get(i).getRegion().equals(region)){
-                 return components.get(i);
+        for (int i = 0; i < this.regionComponents.size(); i++) {
+             if (this.regionComponents.get(i).getRegion().equals(region)){
+                 return this.regionComponents.get(i);
              }
-
         }
         return null;
     }
 
     public void setupRegionComponentRelations(){
-        this.relations = new RegionRelationsComponent();
+        this.relations = new RegionRelationsComponent(risk);
         for (Region region : risk.getRegions()) {
             ArrayList<Region> neighbourRegions = region.getNeighbours();
             RegionComponent regionComponentA = getRegionComponent(region);
@@ -134,5 +128,10 @@ public class RiskBoardComponent extends JComponent{
         regionPos.add(pos);
 
         this.regionPositions = regionPos;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        this.repaint();
     }
 }

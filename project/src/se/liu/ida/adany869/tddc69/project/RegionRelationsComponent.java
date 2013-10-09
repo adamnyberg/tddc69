@@ -8,8 +8,14 @@ import java.util.ArrayList;
 
 public class RegionRelationsComponent extends JComponent{
     private ArrayList<RegionComponent[]> relations = new ArrayList<RegionComponent[]>();
+    private RiskWorld risk;
+    private RegionComponent focused = null;
 
-    private boolean isInArray(RegionComponent regionA, RegionComponent regionB){
+    public RegionRelationsComponent(RiskWorld risk) {
+        this.risk = risk;
+    }
+
+    private boolean hasRelation(RegionComponent regionA, RegionComponent regionB){
         for (int i = 0; i < relations.size(); i++) {
              if (relations.get(i).equals(new RegionComponent[]{regionA, regionB})){
                 return true;
@@ -18,16 +24,26 @@ public class RegionRelationsComponent extends JComponent{
         return false;
     }
 
+    public void setFocused(RegionComponent focused) {
+        this.focused = focused;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(5));
 
         for (RegionComponent[] regionTupel : relations) {
+            g2.setColor(Color.BLACK);
             RegionComponent regionComponent1 = regionTupel[0];
             RegionComponent regionComponent2 = regionTupel[1];
+
+            if ((this.focused == regionComponent1 || this.focused == regionComponent2) &&
+                    (risk.getActionState().isRelevantNeighbour(this.focused.getRegion(), regionComponent1.getRegion()) ||
+                    risk.getActionState().isRelevantNeighbour(this.focused.getRegion(), regionComponent2.getRegion())))
+                g2.setColor(Color.RED);
+
             g2.drawLine(regionComponent1.getX()+regionComponent1.getWidth()/2,
                     regionComponent1.getY()+regionComponent1.getHeight()/2,
                     regionComponent2.getX()+regionComponent2.getWidth()/2,
@@ -36,17 +52,9 @@ public class RegionRelationsComponent extends JComponent{
     }
 
     public void addRelation(RegionComponent regionA, RegionComponent regionB){
-        if (!isInArray(regionA, regionB)){
+        if (!hasRelation(regionA, regionB)){
             RegionComponent[] objects = new RegionComponent[]{regionA, regionB};
             relations.add(objects);
         }
-    }
-
-    public ArrayList<RegionComponent[]> getRelations(){
-        return relations;
-    }
-
-    public RegionComponent[] getRelation(int index){
-        return relations.get(index);
     }
 }

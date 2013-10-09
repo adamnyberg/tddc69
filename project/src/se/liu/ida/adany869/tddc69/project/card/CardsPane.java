@@ -20,8 +20,8 @@ public class CardsPane {
         this.cardsPane.setOptionType(JOptionPane.OK_CANCEL_OPTION);
         this.cardsPane.setOptions(new Object[]{"Cancel", "Trade cards"});
 
-        JDialog dialog = cardsPane.createDialog(cardsPane, "Trade cards");
-        dialog.setAlwaysOnTop(true);
+        this.dialog = cardsPane.createDialog(cardsPane, "Trade cards");
+        this.dialog.setAlwaysOnTop(true);
         this.showDialog();
     }
 
