@@ -79,9 +79,9 @@ public class RiskWorld {
     }
 
     public void nextPlayer(){
-        this.actionState = new ReinforceState(this);
-        resetFocus();
         Player nextPlayer;
+        this.resetFocus();
+        this.actionState = new ReinforceState(this);
         if (activePlayer.hasAttackedAndWon()) activePlayer.addCard();
         for (int i = 0; i < players.length; i++) {
             Player player = players[i];
