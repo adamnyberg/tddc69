@@ -6,7 +6,9 @@ import se.liu.ida.adany869.tddc69.project.state.ReinforceState;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 import se.liu.ida.adany869.tddc69.project.regions.RegionController;
 
-public class RiskWorld {
+import java.util.Observable;
+
+public class RiskWorld extends Observable{
     private Region[] regions;
     private Player[] players;
     private Continent[] continents;
@@ -57,12 +59,16 @@ public class RiskWorld {
         resetFocus();
         focused = newFocused;
         focused.setFocused(true);
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public void resetFocus(){
         if(this.hasFocused()){
             focused.setFocused(false);
             focused = null;
+            this.setChanged();
+            this.notifyObservers();
         }
     }
 

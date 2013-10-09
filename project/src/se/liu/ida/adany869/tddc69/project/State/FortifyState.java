@@ -11,26 +11,27 @@ public class FortifyState extends ActionState {
 
     @Override
     public void doSomething(Region region) {
-        if (this.parent.hasFocused()){
-            if (this.parent.getFocused() == region){
-                this.parent.resetFocus();
+        if (this.risk.hasFocused()){
+            if (this.risk.getFocused() == region){
+                this.risk.resetFocus();
             }
-            else if (parent.getActivePlayer() == region.getOwner()){
-                Region fortifier = this.parent.getFocused();
+            else if (risk.getActivePlayer() == region.getOwner()){
+                Region fortifier = this.risk.getFocused();
                 if (fortifier.isNeighbour(region)){
                     SliderPane slider = new SliderPane(0, fortifier.getArmies()-1, "Select amount to move: ");
                     int fortifySize = slider.getValue();
                     region.addArmy(fortifySize);
                     fortifier.addArmy(-fortifySize);
-                    this.parent.resetFocus();
+                    this.risk.resetFocus();
                 }
             }
         }
-        else parent.setFocused(region);
+        else risk.setFocused(region);
     }
 
     @Override
-    public void highlightRelevantNeighbours() {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public boolean isRelevantNeighbour(Region focused, Region neighbour) {
+        return focused.getNeighbours().contains(neighbour) &&
+                focused.getOwner() == neighbour.getOwner();
     }
 }
