@@ -1,7 +1,6 @@
 package se.liu.ida.adany869.tddc69.project;
 
 import se.liu.ida.adany869.tddc69.project.Continents.Continent;
-import se.liu.ida.adany869.tddc69.project.Continents.ContinentFactory;
 import se.liu.ida.adany869.tddc69.project.Continents.SubArea;
 import se.liu.ida.adany869.tddc69.project.Continents.SubContinent;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
@@ -28,23 +27,28 @@ public class Map {
             new Region("MARS")          // 13
     };
 
-
+    private Random randGen = new Random();
 
     private Player[] players = {
-            new Player("Adam", Color.blue, true),
+
+            new Player("Adam", Color.pink, true),
             new Player("Harald", Color.green)
     };
 
 
-    private SubContinent westWest = new SubContinent(new Region[]{regions[0], regions[1], regions[4]}, 5, "West Western");
-    private SubContinent eastWest = new SubContinent(new Region[]{regions[2], regions[8], regions[9]}, 5, "East Western");
-    private Continent west = new Continent(new SubContinent[]{westWest, eastWest}, 7, "Western");
-    private Continent outerSpace = new Continent(new Region[]{regions[12], regions[13]}, 3, "Outer Space");
-    private SubContinent southEast = new SubContinent(new Region[]{regions[5], regions[6], regions[11]}, 3, "southEast");
-    private Continent east = new Continent(new SubArea[]{southEast, regions[3], regions[7]}, 7, "East");
+    private SubContinent westWest = new SubContinent(new Region[]{regions[0], regions[1], regions[4]}, 5, "West Western", Color.DARK_GRAY);
+    private SubContinent eastWest = new SubContinent(new Region[]{regions[2], regions[8], regions[9]}, 5, "East Western", Color.cyan);
+    private Continent west = new Continent(new SubContinent[]{westWest, eastWest}, 7, "Western", Color.MAGENTA);
+    private Continent outerSpace = new Continent(new Region[]{regions[12], regions[13]}, 3, "Outer Space", Color.orange);
+    private SubContinent southEast = new SubContinent(new Region[]{regions[5], regions[6], regions[11]}, 3, "southEast", Color.blue);
+    private Continent east = new Continent(new SubArea[]{southEast, regions[3], regions[7]}, 7, "East", Color.red);
     private Continent[] continents = new Continent[]{west, east, outerSpace};
 
     public Map() {
+        if (randGen.nextInt(2) == 1){
+            players = new Player[]{new Player("Harald", Color.pink, true),
+                    new Player("Adam", Color.green)};
+        }
 
 
         Random randGen = new Random();

@@ -26,7 +26,9 @@ public class FortifyState extends ActionState {
                 }
             }
         }
-        else risk.setFocused(region);
+        else if (this.risk.getActivePlayer() == region.getOwner()) {
+            this.risk.setFocused(region);
+        }
     }
 
     @Override

@@ -11,6 +11,11 @@ import java.util.Observable;
 public class RiskWorld extends Observable{
     private Region[] regions;
     private Player[] players;
+
+    public Continent[] getContinents() {
+        return continents;
+    }
+
     private Continent[] continents;
     private ActionState actionState = new ReinforceState(this);
     public RegionController regionController = new RegionController(this);

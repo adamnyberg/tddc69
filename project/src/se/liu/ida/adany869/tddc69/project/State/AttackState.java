@@ -29,7 +29,6 @@ public class AttackState extends ActionState {
         }
         else if (this.risk.getActivePlayer() == region.getOwner()) {
             this.risk.setFocused(region);
-
         }
     }
 

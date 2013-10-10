@@ -52,10 +52,11 @@ public class PlayerComponent extends JComponent implements Observer {
         g2.fillRect(0,0, WIDTH, HEIGHT);
 
         this.cardsButton.setEnabled(player.isActive());
-        if (this.player.isActive()) g2.setColor(new Color(255,215,0));
-        else g2.setColor(Color.BLACK);
-        g2.setStroke(new BasicStroke(BORDER_SIZE));
-        g2.drawRect(0, 0, WIDTH, HEIGHT);
+        if (this.player.isActive()) {
+            g2.setColor(Color.BLACK);
+            g2.setStroke(new BasicStroke(BORDER_SIZE));
+            g2.drawRect(0, 0, WIDTH, HEIGHT);
+        }
 
     }
 

@@ -1,12 +1,14 @@
 package se.liu.ida.adany869.tddc69.project.regions;
 
 import net.miginfocom.swing.MigLayout;
+import se.liu.ida.adany869.tddc69.project.Continents.Continent;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -17,9 +19,11 @@ public class RegionComponent extends JComponent implements Observer {
     private JLabel armyText = new JLabel();
     private boolean isFocused = false;
     private Color backgroundColor;
+    private ArrayList<Continent> continents;
 
     private static final int INIT_HEIGHT = 150;
     private static final int INIT_WIDTH = 150;
+    private static final int BORDER_SIZE = 8;
 
     @Override
     public void update(Observable o, Object arg) {
@@ -29,11 +33,12 @@ public class RegionComponent extends JComponent implements Observer {
         repaint();
     }
 
-    public RegionComponent(Region region, int yPos, int xPos, int height, int width, RegionController regionController) {
+    public RegionComponent(Region region, int yPos, int xPos, int height, int width, RegionController regionController, ArrayList<Continent> continents) {
         this.setLayout(new MigLayout());
         this.region = region;
         this.height = height;
         this.width = width;
+        this.continents = continents;
         this.backgroundColor = this.region.getOwner().getColor();
         this.setBounds(xPos, yPos, width, height);
         armyText.setText(Integer.toString(region.getArmies()));
@@ -44,8 +49,8 @@ public class RegionComponent extends JComponent implements Observer {
         this.setVisible(true);
     }
 
-    public RegionComponent(Region region, int yPos, int xPos, RegionController regionController, int index) {
-        this(region, yPos, xPos, INIT_HEIGHT, INIT_WIDTH, regionController);
+    public RegionComponent(Region region, int yPos, int xPos, RegionController regionController, ArrayList<Continent> continents) {
+        this(region, yPos, xPos, INIT_HEIGHT, INIT_WIDTH, regionController, continents);
     }
 
 
@@ -71,10 +76,21 @@ public class RegionComponent extends JComponent implements Observer {
 
         g2.setColor(backgroundColor);
         g2.fillRect(0, 0, this.getHeight(), this.getWidth());
+        g2.setStroke(new BasicStroke(BORDER_SIZE));
 
-        g2.setColor(Color.BLACK);
-        g2.setStroke(new BasicStroke(2));
-        g2.drawRect(0, 0, this.getHeight(), this.getWidth());
+        int i = 0;
+        for (Continent continent : continents) {
+            //if (continent.containsRegion(this.region)) {
+            ArrayList<Continent> containsRegion = continent.getContinentsWhichContains(this.region);
+            for (int j = containsRegion.size()-1; j >= 0; j--) {
+                System.out.println("Checking if " + containsRegion.get(j).getName() + " contains " + this.region.getName());
+                g2.setColor(containsRegion.get(j).getColor());
+                int incest = BORDER_SIZE*i;
+                g2.drawRect(BORDER_SIZE/2 + incest, BORDER_SIZE/2 + incest,
+                        this.getHeight() - incest * 2 - BORDER_SIZE, this.getWidth() - incest*2 - BORDER_SIZE);
+                i++;
+            }
+        }
 
         if (isFocused){
             drawBorder(g2);
@@ -83,12 +99,6 @@ public class RegionComponent extends JComponent implements Observer {
 
     public Region getRegion(){
         return region;
-    }
-
-    public void highlightNeighbours() {
-        
-        this.backgroundColor = Color.red;
-        this.repaint();
     }
 
     public void unHighlightNeighbours() {
@@ -142,8 +152,8 @@ public class RegionComponent extends JComponent implements Observer {
     }
 
     private void drawBorder(Graphics2D g2){
-        g2.setStroke(new BasicStroke(5));
-        g2.setColor(new Color(255,215,0));
+        g2.setStroke(new BasicStroke(10));
+        g2.setColor(Color.BLACK);
         g2.drawRect(0,0,width,height);
     }
 }

@@ -1,5 +1,6 @@
 package se.liu.ida.adany869.tddc69.project.regions;
 
+import se.liu.ida.adany869.tddc69.project.Continents.Continent;
 import se.liu.ida.adany869.tddc69.project.Continents.SubArea;
 import se.liu.ida.adany869.tddc69.project.Dice;
 import se.liu.ida.adany869.tddc69.project.Player;
@@ -122,7 +123,23 @@ public class Region extends Observable implements SubArea{
     public void addAreaReserves(Player player) {
         return;
     }
-/*public void addObserver(Observer o){
+
+    @Override
+    public boolean containsRegion(Region region) {
+        return this == region;
+    }
+
+    @Override
+    public ArrayList<Continent> allSubContinents() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public ArrayList<Continent> getContinentsWhichContains(Region region) {
+        return new ArrayList<>();
+    }
+
+    /*public void addObserver(Observer o){
         regionObservers.add(o);
         this.
     }*/
