@@ -5,25 +5,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RiskFrame  extends JFrame{
-    private final RiskWorld risk;
     private MenuObserver menuObserver;
 
     public RiskFrame(RiskWorld risk) {
         super("Rwhisky");
         this.setLayout(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         //this.setResizable(false);
-        this.risk = risk;
         createMenus();
 
-        RiskContainer riskContainer = new RiskContainer(this.risk);
+        RiskContainer riskContainer = new RiskContainer(risk);
         this.setContentPane(riskContainer);
         this.pack();
         this.setVisible(true);
-    }
-
-    public void setMenuObserver(MenuObserver observer){
-        this.menuObserver = observer;
+        this.menuObserver = new MenuController();
     }
 
     public void notifyMenuObserver(ActionEvent e){

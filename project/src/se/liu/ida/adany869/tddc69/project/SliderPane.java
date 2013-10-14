@@ -3,7 +3,6 @@ package se.liu.ida.adany869.tddc69.project;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.awt.*;
 
 public class SliderPane {
     int value = 0;
@@ -17,7 +16,7 @@ public class SliderPane {
         JOptionPane optionPane = new JOptionPane();
         JTextField textField = new JTextField();
         JSlider slider = getSlider(optionPane, textField);
-        textField.setText(new Integer(slider.getValue()).toString());
+        textField.setText(Integer.toString(slider.getValue()));
         optionPane.setMessage(new Object[]{descriptiveText, slider, textField});
         optionPane.setMessageType(JOptionPane.DEFAULT_OPTION);
         optionPane.setOptionType(JOptionPane.OK_CANCEL_OPTION);
@@ -32,7 +31,7 @@ public class SliderPane {
             if (value > maxSize){
                 value = maxSize;
             }
-        };
+        }
     }
 
     private JSlider getSlider(final JOptionPane optionPane, final JTextField textField){
@@ -47,7 +46,7 @@ public class SliderPane {
             @Override
             public void stateChanged(ChangeEvent e) {
                 JSlider theSlider = (JSlider) e.getSource();
-                Integer value = new Integer(theSlider.getValue());
+                Integer value = theSlider.getValue();
                 textField.setText(value.toString());
                 if (!theSlider.getValueIsAdjusting()){
                     optionPane.setInputValue(value);

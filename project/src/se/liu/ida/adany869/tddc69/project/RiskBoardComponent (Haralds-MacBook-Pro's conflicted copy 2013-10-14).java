@@ -80,9 +80,6 @@ public class RiskBoardComponent extends JComponent implements Observer {
             for (Region neighbourRegion : neighbourRegions) {
                 this.relations.addRelation(regionComponentA, getRegionComponent(neighbourRegion));
             }
-            for (int i = 0; i < neighbourRegions.size(); i++) {
-                 this.relations.addRelation(regionComponentA, getRegionComponent(neighbourRegions.get(i)));
-            }
         }
         this.add(this.relations);
     }

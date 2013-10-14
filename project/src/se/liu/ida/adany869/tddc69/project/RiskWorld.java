@@ -1,5 +1,6 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import se.liu.ida.adany869.tddc69.project.continent.Continent;
 import se.liu.ida.adany869.tddc69.project.state.ActionState;
 import se.liu.ida.adany869.tddc69.project.state.ReinforceState;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
@@ -28,8 +29,6 @@ public class RiskWorld extends Observable{
         for (Continent continent : continents) {
             continent.giveReserves(activePlayer);
         }
-
-        //TODO: add continental extra reinforcement
     }
 
     public Region[] getRegions() {

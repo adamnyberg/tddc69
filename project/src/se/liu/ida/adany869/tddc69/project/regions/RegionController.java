@@ -1,7 +1,5 @@
 package se.liu.ida.adany869.tddc69.project.regions;
 
-import se.liu.ida.adany869.tddc69.project.AbstractController;
-import se.liu.ida.adany869.tddc69.project.RiskBoardComponent;
 import se.liu.ida.adany869.tddc69.project.RiskWorld;
 import se.liu.ida.adany869.tddc69.project.Run;
 
@@ -10,11 +8,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.*;
 
-public class RegionController extends AbstractController implements MouseListener {
+public class RegionController implements MouseListener {
     private RiskWorld risk;
     private HashMap<Region, RegionComponent> regionToComponentMap = new HashMap<>();
     private Region focused;
-    private RiskBoardComponent riskBoardComponent;
 
 
     public RegionController(RiskWorld risk) {
@@ -29,19 +26,9 @@ public class RegionController extends AbstractController implements MouseListene
     public void mouseClicked(MouseEvent e) {
         RegionComponent regionComponent = (RegionComponent) e.getSource();
         Region region = regionComponent.getRegion();
-        this.riskBoardComponent = (RiskBoardComponent) regionComponent.getParent();
         risk.getActionState().doSomething(region);
         if (risk.checkGameOver()) {
             gameOver();
-        }
-    }
-
-    public void changeFocus(RegionComponent regionComponent){
-        Region region = regionComponent.getRegion();
-        if (region.getOwner().isActive()){
-            //resetFocus();
-            focused = region;
-            regionComponent.setFocused(true);
         }
     }
 
@@ -62,22 +49,22 @@ public class RegionController extends AbstractController implements MouseListene
 
     @Override
     public void mousePressed(MouseEvent e) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        //Do nothing
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        //Do nothing
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        //Do nothing
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        //Do nothing
     }
 
     private void gameOver() {

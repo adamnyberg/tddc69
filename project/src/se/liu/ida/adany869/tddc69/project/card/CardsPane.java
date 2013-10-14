@@ -62,9 +62,10 @@ public class CardsPane {
                 System.out.println(cardComponent.getCard());
             }
         }
-        if (this.selectedCards.size() != 3) return false;
-        return (this.selectedCards.get(0).getCard() == this.selectedCards.get(1).getCard() &&   // same cards
-                this.selectedCards.get(1).getCard() == this.selectedCards.get(2).getCard())
+        return (this.selectedCards.size() == 3
+                &&
+                (this.selectedCards.get(0).getCard() == this.selectedCards.get(1).getCard() &&   // same cards
+                this.selectedCards.get(1).getCard() == this.selectedCards.get(2).getCard()))
                 ||
                 (this.selectedCards.get(0).getCard() != this.selectedCards.get(1).getCard() &&  // different cards
                 this.selectedCards.get(0).getCard() != this.selectedCards.get(2).getCard() &&

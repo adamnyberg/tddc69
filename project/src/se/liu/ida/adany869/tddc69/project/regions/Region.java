@@ -1,24 +1,18 @@
 package se.liu.ida.adany869.tddc69.project.regions;
 
-import se.liu.ida.adany869.tddc69.project.Continents.Continent;
-import se.liu.ida.adany869.tddc69.project.Continents.SubArea;
 import se.liu.ida.adany869.tddc69.project.Dice;
 import se.liu.ida.adany869.tddc69.project.Player;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Random;
 
-public class Region extends Observable implements SubArea{
+public class Region extends Observable{
     private int armies;
-    private int armiesReadyToBeDeployed = 0;
+    //private int armiesReadyToBeDeployed = 0;
     private Player player = new Player("none", Color.DARK_GRAY);
     private String name;
     private ArrayList<Region> neighbours = new ArrayList<>();
-    private Random randGen = new Random();
-    private final ActionEvent UPDATE_ARMY_EVENT = new ActionEvent(this, 0, "updateArmy");
     private boolean isFocused;
 
     public Region(String name) {
@@ -29,16 +23,8 @@ public class Region extends Observable implements SubArea{
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public ArrayList<Region> getNeighbours() {
         return neighbours;
-    }
-
-    public void setNeighbours(ArrayList neighbours) {
-        this.neighbours = neighbours;
     }
 
     public int getArmies() {
@@ -67,10 +53,6 @@ public class Region extends Observable implements SubArea{
         notifyObservers();
     }
 
-    public boolean hasOwner(){
-        return player != null;
-    }
-
     public void addNeighbour(Region region){
         neighbours.add(region);
     }
@@ -90,8 +72,8 @@ public class Region extends Observable implements SubArea{
     }
 
     public int attack(Region attacked, int attackSize){
-        ArrayList<Dice> attackerDices = new ArrayList<Dice>();
-        ArrayList<Dice> defenderDices = new ArrayList<Dice>();
+        ArrayList<Dice> attackerDices = new ArrayList<>();
+        ArrayList<Dice> defenderDices = new ArrayList<>();
         for (int i = 0; i < attackSize; i++) {
             attackerDices.add(new Dice());
         }
@@ -119,34 +101,4 @@ public class Region extends Observable implements SubArea{
         return max.getValue();
     }
 
-    @Override
-    public void addAreaReserves(Player player) {
-        return;
-    }
-
-    @Override
-    public boolean containsRegion(Region region) {
-        return this == region;
-    }
-
-    @Override
-    public ArrayList<Continent> allSubContinents() {
-        return new ArrayList<>();
-    }
-
-    @Override
-    public ArrayList<Continent> getContinentsWhichContains(Region region) {
-        return new ArrayList<>();
-    }
-
-    /*public void addObserver(Observer o){
-        regionObservers.add(o);
-        this.
-    }*/
-
-    /*public void notifyObservers(){
-        for (Observer observer : regionObservers) {
-            observer.update(new ActionEvent(this, 0, "updateArmy"));
-        }
-    }*/
 }

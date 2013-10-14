@@ -17,7 +17,7 @@ public class PlayerComponent extends JComponent implements Observer {
         public void actionPerformed(ActionEvent e) {
             showCards();
         }
-    });;
+    });
 
     private static int HEIGHT = 90;
     private static int WIDTH = 150;
@@ -67,11 +67,7 @@ public class PlayerComponent extends JComponent implements Observer {
         this.repaint();
     }
 
-    public void enableCardsButton(boolean b) {
-        this.cardsButton.setEnabled(b);
-    }
-
     private void showCards() {
-        CardsPane cardsPane = new CardsPane(this.player);
+        new CardsPane(this.player);
     }
 }

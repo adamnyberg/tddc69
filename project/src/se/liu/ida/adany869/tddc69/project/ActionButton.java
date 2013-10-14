@@ -14,12 +14,13 @@ public class ActionButton extends JButton {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        /*if (isActive){
+        if (isActive){
             Graphics2D g2 = (Graphics2D) g;
-            g2.setStroke(new BasicStroke(15));
-            g2.setColor(new Color(255, 215, 0));
-            g2.drawRect(0, 0, getWidth(), getHeight());
-        }*/
+            g2.setStroke(new BasicStroke(5));
+            g2.setColor(Color.blue);
+            // Active border. Magic numbers for aesthetics.
+            g2.drawRoundRect(3, 3, getWidth()-8, getHeight()-8, 20, 20);
+        }
     }
 
     public void setActive(boolean active) {

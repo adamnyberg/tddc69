@@ -1,6 +1,8 @@
 package se.liu.ida.adany869.tddc69.project;
 
 import net.miginfocom.swing.MigLayout;
+import se.liu.ida.adany869.tddc69.project.continent.Continent;
+import se.liu.ida.adany869.tddc69.project.continent.ContinentInfoComponent;
 import se.liu.ida.adany869.tddc69.project.state.*;
 
 import javax.swing.*;
@@ -38,10 +40,10 @@ public class RiskMenuComponent extends JComponent{
         }
     });
 
-    private ActionButton fortifyButton = new ActionButton(true, new AbstractAction() {
+    private ActionButton fortifyButton = new ActionButton(false, new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            setActiveButton(reinforceButton);
+            setActiveButton(fortifyButton);
             reinforceButton.setEnabled(false);
             attackButton.setEnabled(false);
             risk.setActionState(new FortifyState(risk));

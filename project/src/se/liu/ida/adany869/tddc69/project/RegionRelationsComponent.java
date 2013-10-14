@@ -5,9 +5,10 @@ import se.liu.ida.adany869.tddc69.project.regions.RegionComponent;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class RegionRelationsComponent extends JComponent{
-    private ArrayList<RegionComponent[]> relations = new ArrayList<RegionComponent[]>();
+    private ArrayList<RegionComponent[]> relations = new ArrayList<>();
     private RiskWorld risk;
     private RegionComponent focused = null;
 
@@ -16,16 +17,21 @@ public class RegionRelationsComponent extends JComponent{
     }
 
     private boolean hasRelation(RegionComponent regionA, RegionComponent regionB){
-        for (int i = 0; i < relations.size(); i++) {
-             if (relations.get(i).equals(new RegionComponent[]{regionA, regionB})){
+        for (RegionComponent[] relation : relations) {
+            if (Arrays.equals(relation, new RegionComponent[]{regionA, regionB})){
                 return true;
-             }
+            }
         }
         return false;
     }
 
-    public void setFocused(RegionComponent focused) {
-        this.focused = focused;
+    public void setFocused(RegionComponent regionComponent) {
+        this.focused = regionComponent;
+    }
+
+    public void update(Graphics g, RegionComponent regionComponent){
+        setFocused(regionComponent);
+        paintComponent(g);
     }
 
     @Override
@@ -33,7 +39,6 @@ public class RegionRelationsComponent extends JComponent{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(5));
-
         for (RegionComponent[] regionTupel : relations) {
             g2.setColor(Color.BLACK);
             RegionComponent regionComponent1 = regionTupel[0];

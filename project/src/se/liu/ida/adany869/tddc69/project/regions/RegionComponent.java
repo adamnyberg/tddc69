@@ -1,12 +1,9 @@
 package se.liu.ida.adany869.tddc69.project.regions;
 
 import net.miginfocom.swing.MigLayout;
-import se.liu.ida.adany869.tddc69.project.Continent;
+import se.liu.ida.adany869.tddc69.project.continent.Continent;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -20,9 +17,9 @@ public class RegionComponent extends JComponent implements Observer {
     private Color backgroundColor;
     private ArrayList<Continent> continents;
 
-    private static final int INIT_HEIGHT = 150;
-    private static final int INIT_WIDTH = 150;
-    private static final int BORDER_SIZE = 8;
+    private static final int INIT_HEIGHT = 100;
+    private static final int INIT_WIDTH = 100;
+    private static final int BORDER_SIZE = 5;
 
     @Override
     public void update(Observable o, Object arg) {
@@ -40,12 +37,20 @@ public class RegionComponent extends JComponent implements Observer {
         this.continents = continents;
         this.backgroundColor = this.region.getOwner().getColor();
         this.setBounds(xPos, yPos, width, height);
-        armyText.setText(Integer.toString(region.getArmies()));
-        this.add(new JLabel(region.getName()));
+        this.armyText.setText(Integer.toString(region.getArmies()));
+        this.addNameLabels();
+
         this.add(armyText, "wrap");
-        region.addObserver(this);
+        this.region.addObserver(this);
         this.addMouseListener(regionController);
         this.setVisible(true);
+    }
+
+    private void addNameLabels() {
+        String[] regionNameArray = this.region.getName().split(" ");
+        for (String s : regionNameArray) {
+            this.add(new JLabel(s), "wrap");
+        }
     }
 
     public RegionComponent(Region region, int yPos, int xPos, RegionController regionController, ArrayList<Continent> continents) {
@@ -98,43 +103,6 @@ public class RegionComponent extends JComponent implements Observer {
         this.repaint();
     }
 
-    public void update(ActionEvent e){
-        System.out.println("regComp.update: " + e.getActionCommand());
-        invokeMethod(e.getActionCommand(), null);
-    }
-
-    public void invokeMethod(String methodName, Object[] params){
-        Class c = this.getClass();
-
-        Class[] param;
-        try{
-            if (params != null){
-                param = new Class[params.length];
-                for (int i = 0; i < params.length; i++) {
-                    param[i] = params[i].getClass();
-                }
-            }
-            else param = null;
-            //param[0] = params.class;
-            //Board[] param2 = new Board[1];
-            //param2[0] = b;
-            Method m = c.getMethod(methodName, param);
-            m.invoke(this, params);
-            // m.invoke(TTV, param2) = TTV.convertToText(b);
-        }
-        catch(NoSuchMethodException e) {
-            System.out.println(e.toString());
-            System.out.println("Class: " + c);
-        }
-        catch(InvocationTargetException e) {
-            System.out.println(e.toString());
-        }
-        catch(IllegalAccessException e) {
-            System.out.println(e.toString());
-        }
-    }
-
-    //Used through invokeMethod().
     public void updateArmy(){
         armyText.setText(Integer.toString(region.getArmies()));
     }

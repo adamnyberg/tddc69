@@ -1,5 +1,6 @@
-package se.liu.ida.adany869.tddc69.project;
+package se.liu.ida.adany869.tddc69.project.continent;
 
+import se.liu.ida.adany869.tddc69.project.Player;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 import java.awt.*;
 
