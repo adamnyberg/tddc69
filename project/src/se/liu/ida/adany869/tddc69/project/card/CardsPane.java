@@ -30,7 +30,7 @@ public class CardsPane {
 
         if(cardsPane.getValue() != null &&
                 cardsPane.getValue().equals("Trade cards") &&
-                this.isSelectedTradable()){
+                this.isSelectedTradeable()){
 
             player.addReserve(Deck.getInstance().tradeCards());
             for (CardComponent selectedCard : selectedCards) {
@@ -54,7 +54,7 @@ public class CardsPane {
         return this.cardComponents;
     }
 
-    private boolean isSelectedTradable() {
+    private boolean isSelectedTradeable() { // NOT a FUCKING TYPO, IDIOT!
         this.selectedCards = new ArrayList<>();
         for (CardComponent cardComponent : this.cardComponents) {
             if (cardComponent.isSelected()) {
@@ -63,15 +63,11 @@ public class CardsPane {
             }
         }
         if (this.selectedCards.size() != 3) return false;
-        if (this.selectedCards.get(0).getCard() == this.selectedCards.get(1).getCard() &&
-                this.selectedCards.get(1).getCard() == this.selectedCards.get(2).getCard()) {
-            return true;
-        }
-        if (this.selectedCards.get(0).getCard() != this.selectedCards.get(1).getCard() &&
+        return (this.selectedCards.get(0).getCard() == this.selectedCards.get(1).getCard() &&   // same cards
+                this.selectedCards.get(1).getCard() == this.selectedCards.get(2).getCard())
+                ||
+                (this.selectedCards.get(0).getCard() != this.selectedCards.get(1).getCard() &&  // different cards
                 this.selectedCards.get(0).getCard() != this.selectedCards.get(2).getCard() &&
-                this.selectedCards.get(1).getCard() != this.selectedCards.get(2).getCard()) {
-            return true;
-        }
-        return false;
+                this.selectedCards.get(1).getCard() != this.selectedCards.get(2).getCard());
     }
 }

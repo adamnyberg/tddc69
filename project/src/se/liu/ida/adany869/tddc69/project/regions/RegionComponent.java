@@ -1,8 +1,7 @@
 package se.liu.ida.adany869.tddc69.project.regions;
 
 import net.miginfocom.swing.MigLayout;
-import se.liu.ida.adany869.tddc69.project.Continents.Continent;
-
+import se.liu.ida.adany869.tddc69.project.Continent;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -78,18 +77,11 @@ public class RegionComponent extends JComponent implements Observer {
         g2.fillRect(0, 0, this.getHeight(), this.getWidth());
         g2.setStroke(new BasicStroke(BORDER_SIZE));
 
-        int i = 0;
-        for (Continent continent : continents) {
-            //if (continent.containsRegion(this.region)) {
-            ArrayList<Continent> containsRegion = continent.getContinentsWhichContains(this.region);
-            for (int j = containsRegion.size()-1; j >= 0; j--) {
-                System.out.println("Checking if " + containsRegion.get(j).getName() + " contains " + this.region.getName());
-                g2.setColor(containsRegion.get(j).getColor());
-                int incest = BORDER_SIZE*i;
-                g2.drawRect(BORDER_SIZE/2 + incest, BORDER_SIZE/2 + incest,
-                        this.getHeight() - incest * 2 - BORDER_SIZE, this.getWidth() - incest*2 - BORDER_SIZE);
-                i++;
-            }
+        for (int i = 0; i < this.continents.size(); i++) {
+            g2.setColor(this.continents.get(i).getColor());
+            int incest = BORDER_SIZE*i;
+            g2.drawRect(BORDER_SIZE/2 + incest, BORDER_SIZE/2 + incest,
+                    this.getHeight() - incest * 2 - BORDER_SIZE, this.getWidth() - incest*2 - BORDER_SIZE);
         }
 
         if (isFocused){

@@ -1,6 +1,5 @@
 package se.liu.ida.adany869.tddc69.project;
 
-import se.liu.ida.adany869.tddc69.project.Continents.Continent;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 import se.liu.ida.adany869.tddc69.project.regions.RegionComponent;
 
@@ -17,7 +16,6 @@ public class RiskBoardComponent extends JComponent implements Observer {
     private RegionRelationsComponent relations;
     private ArrayList<RegionComponent> regionComponents = new ArrayList<>();
     private ArrayList<int[]> regionPositions;
-
     private static final int INIT_HEIGHT = 830;
     private static final int INIT_WIDTH = 1400;
 
@@ -57,7 +55,7 @@ public class RiskBoardComponent extends JComponent implements Observer {
             RegionComponent regionComponent = new RegionComponent(region,
                     regionPos[0], regionPos[1],
                     risk.regionController,
-                    this.getContinents(region)
+                    risk.getContinentsWhichContains(region)
             );
             risk.regionController.mapRegionToComponent(region, regionComponent);
 
@@ -85,14 +83,6 @@ public class RiskBoardComponent extends JComponent implements Observer {
             }
         }
         this.add(this.relations);
-    }
-
-    public ArrayList<Continent> getContinents(Region region) {
-        ArrayList<Continent> regionContinents = new ArrayList<>();
-        for (Continent continent : this.risk.getContinents()) {
-            if (continent.containsRegion(region)) regionContinents.add(continent);
-        }
-        return regionContinents;
     }
 
     private void setRegionPositions() {

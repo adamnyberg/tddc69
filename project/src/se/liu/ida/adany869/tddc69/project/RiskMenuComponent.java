@@ -53,6 +53,7 @@ public class RiskMenuComponent extends JComponent{
         this.risk = risk;
         this.addPlayersInfo();
         this.addStateButtons();
+        this.addContinentsInfo();
     }
 
     private void addPlayersInfo() {
@@ -72,6 +73,12 @@ public class RiskMenuComponent extends JComponent{
 
         nextPlayerButton.setText("Next Player");
         this.add(nextPlayerButton);
+    }
+
+    private void addContinentsInfo() {
+        for (Continent continent : risk.getContinents()) {
+            this.add(new ContinentInfoComponent(continent));
+        }
     }
 
     public void setActiveButton(ActionButton actionButton){

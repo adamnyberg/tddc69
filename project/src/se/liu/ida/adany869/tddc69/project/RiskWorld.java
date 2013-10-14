@@ -1,21 +1,16 @@
 package se.liu.ida.adany869.tddc69.project;
 
-import se.liu.ida.adany869.tddc69.project.Continents.Continent;
 import se.liu.ida.adany869.tddc69.project.state.ActionState;
 import se.liu.ida.adany869.tddc69.project.state.ReinforceState;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 import se.liu.ida.adany869.tddc69.project.regions.RegionController;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 public class RiskWorld extends Observable{
     private Region[] regions;
     private Player[] players;
-
-    public Continent[] getContinents() {
-        return continents;
-    }
-
     private Continent[] continents;
     private ActionState actionState = new ReinforceState(this);
     public RegionController regionController = new RegionController(this);
@@ -27,6 +22,7 @@ public class RiskWorld extends Observable{
         this.players = players;
         this.continents = continents;
         this.activePlayer = this.players[0];
+
         //Set Player 1's initial armies
         this.activePlayer.addReinforcement();
         for (Continent continent : continents) {
@@ -42,6 +38,18 @@ public class RiskWorld extends Observable{
 
     public Player[] getPlayers() {
         return players;
+    }
+
+    public Continent[] getContinents() {
+        return continents;
+    }
+
+    public ArrayList<Continent> getContinentsWhichContains(Region region){
+        ArrayList<Continent> containsRegion = new ArrayList<>();
+        for (Continent continent : this.continents) {
+            if (continent.containsRegion(region)) containsRegion.add(continent);
+        }
+        return containsRegion;
     }
 
     public ActionState getActionState() {
