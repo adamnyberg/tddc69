@@ -27,8 +27,8 @@ public class Map {
 
     private Player[] players = {
 
-            new Player("Adam", Color.pink, true),
-            new Player("Harald", Color.green)
+            new Player("Adam", Color.green, true),
+            new Player("Harald", Color.pink)
     };
 
     private Continent westWest = new Continent("West Western", 5, Color.DARK_GRAY, new Region[]{regions[0], regions[1], regions[4]});
@@ -71,6 +71,7 @@ public class Map {
                 listOfRegionIndexes.remove(random);
             }
         }
+
         addRelations(new int[][]{
                 {0,1},
                 {0,2},
