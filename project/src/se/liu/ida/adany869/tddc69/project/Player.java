@@ -87,6 +87,7 @@ public class Player extends Observable{
 
     public void addCard() {
         this.cards.add(Deck.getInstance().getCard());
+        this.setAttackedAndWon(false);
     }
 
     public ArrayList<Cards> getCards() {
