@@ -26,9 +26,6 @@ public class RiskWorld extends Observable{
 
         //Set Player 1's initial armies
         this.activePlayer.addReinforcement();
-        for (Continent continent : continents) {
-            continent.giveReserves(activePlayer);
-        }
     }
 
     public Region[] getRegions() {

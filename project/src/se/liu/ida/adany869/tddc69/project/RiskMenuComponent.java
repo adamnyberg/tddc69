@@ -47,6 +47,7 @@ public class RiskMenuComponent extends JComponent{
             reinforceButton.setEnabled(false);
             attackButton.setEnabled(false);
             risk.setActionState(new FortifyState(risk));
+            risk.resetFocus();
         }
     });
 
