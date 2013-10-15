@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>se.liu.ida.adany869.tddc69.project.state</OriginalElement>
+  <nodes>
+    <node x="452.99999999999994" y="421.0">se.liu.ida.adany869.tddc69.project.state.ReinforceState</node>
+    <node x="10.889279437609844" y="-72.57996485061511">se.liu.ida.adany869.tddc69.project.RiskWorld</node>
+    <node x="695.0" y="421.0">se.liu.ida.adany869.tddc69.project.state.AttackState</node>
+    <node x="476.49999999999994" y="278.0">se.liu.ida.adany869.tddc69.project.state.ActionState</node>
+    <node x="210.99999999999994" y="421.0">se.liu.ida.adany869.tddc69.project.state.FortifyState</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="se.liu.ida.adany869.tddc69.project.state.ReinforceState" target="se.liu.ida.adany869.tddc69.project.state.ActionState">
+      <point x="0.0" y="-35.5" />
+      <point x="0.0" y="46.5" />
+    </edge>
+    <edge source="se.liu.ida.adany869.tddc69.project.RiskWorld" target="se.liu.ida.adany869.tddc69.project.state.ReinforceState">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="se.liu.ida.adany869.tddc69.project.RiskWorld" target="se.liu.ida.adany869.tddc69.project.state.ActionState">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="se.liu.ida.adany869.tddc69.project.state.AttackState" target="se.liu.ida.adany869.tddc69.project.state.ActionState">
+      <point x="0.0" y="-35.5" />
+      <point x="806.0" y="396.0" />
+      <point x="622.3333333333333" y="396.0" />
+      <point x="58.33333333333337" y="46.5" />
+    </edge>
+    <edge source="se.liu.ida.adany869.tddc69.project.state.FortifyState" target="se.liu.ida.adany869.tddc69.project.state.ActionState">
+      <point x="0.0" y="-35.5" />
+      <point x="321.99999999999994" y="396.0" />
+      <point x="505.66666666666663" y="396.0" />
+      <point x="-58.333333333333314" y="46.5" />
+    </edge>
+    <edge source="se.liu.ida.adany869.tddc69.project.state.ActionState" target="se.liu.ida.adany869.tddc69.project.RiskWorld">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="283.0" y="85.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

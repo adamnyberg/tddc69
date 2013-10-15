@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="207.32857142857142" y="376.0">se.liu.ida.adany869.tddc69.project.RiskWorld</node>
+    <node x="87.92857142857139" y="0.0">se.liu.ida.adany869.tddc69.project.card.Cards</node>
+    <node x="87.92857142857139" y="79.0">se.liu.ida.adany869.tddc69.project.Player</node>
+    <node x="169.92857142857142" y="277.0">se.liu.ida.adany869.tddc69.project.Battle</node>
+    <node x="117.42857142857139" y="188.0">se.liu.ida.adany869.tddc69.project.regions.Region</node>
+    <node x="62.92857142857143" y="277.0">se.liu.ida.adany869.tddc69.project.continent.Continent</node>
+    <node x="35.3526488095238" y="376.0">se.liu.ida.adany869.tddc69.project.Map</node>
+    <node x="175.9285714285714" y="79.0">se.liu.ida.adany869.tddc69.project.Dice</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="se.liu.ida.adany869.tddc69.project.continent.Continent" target="se.liu.ida.adany869.tddc69.project.regions.Region">
+      <point x="-1.4210854715202004E-14" y="-14.5" />
+      <point x="106.42857142857142" y="257.0" />
+      <point x="148.26190476190473" y="257.0" />
+      <point x="-6.166666666666657" y="14.5" />
+    </edge>
+    <edge source="se.liu.ida.adany869.tddc69.project.RiskWorld" target="se.liu.ida.adany869.tddc69.project.continent.Continent">
+      <point x="-36.400000000000006" y="-14.5" />
+      <point x="216.42857142857142" y="356.0" />
+      <point x="139.05357142857144" y="356.0" />
+      <point x="32.625" y="14.5" />
+    </edge>
+    <edge source="se.liu.ida.adany869.tddc69.project.regions.Region" target="se.liu.ida.adany869.tddc69.project.Player">
+      <point x="-9.25" y="-14.5" />
+      <point x="145.1785714285714" y="158.0" />
+      <point x="121.92857142857139" y="158.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="se.liu.ida.adany869.tddc69.project.RiskWorld" target="se.liu.ida.adany869.tddc69.project.regions.Region">
+      <point x="0.0" y="-14.5" />
+      <point x="252.82857142857142" y="356.0" />
+      <point x="256.42857142857144" y="356.0" />
+      <point x="256.42857142857144" y="237.0" />
+      <point x="185.26190476190473" y="237.0" />
+      <point x="30.833333333333343" y="14.5" />
+    </edge>
+    <edge source="se.liu.ida.adany869.tddc69.project.Player" target="se.liu.ida.adany869.tddc69.project.card.Cards">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="se.liu.ida.adany869.tddc69.project.RiskWorld" target="se.liu.ida.adany869.tddc69.project.Player">
+      <point x="36.400000000000006" y="-14.5" />
+      <point x="289.2285714285714" y="356.0" />
+      <point x="278.42857142857144" y="356.0" />
+      <point x="278.42857142857144" y="128.0" />
+      <point x="151.07142857142853" y="128.0" />
+      <point x="29.14285714285714" y="14.5" />
+    </edge>
+    <edge source="se.liu.ida.adany869.tddc69.project.Map" target="se.liu.ida.adany869.tddc69.project.continent.Continent">
+      <point x="24.42857142857143" y="-14.5" />
+      <point x="88.28122023809523" y="356.0" />
+      <point x="117.30357142857143" y="356.0" />
+      <point x="10.875" y="14.5" />
+    </edge>
+    <edge source="se.liu.ida.adany869.tddc69.project.Battle" target="se.liu.ida.adany869.tddc69.project.regions.Region">
+      <point x="0.0" y="-14.5" />
+      <point x="202.42857142857142" y="257.0" />
+      <point x="160.59523809523807" y="257.0" />
+      <point x="6.166666666666686" y="14.5" />
+    </edge>
+    <edge source="se.liu.ida.adany869.tddc69.project.Player" target="se.liu.ida.adany869.tddc69.project.regions.Region">
+      <point x="9.714285714285722" y="14.5" />
+      <point x="131.6428571428571" y="148.0" />
+      <point x="163.6785714285714" y="148.0" />
+      <point x="9.25" y="-14.5" />
+    </edge>
+    <edge source="se.liu.ida.adany869.tddc69.project.Map" target="se.liu.ida.adany869.tddc69.project.Player">
+      <point x="-24.428571428571445" y="-14.5" />
+      <point x="39.424077380952355" y="356.0" />
+      <point x="28.0" y="356.0" />
+      <point x="28.0" y="158.0" />
+      <point x="92.78571428571425" y="158.0" />
+      <point x="-29.14285714285714" y="14.5" />
+    </edge>
+    <edge source="se.liu.ida.adany869.tddc69.project.Map" target="se.liu.ida.adany869.tddc69.project.regions.Region">
+      <point x="0.0" y="-14.5" />
+      <point x="63.8526488095238" y="326.0" />
+      <point x="52.42857142857143" y="326.0" />
+      <point x="52.42857142857143" y="247.0" />
+      <point x="135.9285714285714" y="247.0" />
+      <point x="-18.5" y="14.5" />
+    </edge>
+    <edge source="se.liu.ida.adany869.tddc69.project.regions.Region" target="se.liu.ida.adany869.tddc69.project.Dice">
+      <point x="27.75" y="-14.5" />
+      <point x="182.1785714285714" y="168.0" />
+      <point x="205.4285714285714" y="168.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="149.5" y="202.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

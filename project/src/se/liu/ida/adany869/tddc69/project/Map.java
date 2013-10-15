@@ -66,7 +66,7 @@ public class Map {
 
                 int random = randGen.nextInt(listOfRegionIndexes.size());
                 int randomRegionIndex = listOfRegionIndexes.get(random);
-                regions[randomRegionIndex].setArmy(3);
+                regions[randomRegionIndex].setArmies(3);
                 player.addRegion(regions[randomRegionIndex]);
                 listOfRegionIndexes.remove(random);
             }

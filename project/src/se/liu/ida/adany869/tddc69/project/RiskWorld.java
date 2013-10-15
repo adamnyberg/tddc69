@@ -18,10 +18,10 @@ public class RiskWorld extends Observable{
     private Region focused;
     private Player activePlayer;
 
-    public RiskWorld(Region[] regions, Player[] players, Continent[] continents) {
-        this.regions = regions;
-        this.players = players;
-        this.continents = continents;
+    public RiskWorld(Map map) {
+        this.regions = map.getRegions();
+        this.players = map.getPlayers();
+        this.continents = map.getContinents();
         this.activePlayer = this.players[0];
 
         //Set Player 1's initial armies
