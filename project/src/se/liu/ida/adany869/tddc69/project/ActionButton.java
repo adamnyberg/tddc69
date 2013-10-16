@@ -5,6 +5,8 @@ import java.awt.*;
 
 public class ActionButton extends JButton {
     private boolean isActive;
+    private static final int ARC_WIDTH = 20;
+    private static final int ARC_HEIGHT = 20;
 
     public ActionButton(boolean active, AbstractAction abstractAction) {
         super(abstractAction);
@@ -19,7 +21,7 @@ public class ActionButton extends JButton {
             g2.setStroke(new BasicStroke(5));
             g2.setColor(Color.blue);
             // Active border. Magic numbers for aesthetics.
-            g2.drawRoundRect(3, 3, getWidth()-8, getHeight()-8, 20, 20);
+            g2.drawRoundRect(3, 3, getWidth()-8, getHeight()-8, ARC_WIDTH, ARC_HEIGHT);
         }
     }
 

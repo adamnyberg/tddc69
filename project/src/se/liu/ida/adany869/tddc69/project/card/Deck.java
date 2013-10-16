@@ -1,17 +1,15 @@
 package se.liu.ida.adany869.tddc69.project.card;
 
 public class Deck {
-    private static Deck deck = null;
+    private static final Deck DECK = new Deck();
     private int cardsTraded = 0;
 
     protected Deck() {
     }
 
     public static Deck getInstance() {
-        if (deck == null) {
-            deck = new Deck();
-        }
-        return deck;
+
+        return DECK;
     }
 
     public Cards getCard() {

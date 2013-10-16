@@ -4,11 +4,12 @@ import se.liu.ida.adany869.tddc69.project.Player;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CardsPane {
     private Player player;
     private CardComponent[] cardComponents = null;
-    private ArrayList<CardComponent> selectedCards = new ArrayList<>();
+    private List<CardComponent> selectedCards = new ArrayList<>();
     private JOptionPane cardsPane = new JOptionPane();
     private JDialog dialog;
 
@@ -44,14 +45,12 @@ public class CardsPane {
     }
 
     private CardComponent[] getCardComponents() {
-        if (this.cardComponents == null) {
-            CardComponent[] cardComponents = new CardComponent[player.getCards().size()];
-            for (int i = 0; i < cardComponents.length; i++) {
-                cardComponents[i] = new CardComponent(player.getCards().get(i));
+            CardComponent[] localCardComponents = new CardComponent[player.getCards().size()];
+            for (int i = 0; i < localCardComponents.length; i++) {
+                localCardComponents[i] = new CardComponent(player.getCards().get(i));
             }
-            this.cardComponents = cardComponents;
-        }
-        return this.cardComponents;
+            this.cardComponents = localCardComponents;
+        return localCardComponents;
     }
 
     private boolean isSelectedTradeable() { // NOT a FUCKING TYPO, IDIOT!

@@ -6,9 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 
 public class RegionRelationsComponent extends JComponent{
-    private ArrayList<RegionComponent[]> relations = new ArrayList<>();
+    private Collection<RegionComponent[]> relations = new ArrayList<>();
     private RiskWorld risk;
     private RegionComponent focused = null;
 
@@ -25,12 +26,8 @@ public class RegionRelationsComponent extends JComponent{
         return false;
     }
 
-    public void setFocused(RegionComponent regionComponent) {
-        this.focused = regionComponent;
-    }
-
     public void update(Graphics g, RegionComponent regionComponent){
-        setFocused(regionComponent);
+        focused = regionComponent;
         paintComponent(g);
     }
 

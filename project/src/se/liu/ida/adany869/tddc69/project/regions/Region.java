@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 public class Region extends Observable{
-    private int armies;
+    private int armySize;
     //private int armiesReadyToBeDeployed = 0;
     private Player player = new Player("none", Color.DARK_GRAY);
     private String name;
@@ -27,18 +27,18 @@ public class Region extends Observable{
         return neighbours;
     }
 
-    public int getArmies() {
-        return armies;
+    public int getArmySize() {
+        return armySize;
     }
 
-    public void setArmies(int armies) {
-        this.armies = armies;
+    public void setArmySize(int armySize) {
+        this.armySize = armySize;
         setChanged();
         notifyObservers();
     }
 
     public void addArmy(int armies){
-        this.armies += armies;
+        this.armySize += armies;
         setChanged();
         notifyObservers();
     }
@@ -77,7 +77,7 @@ public class Region extends Observable{
         for (int i = 0; i < attackSize; i++) {
             attackerDices.add(new Dice());
         }
-        for (int i = 0; i < (attacked.getArmies() >= 2 ? 2 : 1); i++){
+        for (int i = 0; i < (attacked.armySize >= 2 ? 2 : 1); i++){
             defenderDices.add(new Dice());
         }
 

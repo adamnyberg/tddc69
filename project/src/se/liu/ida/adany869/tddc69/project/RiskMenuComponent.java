@@ -25,7 +25,6 @@ public class RiskMenuComponent extends JComponent{
         @Override
         public void actionPerformed(ActionEvent e) {
             setActiveButton(reinforceButton);
-            risk.regionController.resetFocus();
             risk.setActionState(new ReinforceState(risk));
 
         }
@@ -60,8 +59,9 @@ public class RiskMenuComponent extends JComponent{
     }
 
     private void addPlayersInfo() {
-        this.add(new PlayerComponent(risk.getPlayers()[0]));
-        this.add(new PlayerComponent(risk.getPlayers()[1]));
+        for (Player player : risk.getPlayers()) {
+            this.add(new PlayerComponent(player));
+        }
     }
 
     private void addStateButtons(){
@@ -75,7 +75,7 @@ public class RiskMenuComponent extends JComponent{
         this.add(fortifyButton);
 
         nextPlayerButton.setText("Next Player");
-        this.add(nextPlayerButton);
+        this.add(nextPlayerButton, "wrap");
     }
 
     private void addContinentsInfo() {

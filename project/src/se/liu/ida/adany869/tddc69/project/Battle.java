@@ -20,14 +20,14 @@ public class Battle {
         while (ongoingBattle){
 
             armiesA -= regionA.attack(regionB, (armiesA >= 3 ? 3 : armiesA));
-            ongoingBattle = (armiesA > 0 && regionB.getArmies() > 0);
+            ongoingBattle = (armiesA > 0 && regionB.getArmySize() > 0);
         }
-        if (regionB.getArmies() <= 0){
+        if (regionB.getArmySize() <= 0){
             playerB.removeRegion(regionB);
             playerA.addRegion(regionB);
             playerA.setAttackedAndWon(true);
             if (armiesA > 3){
-                regionB.setArmies(3);
+                regionB.setArmySize(3);
                 regionA.addArmy(-3);
                 SliderPane slider = new SliderPane(0, armiesA-3, "Select amount to move: ");
                 int fortifySize = slider.getValue();
@@ -35,7 +35,7 @@ public class Battle {
                 regionA.addArmy(-fortifySize);
             }
             else {
-                regionB.setArmies(armiesA);
+                regionB.setArmySize(armiesA);
                 regionA.addArmy(-armiesA);
             }
         }

@@ -6,13 +6,14 @@ import se.liu.ida.adany869.tddc69.project.regions.Region;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Observable;
 
 public class Player extends Observable{
 
     private String name;
     private Color color;
-    private ArrayList<Region> regions;
+    private Collection<Region> regions;
     private ArrayList<Cards> cards;
     private int armyReserve;
     private boolean attackedAndWon = false;
@@ -43,8 +44,8 @@ public class Player extends Observable{
         return this.attackedAndWon;
     }
 
-    public void setAttackedAndWon(boolean b) {
-        this.attackedAndWon = b;
+    public void setAttackedAndWon(boolean isAttackedAndWon) {
+        this.attackedAndWon = isAttackedAndWon;
     }
 
     public String getName() {
@@ -73,10 +74,6 @@ public class Player extends Observable{
         this.regions.remove(region);
     }
 
-    public ArrayList<Region> getRegions() {
-        return regions;
-    }
-
     public void addArmyToRegion(Region region){
         if (armyReserve > 0){
             region.addArmy(1);
@@ -87,7 +84,7 @@ public class Player extends Observable{
 
     public void addCard() {
         this.cards.add(Deck.getInstance().getCard());
-        this.setAttackedAndWon(false);
+        this.attackedAndWon = false;
     }
 
     public ArrayList<Cards> getCards() {

@@ -18,7 +18,7 @@ public class FortifyState extends ActionState {
             else if (risk.getActivePlayer() == region.getOwner()){
                 Region fortifier = this.risk.getFocused();
                 if (fortifier.isNeighbour(region)){
-                    SliderPane slider = new SliderPane(0, fortifier.getArmies()-1, "Select amount to move: ");
+                    SliderPane slider = new SliderPane(0, fortifier.getArmySize()-1, "Select amount to move: ");
                     int fortifySize = slider.getValue();
                     region.addArmy(fortifySize);
                     fortifier.addArmy(-fortifySize);

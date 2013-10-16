@@ -25,11 +25,7 @@ public class Map {
             new Region("MARS")          // 13
     };
 
-    private Player[] players = {
-
-            new Player("Adam", Color.green, true),
-            new Player("Harald", Color.pink)
-    };
+    private Player[] players;
 
     private Continent westWest = new Continent("West Western", 5, Color.DARK_GRAY, new Region[]{regions[0], regions[1], regions[4]});
     private Continent eastWest = new Continent("East Western", 5, Color.cyan, new Region[]{regions[2], regions[8], regions[9]});
@@ -49,26 +45,36 @@ public class Map {
             east
     };
 
-    public Map() {
+    public Map(ArrayList<String> playerNames) {
         Random randGen = new Random();
-        if (randGen.nextInt(2) == 1){
-            players = new Player[]{new Player("Harald", Color.pink, true),
-                    new Player("Adam", Color.green)};
+        players = new Player[playerNames.size()];
+        int i = 0;
+        Color[] playerColors = new Color[]{Color.blue, Color.green,
+                Color.cyan, Color.magenta, Color.orange, Color.pink};
+        while (!playerNames.isEmpty()){
+            int randInt = randGen.nextInt(playerNames.size());
+            players[i] = new Player(playerNames.get(randInt), playerColors[i]);
+            playerNames.remove(randInt);
+            i++;
         }
+        players[0].setActive(true); //Setting who is starting
 
         ArrayList<Integer> listOfRegionIndexes = new ArrayList<>();
-        for (int i = 0; i < regions.length; i++) {
-            listOfRegionIndexes.add(i);
+        for (int j = 0; j < regions.length; j++) {
+            listOfRegionIndexes.add(j);
         }
 
         while (!listOfRegionIndexes.isEmpty()) {
             for (Player player : players) {
-
                 int random = randGen.nextInt(listOfRegionIndexes.size());
                 int randomRegionIndex = listOfRegionIndexes.get(random);
-                regions[randomRegionIndex].setArmies(3);
-                player.addRegion(regions[randomRegionIndex]);
+                regions[randomRegionIndex].setArmySize(3);
+                player.addRegion(
+                        regions[randomRegionIndex]);
                 listOfRegionIndexes.remove(random);
+                if (listOfRegionIndexes.isEmpty()){
+                    break;
+                }
             }
         }
 

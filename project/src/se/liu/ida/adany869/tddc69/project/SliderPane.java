@@ -19,7 +19,7 @@ public class SliderPane {
         textField.setText(Integer.toString(slider.getValue()));
         optionPane.setMessage(new Object[]{descriptiveText, slider, textField});
         optionPane.setMessageType(JOptionPane.DEFAULT_OPTION);
-        optionPane.setOptionType(JOptionPane.OK_CANCEL_OPTION);
+        optionPane.setOptionType(JOptionPane.OK_OPTION);
         optionPane.setInputValue(minSize);
 
         JDialog dialog = optionPane.createDialog(parent, "My Slider");
@@ -46,10 +46,10 @@ public class SliderPane {
             @Override
             public void stateChanged(ChangeEvent e) {
                 JSlider theSlider = (JSlider) e.getSource();
-                Integer value = theSlider.getValue();
-                textField.setText(value.toString());
+                Integer sliderValue = theSlider.getValue();
+                textField.setText(sliderValue.toString());
                 if (!theSlider.getValueIsAdjusting()){
-                    optionPane.setInputValue(value);
+                    optionPane.setInputValue(sliderValue);
                 }
             }
         };

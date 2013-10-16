@@ -7,15 +7,11 @@ import java.lang.reflect.Method;
 
 public class MenuController implements MenuObserver {
 
-    public MenuController() {
-
-    }
-
     public void invokeMethod(String methodName, Object[] parameters){
         Class<?> thisClass = this.getClass();
 
-        Class[] classesOfParameters;
         try{
+            Class[] classesOfParameters;
             if (parameters != null){
                 classesOfParameters = new Class[parameters.length];
                 for (int i = 0; i < parameters.length; i++) {
@@ -23,8 +19,8 @@ public class MenuController implements MenuObserver {
                 }
             }
             else classesOfParameters = null;
-            Method m = thisClass.getMethod(methodName, classesOfParameters);
-            m.invoke(this, parameters);
+            Method method = thisClass.getMethod(methodName, classesOfParameters);
+            method.invoke(this, parameters);
         }
         catch(NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             System.out.println(e.toString());
@@ -32,29 +28,29 @@ public class MenuController implements MenuObserver {
     }
 
     public void update(ActionEvent e){
-        invokeMethod(e.getActionCommand(), null);
+        invokeMethod(e.getActionCommand().toLowerCase(), null);
     }
 
     //Used through invokeMethod()
-    public void Quit(){
-        String ObjButtons[] = {"Yes", "No"};
-        int PromptResult = JOptionPane.showOptionDialog(null,
+    public void quit(){
+        String[] objButtons = {"Yes", "No"};
+        int promptResult = JOptionPane.showOptionDialog(null,
                 "Are you sure you want to exit?", "Rwhisky",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
-                ObjButtons, ObjButtons[1]);
-        if (PromptResult == 0) {
+                objButtons, objButtons[1]);
+        if (promptResult == 0) {
             System.exit(0);
         }
     }
 
     //Used through invokeMethod()
-    public void Restart(){
-        String ObjButtons[] = {"Yes", "No"};
-        int PromptResult = JOptionPane.showOptionDialog(null,
+    public void restart(){
+        String[] objButtons = {"Yes", "No"};
+        int promptResult = JOptionPane.showOptionDialog(null,
                 "Are you sure you want to restart game and delete current play?", "Rwhisky",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
-                ObjButtons, ObjButtons[1]);
-        if (PromptResult == 0) {
+                objButtons, objButtons[1]);
+        if (promptResult == 0) {
             Run.main(null);
         }
     }

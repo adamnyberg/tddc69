@@ -19,9 +19,9 @@ public class PlayerComponent extends JComponent implements Observer {
         }
     });
 
-    private static int HEIGHT = 90;
-    private static int WIDTH = 150;
-    private static int BORDER_SIZE = 5;
+    private static final int HEIGHT = 90;
+    private static final int WIDTH = 150;
+    private static final int BORDER_SIZE = 5;
 
     public PlayerComponent(Player player) {
         this.setLayout(new MigLayout());
@@ -68,6 +68,8 @@ public class PlayerComponent extends JComponent implements Observer {
     }
 
     private void showCards() {
+        //Doesn't have to save the CardsPane in a variable. It will handle itself.
+        //noinspection ResultOfObjectAllocationIgnored
         new CardsPane(this.player);
     }
 }

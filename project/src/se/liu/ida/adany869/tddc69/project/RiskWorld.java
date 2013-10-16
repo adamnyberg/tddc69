@@ -14,8 +14,8 @@ public class RiskWorld extends Observable{
     private Player[] players;
     private Continent[] continents;
     private ActionState actionState = new ReinforceState(this);
-    public RegionController regionController = new RegionController(this);
-    private Region focused;
+    private RegionController regionController = new RegionController(this);
+    private Region focused = null;
     private Player activePlayer;
 
     public RiskWorld(Map map) {
@@ -56,6 +56,10 @@ public class RiskWorld extends Observable{
         this.actionState = actionState;
     }
 
+    public RegionController getRegionController() {
+        return regionController;
+    }
+
     public boolean hasFocused(){
         return focused != null;
     }
@@ -86,7 +90,6 @@ public class RiskWorld extends Observable{
     }
 
     public void nextPlayer(){
-        Player nextPlayer;
         this.resetFocus();
         this.actionState = new ReinforceState(this);
         if (activePlayer.hasAttackedAndWon()) activePlayer.addCard();
@@ -94,6 +97,7 @@ public class RiskWorld extends Observable{
             Player player = players[i];
             if (player.isActive()){
                 player.setActive(false);
+                Player nextPlayer;
                 if (i == players.length-1){
                     nextPlayer = players[0];
                 }

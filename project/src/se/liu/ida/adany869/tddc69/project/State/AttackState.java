@@ -12,13 +12,13 @@ public class AttackState extends ActionState {
     @Override
     public void doSomething(Region region) {
         if (this.risk.hasFocused()){
-            if (this.risk.getFocused() == region){
+            if (this.risk.getFocused().equals(region)){
                 this.risk.resetFocus();
             }
-            else if (risk.getActivePlayer() != region.getOwner()){
+            else if (!risk.getActivePlayer().equals(region.getOwner())){
                 Region attacker = this.risk.getFocused();
                 if (attacker.isNeighbour(region)){
-                    SliderPane slider = new SliderPane(0, attacker.getArmies()-1, "Select amount to attack with: ");
+                    SliderPane slider = new SliderPane(0, attacker.getArmySize()-1, "Select amount to attack with: ");
                     int armySize = slider.getValue();
                     Battle battle = new Battle(attacker, armySize, region);
                     battle.runBattle();
@@ -26,7 +26,7 @@ public class AttackState extends ActionState {
                 }
             }
         }
-        else if (this.risk.getActivePlayer() == region.getOwner()) {
+        else if (this.risk.getActivePlayer().equals(region.getOwner())) {
             this.risk.setFocused(region);
         }
     }
@@ -34,6 +34,6 @@ public class AttackState extends ActionState {
     @Override
     public boolean isRelevantNeighbour(Region focused, Region neighbour) {
         return focused.getNeighbours().contains(neighbour) &&
-                focused.getOwner() != neighbour.getOwner();
+                !focused.getOwner().equals(neighbour.getOwner());
     }
 }

@@ -4,9 +4,9 @@ import net.miginfocom.swing.MigLayout;
 import se.liu.ida.adany869.tddc69.project.continent.Continent;
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
+import java.util.List;
+import java.util.regex.Pattern;
 
 public class RegionComponent extends JComponent implements Observer {
     private Region region;
@@ -15,7 +15,7 @@ public class RegionComponent extends JComponent implements Observer {
     private JLabel armyText = new JLabel();
     private boolean isFocused = false;
     private Color backgroundColor;
-    private ArrayList<Continent> continents;
+    private List<Continent> continents;
 
     private static final int INIT_HEIGHT = 100;
     private static final int INIT_WIDTH = 100;
@@ -29,7 +29,7 @@ public class RegionComponent extends JComponent implements Observer {
         repaint();
     }
 
-    public RegionComponent(Region region, int yPos, int xPos, int height, int width, RegionController regionController, ArrayList<Continent> continents) {
+    public RegionComponent(Region region, int yPos, int xPos, int height, int width, RegionController regionController, List<Continent> continents) {
         this.setLayout(new MigLayout());
         this.region = region;
         this.height = height;
@@ -37,7 +37,7 @@ public class RegionComponent extends JComponent implements Observer {
         this.continents = continents;
         this.backgroundColor = this.region.getOwner().getColor();
         this.setBounds(xPos, yPos, width, height);
-        this.armyText.setText(Integer.toString(region.getArmies()));
+        this.armyText.setText(Integer.toString(region.getArmySize()));
         this.addNameLabels();
 
         this.add(armyText, "wrap");
@@ -47,7 +47,8 @@ public class RegionComponent extends JComponent implements Observer {
     }
 
     private void addNameLabels() {
-        String[] regionNameArray = this.region.getName().split(" ");
+        Pattern pattern = Pattern.compile(" ");
+        String[] regionNameArray = pattern.split(this.region.getName());
         for (String s : regionNameArray) {
             this.add(new JLabel(s), "wrap");
         }
@@ -61,16 +62,6 @@ public class RegionComponent extends JComponent implements Observer {
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(width, height);
-    }
-
-    public void setFocused(boolean focused) {
-        isFocused = focused;
-        repaint();
-    }
-
-    public void switchFocused(){
-        isFocused = !isFocused;
-        repaint();
     }
 
     @Override
@@ -98,13 +89,8 @@ public class RegionComponent extends JComponent implements Observer {
         return region;
     }
 
-    public void unHighlightNeighbours() {
-        this.backgroundColor = region.getOwner().getColor();
-        this.repaint();
-    }
-
     public void updateArmy(){
-        armyText.setText(Integer.toString(region.getArmies()));
+        armyText.setText(Integer.toString(region.getArmySize()));
     }
 
     public void updateFocus(){
