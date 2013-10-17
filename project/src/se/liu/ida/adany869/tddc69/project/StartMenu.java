@@ -64,6 +64,22 @@ public class StartMenu {
         return namesOfPlayers;
     }
 
+    public static String enterYourNamePane(){
+        Object[] optionPaneMessage = new Object[1];
+        JTextArea textArea = new JTextArea("Enter your name:");
+        optionPaneMessage[0] = textArea;
+
+        JTextField playerName = new JTextField();
+        playerName.setDocument(new JTextFieldLimit(15));
+        playerName.setText("Enter your name ");
+        optionPaneMessage[0] = playerName;
+
+        createOptionPane(optionPaneMessage);
+
+        String nameOfPlayer = ((JTextField)optionPaneMessage[0]).getText();
+        return nameOfPlayer;
+    }
+
     private static void createOptionPane(Object[] message){
         JFrame parent = new JFrame();
         optionPane.setMessage(new Object[]{message});
