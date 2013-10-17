@@ -21,7 +21,7 @@ public class RiskMenuComponent extends JComponent{
             setActiveButton(reinforceButton);
             attackButton.setEnabled(true);
             risk.nextPlayer();
-            RiskOverNetwork.sendRisk(risk);
+            RiskClient.sendRisk(risk);
         }
     });
 

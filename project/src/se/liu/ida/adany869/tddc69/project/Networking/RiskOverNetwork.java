@@ -15,13 +15,13 @@ public class RiskOverNetwork{
     private static final int PORT = 6606;
     protected static ObjectOutputStream out;
     protected static RiskFrame frame;
+    private static HashMap<String, Socket> playerToSocket = new HashMap<>();
     /*private static ObjectOutputStream out;
     private static RiskFrame frame;*/
     public static void main(String[] args) {
         Socket socket = null;
         boolean isServer = false;
         ArrayList<Socket> clients;
-        HashMap<String, Socket> playerToSocket = new HashMap<>();
         ArrayList<String> names = new ArrayList<>();
         String myName;
         int numberOfPlayers;
@@ -49,7 +49,9 @@ public class RiskOverNetwork{
                 names.add(myName);
                 numberOfPlayers = StartMenu.numberOfPlayersOptionPane();
                 for (int i = 0; i < numberOfPlayers-1; i++) {
+                    System.out.println("Looking for client");
                     Socket clientSocket = serverSocket.accept();
+                    System.out.println("Client connected");
                     clients.add(clientSocket);
                     DataInputStream nameIn = new DataInputStream(clientSocket.getInputStream());
                     String name = nameIn.readUTF();
@@ -57,7 +59,7 @@ public class RiskOverNetwork{
                     playerToSocket.put(name, clientSocket);
                 }
             } catch (Exception e1){
-                e.printStackTrace();
+                e1.printStackTrace();
                 System.exit(0);
             }
         }
@@ -75,12 +77,12 @@ public class RiskOverNetwork{
                 }
                 System.out.println(risk.getActivePlayer().getName());
                 Socket currentSocket = playerToSocket.get(risk.getActivePlayer().getName());
-                out =
-                        new ObjectOutputStream(currentSocket.getOutputStream());
+                out = new ObjectOutputStream(currentSocket.getOutputStream());
                 in = new ObjectInputStream(currentSocket.getInputStream());
                 out.writeObject(risk);
 
                 while ((risk = (RiskWorld)in.readObject()) != null){
+                    System.out.println("Server received risk");
                     if (!risk.getActivePlayer().getName().equals(myName)){
                         frame.setEnabled(false);
                         currentSocket = playerToSocket.get(risk.getActivePlayer().getName());
@@ -89,7 +91,8 @@ public class RiskOverNetwork{
                         out.writeObject(risk);
                     }
                     else {
-                        frame.setEnabled(true);
+                        frame.closeFrame();
+                        frame = new RiskFrame(risk);
                         while (risk.getActivePlayer().getName().equals(myName)){
                         }
                     }
@@ -97,11 +100,13 @@ public class RiskOverNetwork{
             }
             else{
                 out = new ObjectOutputStream(socket.getOutputStream());
+                System.out.println("out was set");
                 in = new ObjectInputStream(socket.getInputStream());
                 out.flush();
                 risk = (RiskWorld)in.readObject();
                 frame = new RiskFrame(risk);
                 while ((risk = (RiskWorld)in.readObject()) != null) {
+                    System.out.println("Client received risk");
                     frame.closeFrame();
                     frame = new RiskFrame(risk);
                 }
@@ -122,8 +127,13 @@ public class RiskOverNetwork{
     }
 
     public static void sendRisk(RiskWorld risk){
-        if (out != null){
+        //if (out != null){
             try{
+                if (out == null){
+                    System.out.println("out == null. setting out");
+                    out = new ObjectOutputStream(playerToSocket.get(
+                        risk.getActivePlayer().getName()).getOutputStream());
+                }
                 out.writeObject(risk);
                 frame.setEnabled(false);
             } catch (UnknownHostException e) {
@@ -132,9 +142,9 @@ public class RiskOverNetwork{
             } catch (IOException e) {
                 System.err.println("Couldn't get I/O for the connection to ");
                 System.exit(1);
-            } catch (Exception e){
-                e.printStackTrace();
-            }
-        }
+            } //catch (){
+                //e.printStackTrace();
+            //}
+        //}
     }
 }

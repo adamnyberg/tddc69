@@ -41,7 +41,7 @@ public class MenuController implements MenuObserver {
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
                 objButtons, objButtons[1]);
         if (promptResult == 0) {
-            RiskNetwork.sendRisk(null);
+            //RiskNetwork.sendRisk(null);
             System.exit(0);
         }
     }
