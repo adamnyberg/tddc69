@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 public class RiskFrame  extends JFrame{
     private MenuObserver menuObserver;
-    private RiskContainer riskContainer;
 
     public RiskFrame(RiskWorld risk) {
         super("Rwhisky");
@@ -15,8 +14,7 @@ public class RiskFrame  extends JFrame{
         //this.setResizable(false);
         createMenus();
 
-        riskContainer = new RiskContainer(risk);
-        this.setContentPane(riskContainer);
+        this.setContentPane(new RiskContainer(risk));
         this.pack();
         this.setVisible(true);
         this.menuObserver = new MenuController();
@@ -31,8 +29,7 @@ public class RiskFrame  extends JFrame{
     }
 
     public void updateRisk(RiskWorld risk){
-        riskContainer = new RiskContainer(risk);
-        this.setContentPane(riskContainer);
+        this.setContentPane(new RiskContainer(risk));
         this.pack();
         this.setVisible(true);
         this.setEnabled(true);
