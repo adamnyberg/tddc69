@@ -14,7 +14,6 @@ public class RiskServer{
     private int port = 6606;
     protected ObjectOutputStream out;
     protected ServerSocket serverSocket;
-    protected RiskFrame frame;
     private HashMap<String, Socket> playerToSocket = new HashMap<>();
     private HashMap<String, ClientSocket> getClientSocketByName = new HashMap<>();
     private ArrayList<ClientSocket> clients = new ArrayList<>();
@@ -129,7 +128,6 @@ public class RiskServer{
             try {
                 while ((risk = (RiskWorld)in.readObject()) != null){
                     ClientSocket nextSocket = getClientSocketByName.get(risk.getActivePlayer().getName());
-                    new RiskFrame(risk);
                     while(risk.getActivePlayer().getName().equals(this.name)){
                         //Do nothing
                     }
