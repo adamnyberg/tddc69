@@ -22,7 +22,7 @@ public class SliderPane {
         optionPane.setOptionType(JOptionPane.OK_OPTION);
         optionPane.setInputValue(minSize);
 
-        JDialog dialog = optionPane.createDialog(parent, "My Slider");
+        JDialog dialog = optionPane.createDialog(parent, "Välj värde");
         dialog.setAlwaysOnTop (true);
         dialog.setVisible(true);
 
