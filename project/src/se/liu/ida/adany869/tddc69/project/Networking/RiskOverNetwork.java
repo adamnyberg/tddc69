@@ -62,15 +62,19 @@ public class RiskOverNetwork{
                 names.add("Adam");
                 risk = new RiskWorld(new Map(names));
                 out.writeObject(risk);
-                frame = new RiskFrame((RiskWorld)in.readObject());
+                frame = new RiskFrame(risk);
+                frame.setEnabled(false);
             }
             else{
                 risk = (RiskWorld)in.readObject();
                 frame = new RiskFrame(risk);
             }
             while ((risk = (RiskWorld)in.readObject()) != null) {
-                frame.closeFrame();
-                frame = new RiskFrame(risk);
+                //frame.closeFrame();
+                //frame.setEnabled(false);
+                frame.setEnabled(true);
+                frame.updateRisk(risk);
+                //frame = new RiskFrame(risk);
             }
 
             socket.close();
@@ -89,7 +93,7 @@ public class RiskOverNetwork{
     public static void sendRisk(RiskWorld risk){
         try{
             out.writeObject(risk);
-            frame.closeFrame();
+            frame.setEnabled(false);
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host ");
             System.exit(1);
