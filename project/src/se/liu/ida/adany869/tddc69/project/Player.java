@@ -5,11 +5,12 @@ import se.liu.ida.adany869.tddc69.project.card.Deck;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Observable;
 
-public class Player extends Observable{
+public class Player extends Observable implements Serializable{
 
     private String name;
     private Color color;

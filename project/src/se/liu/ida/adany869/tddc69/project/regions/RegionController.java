@@ -6,8 +6,9 @@ import se.liu.ida.adany869.tddc69.project.Run;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
-public class RegionController extends MouseAdapter {
+public class RegionController extends MouseAdapter implements Serializable{
     private RiskWorld risk;
 
 

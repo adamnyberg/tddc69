@@ -3,8 +3,9 @@ package se.liu.ida.adany869.tddc69.project.continent;
 import se.liu.ida.adany869.tddc69.project.Player;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 import java.awt.*;
+import java.io.Serializable;
 
-public class Continent {
+public class Continent implements Serializable{
     private String name;
     private int continentValue;
     private Color color;

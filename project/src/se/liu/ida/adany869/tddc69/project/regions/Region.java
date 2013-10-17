@@ -4,10 +4,11 @@ import se.liu.ida.adany869.tddc69.project.Dice;
 import se.liu.ida.adany869.tddc69.project.Player;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
-public class Region extends Observable{
+public class Region extends Observable implements Serializable{
     private int armySize;
     //private int armiesReadyToBeDeployed = 0;
     private Player player = new Player("none", Color.DARK_GRAY);

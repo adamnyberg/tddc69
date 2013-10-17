@@ -4,7 +4,9 @@ import se.liu.ida.adany869.tddc69.project.*;
 
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 
-public abstract class ActionState {
+import java.io.Serializable;
+
+public abstract class ActionState implements Serializable{
     protected RiskWorld risk;
     protected ActionState(RiskWorld risk) {
         this.risk = risk;

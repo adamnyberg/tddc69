@@ -6,10 +6,11 @@ import se.liu.ida.adany869.tddc69.project.state.ReinforceState;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 import se.liu.ida.adany869.tddc69.project.regions.RegionController;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
-public class RiskWorld extends Observable{
+public class RiskWorld extends Observable implements Serializable{
     private Region[] regions;
     private Player[] players;
     private Continent[] continents;

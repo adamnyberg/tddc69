@@ -1,6 +1,9 @@
 package se.liu.ida.adany869.tddc69.project;
 
 import net.miginfocom.swing.MigLayout;
+import se.liu.ida.adany869.tddc69.project.Networking.RiskClient;
+import se.liu.ida.adany869.tddc69.project.Networking.RiskNetwork;
+import se.liu.ida.adany869.tddc69.project.Networking.RiskOverNetwork;
 import se.liu.ida.adany869.tddc69.project.continent.Continent;
 import se.liu.ida.adany869.tddc69.project.continent.ContinentInfoComponent;
 import se.liu.ida.adany869.tddc69.project.state.*;
@@ -18,6 +21,7 @@ public class RiskMenuComponent extends JComponent{
             setActiveButton(reinforceButton);
             attackButton.setEnabled(true);
             risk.nextPlayer();
+            RiskOverNetwork.sendRisk(risk);
         }
     });
 

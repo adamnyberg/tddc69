@@ -1,5 +1,7 @@
 package se.liu.ida.adany869.tddc69.project;
 
+import se.liu.ida.adany869.tddc69.project.Networking.RiskNetwork;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.lang.reflect.InvocationTargetException;
@@ -39,6 +41,7 @@ public class MenuController implements MenuObserver {
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
                 objButtons, objButtons[1]);
         if (promptResult == 0) {
+            RiskNetwork.sendRisk(null);
             System.exit(0);
         }
     }
