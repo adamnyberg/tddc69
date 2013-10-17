@@ -28,13 +28,6 @@ public class RiskFrame  extends JFrame{
         this.setVisible(false);
     }
 
-    public void updateRisk(RiskWorld risk){
-        this.setContentPane(new RiskContainer(risk));
-        this.pack();
-        this.setVisible(true);
-        this.setEnabled(true);
-    }
-
     private void createMenus(){
         final JMenuBar menuBar = new JMenuBar();
         final JMenu menu = new JMenu("Rwhisky");

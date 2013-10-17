@@ -22,6 +22,7 @@ public class RiskOverNetwork{
     public static void main(String[] args) {
         Socket socket = null;
         boolean isServer = false;
+        //ArrayList<Socket> clients =
         try{
             socket = new Socket(args[0], PORT);
         }catch (UnknownHostException e){
@@ -41,19 +42,12 @@ public class RiskOverNetwork{
             }
         }
         try{
-            System.out.println("asd");
             out = new ObjectOutputStream(socket.getOutputStream());
-            System.out.println(2);
             ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
             out.flush();
-            System.out.println(2.5);
-            //ObjectInputStream in =
-            //        new ObjectInputStream(is);
-            System.out.println(3);
             Scanner stdIn =
                     new Scanner(
                             new InputStreamReader(System.in));
-            System.out.println(4);
             String userInput;
             RiskWorld risk;
             if (isServer){
@@ -70,11 +64,8 @@ public class RiskOverNetwork{
                 frame = new RiskFrame(risk);
             }
             while ((risk = (RiskWorld)in.readObject()) != null) {
-                //frame.closeFrame();
-                //frame.setEnabled(false);
-                frame.setEnabled(true);
-                frame.updateRisk(risk);
-                //frame = new RiskFrame(risk);
+                frame.closeFrame();
+                frame = new RiskFrame(risk);
             }
 
             socket.close();
