@@ -94,13 +94,6 @@ public class Map {
         for (int j = 0; j < regions.length; j++) {
             listOfRegionIndexes.add(j);
         }
-
-        for (Region region : regions) {
-            players[0].addRegion(region);
-        }
-        players[1].addRegion(regions[0]);
-
-        /*
         while (!listOfRegionIndexes.isEmpty()) {
             for (Player player : players) {
                 int random = randGen.nextInt(listOfRegionIndexes.size());
@@ -113,7 +106,7 @@ public class Map {
                     break;
                 }
             }
-        }*/
+        }
 
         addRelations(new int[][]{
                 {SWEDEN,MOTHER_RUSSIA},
