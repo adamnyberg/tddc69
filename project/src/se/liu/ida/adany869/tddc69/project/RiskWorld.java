@@ -97,14 +97,21 @@ public class RiskWorld extends Observable implements Serializable{
         for (int i = 0; i < players.length; i++) {
             Player player = players[i];
             if (player.isActive()){
+                int j = i;
                 player.setActive(false);
                 Player nextPlayer;
-                if (i == players.length-1){
-                    nextPlayer = players[0];
-                }
-                else{
-                    nextPlayer = players[i+1];
-                }
+
+                do {
+                    if (j == players.length-1){
+                        nextPlayer = players[0];
+                        j = 0;
+                    }
+                    else{
+                        nextPlayer = players[j+1];
+                        j++;
+                    }
+                } while (nextPlayer.isDefeated());
+
                 nextPlayer.setActive(true);
                 nextPlayer.addReinforcement();
                 for (Continent continent : continents) {
@@ -119,7 +126,7 @@ public class RiskWorld extends Observable implements Serializable{
     public boolean checkGameOver() {
         boolean gameOver = true;
         for (int i = 0; i < regions.length - 1; i++) {
-            if (regions[i].getOwner() != regions[i + 1].getOwner()) {
+            if (!regions[i].getOwner().equals(regions[i + 1].getOwner())) {
                 gameOver = false;
             }
         }

@@ -17,7 +17,8 @@ public class RiskFrame  extends JFrame{
         this.setContentPane(new RiskContainer(risk));
         this.pack();
         this.setVisible(true);
-        this.menuObserver = new MenuController();
+        this.setBounds(this.getBounds());
+        this.menuObserver = new LocalMenuController();
     }
 
     public void notifyMenuObserver(ActionEvent e){
@@ -26,6 +27,7 @@ public class RiskFrame  extends JFrame{
 
     public final void closeFrame() {
         this.setVisible(false);
+        this.dispose();
     }
 
     private void createMenus(){
@@ -52,7 +54,8 @@ public class RiskFrame  extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyMenuObserver(e);
-                closeFrame();
+                //TODO
+                //closeFrame();
             }
         });
     }

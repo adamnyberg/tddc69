@@ -1,19 +1,17 @@
 package se.liu.ida.adany869.tddc69.project;
 
-import se.liu.ida.adany869.tddc69.project.Networking.RiskNetwork;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class MenuController implements MenuObserver {
+public class LocalMenuController implements MenuObserver {
 
     public void invokeMethod(String methodName, Object[] parameters){
         Class<?> thisClass = this.getClass();
 
         try{
-            Class[] classesOfParameters;
+            Class<?>[] classesOfParameters;
             if (parameters != null){
                 classesOfParameters = new Class[parameters.length];
                 for (int i = 0; i < parameters.length; i++) {
@@ -34,6 +32,7 @@ public class MenuController implements MenuObserver {
     }
 
     //Used through invokeMethod()
+    @SuppressWarnings("UnusedDeclaration")
     public void quit(){
         String[] objButtons = {"Yes", "No"};
         int promptResult = JOptionPane.showOptionDialog(null,
@@ -41,12 +40,14 @@ public class MenuController implements MenuObserver {
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
                 objButtons, objButtons[1]);
         if (promptResult == 0) {
+            //TODO: Remove
             //RiskNetwork.sendRisk(null);
             System.exit(0);
         }
     }
 
     //Used through invokeMethod()
+    @SuppressWarnings("UnusedDeclaration")
     public void restart(){
         String[] objButtons = {"Yes", "No"};
         int promptResult = JOptionPane.showOptionDialog(null,
@@ -54,7 +55,7 @@ public class MenuController implements MenuObserver {
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
                 objButtons, objButtons[1]);
         if (promptResult == 0) {
-            Run.main(null);
+            GameController.restart();
         }
     }
 }

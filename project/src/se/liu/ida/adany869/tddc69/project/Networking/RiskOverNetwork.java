@@ -26,7 +26,7 @@ public class RiskOverNetwork{
         String myName;
         int numberOfPlayers;
 
-        myName = StartMenu.enterYourNamePane();
+        myName = StartMenu.enterYourNamePane("Enter name:");
 
         try{
             //Try connected to a server

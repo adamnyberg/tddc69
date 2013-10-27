@@ -18,17 +18,19 @@ public class PlayerComponent extends JComponent implements Observer {
             showCards();
         }
     });
+    private JLabel nameLabel;
 
     private static final int HEIGHT = 90;
     private static final int WIDTH = 150;
     private static final int BORDER_SIZE = 5;
+    private static final float DEFEATED_OPACITY = 0.3f;
 
     public PlayerComponent(Player player) {
         this.setLayout(new MigLayout());
         this.player = player;
         this.player.addObserver(this);
-
-        this.add(new JLabel(player.getName()), "wrap");
+        this.nameLabel = new JLabel(player.getName());
+        this.add(nameLabel, "wrap");
 
         this.armyReserveLabel = new JLabel("Reserv: " + Integer.toString(player.getArmyReserve()));
         this.add(this.armyReserveLabel, "wrap");
@@ -39,7 +41,9 @@ public class PlayerComponent extends JComponent implements Observer {
         this.setBounds(0, 0, WIDTH + 2 * BORDER_SIZE, HEIGHT + 2 * BORDER_SIZE);
     }
 
+    @SuppressWarnings("RefusedBequest")
     @Override
+    //Override to make it as we want it.
     public Dimension getPreferredSize() {
         return new Dimension(WIDTH, HEIGHT);
     }
@@ -48,16 +52,24 @@ public class PlayerComponent extends JComponent implements Observer {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(player.getColor());
-        g2.fillRect(0,0, WIDTH, HEIGHT);
+        if (this.player.isDefeated()){
+            float[] RGB = new float[3];
+            RGB = this.player.getColor().getRGBColorComponents(RGB);
+            g2.setColor(new Color(RGB[0], RGB[1], RGB[2], DEFEATED_OPACITY));
+            nameLabel.setText(player.getName() + " (DEFEATED)");
+        }
+        else {
+            g2.setColor(player.getColor());
+        }
+        g2.fillRect(0, 0, WIDTH, HEIGHT);
 
         this.cardsButton.setEnabled(player.isActive());
+
         if (this.player.isActive()) {
             g2.setColor(Color.BLACK);
             g2.setStroke(new BasicStroke(BORDER_SIZE));
             g2.drawRect(0, 0, WIDTH, HEIGHT);
         }
-
     }
 
     @Override

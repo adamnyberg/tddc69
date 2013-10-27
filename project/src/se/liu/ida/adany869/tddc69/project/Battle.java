@@ -2,6 +2,10 @@ package se.liu.ida.adany869.tddc69.project;
 
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 
+/**
+ * The battle class handles battles between regions. It also handles the results and makes the changes accordingly.
+ * Every battle consists of smaller attacks. These attacks are handled by the regions them self, but called from here.
+ */
 public class Battle {
     private Region regionA;
     private int armiesA;
@@ -24,6 +28,7 @@ public class Battle {
         }
         if (regionB.getArmySize() <= 0){
             playerB.removeRegion(regionB);
+            playerB.checkDefeated();
             playerA.addRegion(regionB);
             playerA.setAttackedAndWon(true);
             if (armiesA > 3){

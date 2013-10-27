@@ -5,10 +5,8 @@ import se.liu.ida.adany869.tddc69.project.regions.RegionComponent;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
+import java.util.List;
 
 public class RiskBoardComponent extends JComponent implements Observer {
     private RiskWorld risk;
@@ -16,9 +14,12 @@ public class RiskBoardComponent extends JComponent implements Observer {
     private int width;
     private RegionRelationsComponent relations;
     private Collection<RegionComponent> regionComponents = new ArrayList<>();
-    private ArrayList<int[]> regionPositions;
+    private List<int[]> regionPositions;
     private static final int INIT_HEIGHT = 830;
     private static final int INIT_WIDTH = 1400;
+    private static final int[][] REGION_POSITIONS = {{100, 30}, {300, 50}, {50, 300}, {250, 800}, {500, 20},
+            {300, 1030}, {550, 800}, {50, 900}, {300, 350}, {550, 300}, {550, 460},
+            {480, 1280}, {190, 1230}, {10, 1250}};
 
     public RiskBoardComponent(RiskWorld risk, int height, int width) {
         this.setLayout(null);
@@ -36,7 +37,9 @@ public class RiskBoardComponent extends JComponent implements Observer {
         this(risk, INIT_HEIGHT, INIT_WIDTH);
     }
 
+    @SuppressWarnings("RefusedBequest")
     @Override
+    //Override to make it as we want it.
     public Dimension getPreferredSize() {
         return new Dimension(width, height);
     }
@@ -86,24 +89,7 @@ public class RiskBoardComponent extends JComponent implements Observer {
     }
 
     private void setRegionPositions() {
-        ArrayList<int[]> regionPos = new ArrayList<>();
-
-        regionPos.add(new int[]{100, 30});
-        regionPos.add(new int[]{300, 50});
-        regionPos.add(new int[]{50, 300});
-        regionPos.add(new int[]{250, 800});
-        regionPos.add(new int[]{500, 20});
-        regionPos.add(new int[]{300, 1030});
-        regionPos.add(new int[]{550, 800});
-        regionPos.add(new int[]{50, 900});
-        regionPos.add(new int[]{300, 350});
-        regionPos.add(new int[]{550, 300});
-        regionPos.add(new int[]{550, 460});
-        regionPos.add(new int[]{480, 1280});
-        regionPos.add(new int[]{190, 1230});
-        regionPos.add(new int[]{10, 1250});
-
-        this.regionPositions = regionPos;
+        this.regionPositions = Arrays.asList(REGION_POSITIONS);
     }
 
     @Override

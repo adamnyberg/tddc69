@@ -54,12 +54,14 @@ public class RegionComponent extends JComponent implements Observer {
         }
     }
 
-    public RegionComponent(Region region, int yPos, int xPos, RegionController regionController, ArrayList<Continent> continents) {
+    public RegionComponent(Region region, int yPos, int xPos, RegionController regionController, List<Continent> continents) {
         this(region, yPos, xPos, INIT_HEIGHT, INIT_WIDTH, regionController, continents);
     }
 
 
+    @SuppressWarnings("RefusedBequest")
     @Override
+    //Override to make it as we want it.
     public Dimension getPreferredSize() {
         return new Dimension(width, height);
     }

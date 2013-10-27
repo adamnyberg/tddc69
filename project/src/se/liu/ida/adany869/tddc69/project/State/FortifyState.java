@@ -10,23 +10,21 @@ public class FortifyState extends ActionState {
     }
 
     @Override
-    public void doSomething(Region region) {
+    public void onRegionClick(Region region) {
         if (this.risk.hasFocused()){
-            if (this.risk.getFocused() == region){
+            if (this.risk.getFocused().equals(region)){
                 this.risk.resetFocus();
             }
-            else if (risk.getActivePlayer() == region.getOwner()){
+            else if (isRelevantNeighbour(this.risk.getFocused(), region)){
                 Region fortifier = this.risk.getFocused();
-                if (fortifier.isNeighbour(region)){
-                    SliderPane slider = new SliderPane(0, fortifier.getArmySize()-1, "Select amount to move: ");
-                    int fortifySize = slider.getValue();
-                    region.addArmy(fortifySize);
-                    fortifier.addArmy(-fortifySize);
-                    this.risk.resetFocus();
-                }
+                SliderPane slider = new SliderPane(0, fortifier.getArmySize()-1, "Select amount to move: ");
+                int fortifySize = slider.getValue();
+                region.addArmy(fortifySize);
+                fortifier.addArmy(-fortifySize);
+                this.risk.resetFocus();
             }
         }
-        else if (this.risk.getActivePlayer() == region.getOwner()) {
+        else if (this.risk.getActivePlayer().equals(region.getOwner())) {
             this.risk.setFocused(region);
         }
     }
@@ -34,6 +32,6 @@ public class FortifyState extends ActionState {
     @Override
     public boolean isRelevantNeighbour(Region focused, Region neighbour) {
         return focused.getNeighbours().contains(neighbour) &&
-                focused.getOwner() == neighbour.getOwner();
+                focused.getOwner().equals(neighbour.getOwner());
     }
 }

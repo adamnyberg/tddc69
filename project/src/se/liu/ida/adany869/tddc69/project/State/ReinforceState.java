@@ -9,8 +9,8 @@ public class ReinforceState extends ActionState{
     }
 
     @Override
-    public void doSomething(Region region) {
-        if (region.getOwner() == this.risk.getActivePlayer()){
+    public void onRegionClick(Region region) {
+        if (region.getOwner().equals(this.risk.getActivePlayer())){
             region.getOwner().addArmyToRegion(region);
         }
     }

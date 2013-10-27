@@ -1,7 +1,7 @@
 package se.liu.ida.adany869.tddc69.project.regions;
 
+import se.liu.ida.adany869.tddc69.project.GameController;
 import se.liu.ida.adany869.tddc69.project.RiskWorld;
-import se.liu.ida.adany869.tddc69.project.Run;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
@@ -21,22 +21,22 @@ public class RegionController extends MouseAdapter implements Serializable{
         super.mouseClicked(e);
         RegionComponent regionComponent = (RegionComponent) e.getSource();
         Region region = regionComponent.getRegion();
-        risk.getActionState().doSomething(region);
+        risk.getActionState().onRegionClick(region);
         if (risk.checkGameOver()) {
             gameOver();
         }
     }
 
     private void gameOver() {
-        String[] objButtons = {"Restart", "Quit"};
+        String[] objButtons = {"restart", "quit"};
         int promptResult = JOptionPane.showOptionDialog(null,
                 "Game Over\n" + risk.getRegions()[0].getOwner().getName() + " won!", "Rwhisky",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
                 objButtons, objButtons[1]);
         if (promptResult == 0) {
-            Run.main(null);
+            GameController.restart();
         } else if (promptResult == 1) {
-            System.exit(1);
+            GameController.quit();
         }
     }
 }

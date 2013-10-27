@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Every player has a card pane which shows the player's cards and makes it possible to trade them in.
+ */
 public class CardsPane {
     private Player player;
     private CardComponent[] cardComponents = null;
@@ -23,6 +26,7 @@ public class CardsPane {
 
         this.dialog = cardsPane.createDialog(cardsPane, "Trade cards");
         this.dialog.setAlwaysOnTop(true);
+        this.dialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.showDialog();
     }
 
@@ -58,16 +62,15 @@ public class CardsPane {
         for (CardComponent cardComponent : this.cardComponents) {
             if (cardComponent.isSelected()) {
                 this.selectedCards.add(cardComponent);
-                System.out.println(cardComponent.getCard());
             }
         }
-        return (this.selectedCards.size() == 3
+        return this.selectedCards.size() == 3
                 &&
-                (this.selectedCards.get(0).getCard() == this.selectedCards.get(1).getCard() &&   // same cards
-                this.selectedCards.get(1).getCard() == this.selectedCards.get(2).getCard()))
+                ((this.selectedCards.get(0).getCard() == this.selectedCards.get(1).getCard() &&   // same cards
+                this.selectedCards.get(1).getCard() == this.selectedCards.get(2).getCard())
                 ||
                 (this.selectedCards.get(0).getCard() != this.selectedCards.get(1).getCard() &&  // different cards
                 this.selectedCards.get(0).getCard() != this.selectedCards.get(2).getCard() &&
-                this.selectedCards.get(1).getCard() != this.selectedCards.get(2).getCard());
+                this.selectedCards.get(1).getCard() != this.selectedCards.get(2).getCard()));
     }
 }

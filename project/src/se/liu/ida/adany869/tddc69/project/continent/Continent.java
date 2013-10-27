@@ -5,6 +5,10 @@ import se.liu.ida.adany869.tddc69.project.regions.Region;
 import java.awt.*;
 import java.io.Serializable;
 
+/**
+ * A continent contains of several regions. If a player owns all of these, they get extra reinforcement. This class
+ * controls if a player is owner of a whole continent, and if so gives an amount of reinforcement.
+ */
 public class Continent implements Serializable{
     private String name;
     private int continentValue;
@@ -33,12 +37,14 @@ public class Continent implements Serializable{
     public Player getOwner() {
         Player player = this.regions[0].getOwner();
         for (int i = 1; i < this.regions.length; i++) {
-             if (this.regions[i].getOwner() != player) return null;
+             if (!this.regions[i].getOwner().equals(player)) return null;
         }
         return player;
     }
 
     public void giveReserves(Player player) {
+        //Could be replaced with "equals()", but then there have to be a check for if this.getOwner() is null first,
+        //making it less preferable.
         if (this.getOwner() == player){
             player.addReserve(this.continentValue);
         }
@@ -46,7 +52,7 @@ public class Continent implements Serializable{
 
     public boolean containsRegion(Region region) {
         for (Region continentRegion : this.regions) {
-            if (region == continentRegion) {
+            if (region.equals(continentRegion)) {
                 return true;
             }
         }

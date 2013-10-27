@@ -2,6 +2,9 @@ package se.liu.ida.adany869.tddc69.project;
 
 import java.util.Random;
 
+/**
+ * Utility class for attacks between
+ */
 public class Dice{
     private int value = throwDice();
 

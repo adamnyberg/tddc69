@@ -3,6 +3,9 @@ import se.liu.ida.adany869.tddc69.project.*;
 
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 
+/**
+ * The attack state specifies what should happen when the player clicks on regions after clicking the attack button.
+ */
 public class AttackState extends ActionState {
 
     public AttackState(RiskWorld parent) {
@@ -10,7 +13,7 @@ public class AttackState extends ActionState {
     }
 
     @Override
-    public void doSomething(Region region) {
+    public void onRegionClick(Region region) {
         if (this.risk.hasFocused()){
             if (this.risk.getFocused().equals(region)){
                 this.risk.resetFocus();

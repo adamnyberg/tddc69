@@ -41,6 +41,10 @@ public class RegionRelationsComponent extends JComponent{
             RegionComponent regionComponent1 = regionTupel[0];
             RegionComponent regionComponent2 = regionTupel[1];
 
+            /*
+            Could be replaced with "equals()", but then there have to be a check for if this.getOwner()
+            is null first,making it less preferable.
+            */
             if ((this.focused == regionComponent1 || this.focused == regionComponent2) &&
                     (risk.getActionState().isRelevantNeighbour(this.focused.getRegion(), regionComponent1.getRegion()) ||
                     risk.getActionState().isRelevantNeighbour(this.focused.getRegion(), regionComponent2.getRegion())))

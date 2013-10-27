@@ -19,6 +19,7 @@ public class Player extends Observable implements Serializable{
     private int armyReserve;
     private boolean attackedAndWon = false;
     private boolean isActive = false;
+    private boolean isDefeated = false;
 
     public Player(String name, Color color) {
         this(name, color, false);
@@ -97,13 +98,24 @@ public class Player extends Observable implements Serializable{
         updateObservers();
     }
 
-    public void addReinforcement(){
+    public void addReinforcement() {
         int regionSize = regions.size();
         this.addReserve(regionSize > 4 ? regionSize : 4);
     }
 
-    public void updateObservers(){
+    public void updateObservers() {
         setChanged();
         notifyObservers();
+    }
+
+    public void checkDefeated(){
+        if (regions.isEmpty()) {
+            isDefeated = true;
+            updateObservers();
+        }
+    }
+
+    public boolean isDefeated() {
+        return isDefeated;
     }
 }

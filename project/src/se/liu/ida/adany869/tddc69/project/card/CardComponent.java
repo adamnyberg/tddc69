@@ -6,6 +6,9 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * Shows the cards in the card pane.
+ */
 public class CardComponent extends JComponent implements MouseListener {
 
     private Cards card;
@@ -26,7 +29,9 @@ public class CardComponent extends JComponent implements MouseListener {
         return card;
     }
 
+    @SuppressWarnings("RefusedBequest")
     @Override
+    //Override to make it as we want it.
     public Dimension getPreferredSize() {
         return new Dimension(WIDTH, HEIGHT);
     }

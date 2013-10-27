@@ -6,25 +6,27 @@ import se.liu.ida.adany869.tddc69.project.Player;
 import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Observable;
 
 public class Region extends Observable implements Serializable{
     private int armySize;
-    //private int armiesReadyToBeDeployed = 0;
     private Player player = new Player("none", Color.DARK_GRAY);
     private String name;
-    private ArrayList<Region> neighbours = new ArrayList<>();
+    private Collection<Region> neighbours = new ArrayList<>();
     private boolean isFocused;
+    private static final int INIT_ARMY_SIZE = 3;
 
     public Region(String name) {
         this.name = name;
+        this.armySize = INIT_ARMY_SIZE;
     }
 
     public String getName() {
         return name;
     }
 
-    public ArrayList<Region> getNeighbours() {
+    public Collection<Region> getNeighbours() {
         return neighbours;
     }
 

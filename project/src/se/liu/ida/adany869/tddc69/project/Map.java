@@ -25,16 +25,45 @@ public class Map {
             new Region("MARS")          // 13
     };
 
+    //Indexes:
+    private static final int SWEDEN = 0;
+    private static final int MOTHER_RUSSIA = 1;
+    private static final int MONGOLA = 2;
+    private static final int USA = 3;
+    private static final int NORTH_KOREA = 4;
+    private static final int CHINA = 5;
+    private static final int EGYPT = 6;
+    private static final int SIBIRIA = 7;
+    private static final int ENGLAND = 8;
+    private static final int IRAN = 9;
+    private static final int FINLAND = 10;
+    private static final int CYPRUS = 11;
+    private static final int MOON = 12;
+    private static final int MARS = 13;
+
+    private static final int WEST_WEST_VALUE = 5;
+    private static final int EAST_WEST_VALUE = 5;
+    private static final int WEST_VALUE = 7;
+    private static final int OUTER_SPACE_VALUE = 2;
+    private static final int SOUTH_EAST_VALUE = 3;
+    private static final int EAST_VALUE = 7;
+
     private Player[] players;
 
-    private Continent westWest = new Continent("West Western", 5, Color.DARK_GRAY, new Region[]{regions[0], regions[1], regions[4]});
-    private Continent eastWest = new Continent("East Western", 5, Color.cyan, new Region[]{regions[2], regions[8], regions[9]});
-    private Continent west = new Continent("Western", 7, Color.MAGENTA, new Region[]{
-            regions[0], regions[1], regions[4], regions[2], regions[8], regions[9]
+    private Continent westWest = new Continent("West Western", WEST_WEST_VALUE, Color.DARK_GRAY,
+            new Region[]{regions[SWEDEN], regions[MOTHER_RUSSIA], regions[NORTH_KOREA]});
+    private Continent eastWest = new Continent("East Western", EAST_WEST_VALUE, Color.cyan,
+            new Region[]{regions[MONGOLA], regions[ENGLAND], regions[IRAN]});
+    private Continent west = new Continent("Western", WEST_VALUE, Color.MAGENTA, new Region[]{
+            regions[SWEDEN], regions[MOTHER_RUSSIA], regions[NORTH_KOREA],
+            regions[MONGOLA], regions[ENGLAND], regions[IRAN]
     });
-    private Continent outerSpace = new Continent("Outer Space", 3, Color.orange, new Region[]{regions[12], regions[13]});
-    private Continent southEast = new Continent("South East", 3, Color.blue, new Region[]{regions[5], regions[6], regions[11]});
-    private Continent east = new Continent("East", 7, Color.red, new Region[]{regions[5], regions[6], regions[11], regions[3], regions[7]});
+    private Continent outerSpace = new Continent("Outer Space", OUTER_SPACE_VALUE, Color.orange,
+            new Region[]{regions[MOON], regions[MARS]});
+    private Continent southEast = new Continent("South East", SOUTH_EAST_VALUE, Color.blue,
+            new Region[]{regions[CHINA], regions[EGYPT], regions[CYPRUS]});
+    private Continent east = new Continent("East", EAST_VALUE, Color.red,
+            new Region[]{regions[CHINA], regions[EGYPT], regions[CYPRUS], regions[USA], regions[SIBIRIA]});
 
     private Continent[] continents = new Continent[]{
             westWest,
@@ -49,8 +78,10 @@ public class Map {
         Random randGen = new Random();
         players = new Player[playerNames.size()];
         int i = 0;
+
         Color[] playerColors = new Color[]{Color.blue, Color.green,
                 Color.cyan, Color.magenta, Color.orange, Color.pink};
+
         while (!playerNames.isEmpty()){
             int randInt = randGen.nextInt(playerNames.size());
             players[i] = new Player(playerNames.get(randInt), playerColors[i]);
@@ -64,11 +95,17 @@ public class Map {
             listOfRegionIndexes.add(j);
         }
 
+        for (Region region : regions) {
+            players[0].addRegion(region);
+        }
+        players[1].addRegion(regions[0]);
+
+        /*
         while (!listOfRegionIndexes.isEmpty()) {
             for (Player player : players) {
                 int random = randGen.nextInt(listOfRegionIndexes.size());
                 int randomRegionIndex = listOfRegionIndexes.get(random);
-                regions[randomRegionIndex].setArmySize(3);
+                //regions[randomRegionIndex].setArmySize(3);
                 player.addRegion(
                         regions[randomRegionIndex]);
                 listOfRegionIndexes.remove(random);
@@ -76,31 +113,31 @@ public class Map {
                     break;
                 }
             }
-        }
+        }*/
 
         addRelations(new int[][]{
-                {0,1},
-                {0,2},
-                {1,2},
-                {1,4},
-                {4,8},
-                {2,7},
-                {2,8},
-                {3,8},
-                {3,6},
-                {3,7},
-                {3,10},
-                {8,9},
-                {4,9},
-                {9,10},
-                {10,6},
-                {5,6},
-                {5,7},
-                {11,5},
-                {11,6},
-                {12,7},
-                {12,13},
-                {13,7}
+                {SWEDEN,MOTHER_RUSSIA},
+                {SWEDEN,MONGOLA},
+                {MOTHER_RUSSIA,MONGOLA},
+                {MOTHER_RUSSIA,NORTH_KOREA},
+                {NORTH_KOREA,ENGLAND},
+                {MONGOLA,SIBIRIA},
+                {MONGOLA,ENGLAND},
+                {USA,ENGLAND},
+                {USA,EGYPT},
+                {USA,SIBIRIA},
+                {USA,FINLAND},
+                {ENGLAND,IRAN},
+                {NORTH_KOREA,IRAN},
+                {IRAN,FINLAND},
+                {FINLAND,EGYPT},
+                {CHINA,EGYPT},
+                {CHINA,SIBIRIA},
+                {CYPRUS,CHINA},
+                {CYPRUS,EGYPT},
+                {MOON,SIBIRIA},
+                {MOON,MARS},
+                {MARS,SIBIRIA}
         });
     }
 

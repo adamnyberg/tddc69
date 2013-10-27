@@ -43,7 +43,14 @@ public class RiskServer{
                 Socket socket = serverSocket.accept();
                 System.out.println("Client connected");
                 DataInputStream nameIn = new DataInputStream(socket.getInputStream());
+                DataOutputStream nameOkOut = new DataOutputStream(socket.getOutputStream());
                 String name = nameIn.readUTF();
+                while (names.contains(name)){
+                    nameOkOut.writeUTF("Occupied");
+                    name = nameIn.readUTF();
+                }
+                nameOkOut.writeUTF("OK");
+
                 System.out.println(name + " connected");
                 ClientSocket clientSocket = new ClientSocket(socket, name);
                 System.out.println(4);
@@ -61,9 +68,8 @@ public class RiskServer{
             System.out.println(risk.getActivePlayer().getName());
             ClientSocket currentSocket = getClientSocketByName.get(risk.getActivePlayer().getName());
             currentSocket.sendTo(risk);
-            while(!getClientSocketByName.isEmpty()){
-                //Do nothing
-            }
+            Thread IOthread = new Thread(new IOListener(this));
+            IOthread.start();
 
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host ");
@@ -75,6 +81,30 @@ public class RiskServer{
         } catch (Exception e){
             e.printStackTrace();
             System.exit(0);
+        }
+    }
+
+    private class IOListener implements Runnable{
+        private IOListener(RiskServer riskServer) {
+        }
+
+        @Override
+
+        public void run() {
+            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Enter \"quit server\" to disconnect all clients and shut the server down");
+            try {
+            while (!in.readLine().equals("quit server")){
+                System.out.println("Enter \"quit server\" to disconnect all clients and shut the server down");
+            }
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+            for (ClientSocket clientSocket : riskServer.clients) {
+                clientSocket.close();
+            }
+            System.out.println("All clients have been disconnected");
+
         }
     }
 
@@ -104,6 +134,8 @@ public class RiskServer{
         private ObjectInputStream in;
         private ObjectOutputStream out;
         private String name;
+        private Socket socket;
+
         private ClientSocket(Socket socket, String name) {
             this.name = name;
             try {
@@ -128,14 +160,23 @@ public class RiskServer{
             try {
                 while ((risk = (RiskWorld)in.readObject()) != null){
                     ClientSocket nextSocket = getClientSocketByName.get(risk.getActivePlayer().getName());
-                    while(risk.getActivePlayer().getName().equals(this.name)){
-                        //Do nothing
-                    }
                     nextSocket.sendTo(risk);
                 }
             } catch (IOException e){
-                e.printStackTrace();
+                //e.printStackTrace();
+                System.out.println("Player disconnected");
+                System.exit(0);
             } catch (ClassNotFoundException e){
+                e.printStackTrace();
+            }
+        }
+
+        public void close(){
+            sendTo(null);
+            try {
+                socket.close();
+                System.out.println(name + " has been disconnected");
+            } catch (IOException e){
                 e.printStackTrace();
             }
         }

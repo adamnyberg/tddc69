@@ -22,16 +22,22 @@ public class RiskClient{
         Socket socket = null;
         String myName;
 
-        myName = StartMenu.enterYourNamePane();
+        myName = StartMenu.enterYourNamePane("Enter name:");
 
         try{
             //Try connected to a server
             socket = new Socket(args[0], PORT);
             System.out.println("Successfully connected to server");
             DataOutputStream nameOut = new DataOutputStream(socket.getOutputStream());
+            DataInputStream nameOkIn = new DataInputStream(socket.getInputStream());
             nameOut.writeUTF(myName);
+            String serverOkWithName = nameOkIn.readUTF();
+            while (!serverOkWithName.equals("OK")){
+                myName = StartMenu.enterYourNamePane("That name is already taken.\nPlease enter a new name:");
+                nameOut.writeUTF(myName);
+                serverOkWithName = nameOkIn.readUTF();
+            }
             ObjectInputStream in;
-
             RiskWorld risk;
             out = new ObjectOutputStream(socket.getOutputStream());
             System.out.println("out was set");
@@ -43,6 +49,9 @@ public class RiskClient{
                 System.out.println("Client received risk");
                 frame.closeFrame();
                 frame = new RiskFrame(risk);
+                if (!risk.getActivePlayer().getName().equals(myName)){
+                    frame.setEnabled(false);
+                }
             }
             System.out.println("Closed");
             socket.close();
@@ -79,5 +88,14 @@ public class RiskClient{
         //e.printStackTrace();
         //}
         //}
+    }
+
+    public static void sendMessage(String message, String from){
+        try{
+            DataOutputStream msgOut = new DataOutputStream(playerToSocket.get(from).getOutputStream());
+            msgOut.writeUTF(message);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
