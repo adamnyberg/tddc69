@@ -4,7 +4,11 @@ import se.liu.ida.adany869.tddc69.project.RiskWorld;
 import se.liu.ida.adany869.tddc69.project.SliderPane;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 
-public class FortifyState extends ActionState {
+/**
+ * A state which gives the players the ability to move their troops between regions. This is the last thing a player
+ * can do before ending its turn.
+ */
+public class FortifyState extends AbstractState {
     public FortifyState(RiskWorld parent) {
         super(parent);
     }

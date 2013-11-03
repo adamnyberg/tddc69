@@ -6,7 +6,7 @@ import se.liu.ida.adany869.tddc69.project.regions.Region;
 /**
  * The attack state specifies what should happen when the player clicks on regions after clicking the attack button.
  */
-public class AttackState extends ActionState {
+public class AttackState extends AbstractState {
 
     public AttackState(RiskWorld parent) {
         super(parent);

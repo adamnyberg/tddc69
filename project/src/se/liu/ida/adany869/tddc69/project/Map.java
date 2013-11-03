@@ -7,7 +7,11 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Map {
+/**
+ * Sets up a logic map for the game. Here the value and relations of the regions and continents is set.
+ * The RiskWorld class' constructor takes an AbstractMap, to change the game board, create a new AbstractMap.
+ */
+public class Map implements AbstractMap{
     private Region[] regions = {
             new Region("SWEDEN"),       // 0
             new Region("MOTHER RUSSIA"),// 1
@@ -98,7 +102,6 @@ public class Map {
             for (Player player : players) {
                 int random = randGen.nextInt(listOfRegionIndexes.size());
                 int randomRegionIndex = listOfRegionIndexes.get(random);
-                //regions[randomRegionIndex].setArmySize(3);
                 player.addRegion(
                         regions[randomRegionIndex]);
                 listOfRegionIndexes.remove(random);

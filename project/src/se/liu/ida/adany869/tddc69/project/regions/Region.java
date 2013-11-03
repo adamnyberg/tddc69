@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Observable;
 
+/**
+ * The game consists of regions. Each region has an owner and atleast an army size of one. Each region is
+ * visually represented by a RegionComponent, which automatically updates when the region alters. Region can
+ * be a part of one or several continents. The region holds information about which regions it is adjacent to,
+ * its neighbours. The neighbours can be attacked or fortified, depending on the ownership of the regions.
+ */
 public class Region extends Observable implements Serializable{
     private int armySize;
     private Player player = new Player("none", Color.DARK_GRAY);
@@ -64,6 +70,7 @@ public class Region extends Observable implements Serializable{
         return neighbours.contains(region);
     }
 
+    //The region is focused if the player has clicked it's RegionComponent.
     public boolean isFocused() {
         return isFocused;
     }
@@ -95,6 +102,7 @@ public class Region extends Observable implements Serializable{
         return attackerLoss;
     }
 
+    //Consumes and returns the dice with the highest value. Used to decide losses in a battle.
     private int popMax(ArrayList<Dice> dices){
         Dice max = dices.get(0);
         for (Dice dice : dices) {

@@ -8,7 +8,11 @@ import se.liu.ida.adany869.tddc69.project.state.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-public class RiskMenuComponent extends JComponent{
+/**
+ * The RiskInformationComponent is the top part of the RiskContainer. It shows information about the players and
+ * the continents. It aslo holds the action buttons, controlling the states of the game.
+ */
+public class RiskInformationComponent extends JComponent{
     private RiskWorld risk;
 
     private JButton nextPlayerButton = new JButton(new AbstractAction() {
@@ -18,8 +22,6 @@ public class RiskMenuComponent extends JComponent{
             setActiveButton(reinforceButton);
             attackButton.setEnabled(true);
             risk.nextPlayer();
-            //TODO: Fix network or remove it.
-            //RiskClient.sendRisk(risk);
         }
     });
 
@@ -27,7 +29,7 @@ public class RiskMenuComponent extends JComponent{
         @Override
         public void actionPerformed(ActionEvent e) {
             setActiveButton(reinforceButton);
-            risk.setActionState(new ReinforceState(risk));
+            risk.setAbstractState(new ReinforceState(risk));
 
         }
     });
@@ -37,7 +39,7 @@ public class RiskMenuComponent extends JComponent{
         public void actionPerformed(ActionEvent e) {
             setActiveButton(attackButton);
             reinforceButton.setEnabled(false);
-            risk.setActionState(new AttackState(risk));
+            risk.setAbstractState(new AttackState(risk));
         }
     });
 
@@ -47,12 +49,12 @@ public class RiskMenuComponent extends JComponent{
             setActiveButton(fortifyButton);
             reinforceButton.setEnabled(false);
             attackButton.setEnabled(false);
-            risk.setActionState(new FortifyState(risk));
+            risk.setAbstractState(new FortifyState(risk));
             risk.resetFocus();
         }
     });
 
-    public RiskMenuComponent(RiskWorld risk) {
+    public RiskInformationComponent(RiskWorld risk) {
         this.setLayout(new MigLayout());
         this.risk = risk;
         this.addPlayersInfo();

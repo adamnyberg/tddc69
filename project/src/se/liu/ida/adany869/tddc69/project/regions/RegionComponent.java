@@ -8,6 +8,9 @@ import java.util.*;
 import java.util.List;
 import java.util.regex.Pattern;
 
+/**
+ * Each RegionComponent represents a Region. It observes the Region and displays information about it.
+ */
 public class RegionComponent extends JComponent implements Observer {
     private Region region;
     private int height;

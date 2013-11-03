@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
+/**
+ * Displays the relations between the regions. Two neighbours have a line between them to show that they're
+ * related.
+ */
 public class RegionRelationsComponent extends JComponent{
     private Collection<RegionComponent[]> relations = new ArrayList<>();
     private RiskWorld risk;
@@ -45,9 +49,10 @@ public class RegionRelationsComponent extends JComponent{
             Could be replaced with "equals()", but then there have to be a check for if this.getOwner()
             is null first,making it less preferable.
             */
+            //noinspection ObjectEquality
             if ((this.focused == regionComponent1 || this.focused == regionComponent2) &&
-                    (risk.getActionState().isRelevantNeighbour(this.focused.getRegion(), regionComponent1.getRegion()) ||
-                    risk.getActionState().isRelevantNeighbour(this.focused.getRegion(), regionComponent2.getRegion())))
+                    (risk.getAbstractState().isRelevantNeighbour(this.focused.getRegion(), regionComponent1.getRegion()) ||
+                    risk.getAbstractState().isRelevantNeighbour(this.focused.getRegion(), regionComponent2.getRegion())))
                 g2.setColor(Color.RED);
 
             g2.drawLine(regionComponent1.getX()+regionComponent1.getWidth()/2,

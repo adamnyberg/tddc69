@@ -9,6 +9,10 @@ import java.awt.event.ActionEvent;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Each PlayerComponent observes a Player object, displaying information about the player on the screen;
+ * i.e. the army reserve size, and if the player been defeated.
+ */
 public class PlayerComponent extends JComponent implements Observer {
     private Player player = null;
     private JLabel armyReserveLabel;
@@ -53,9 +57,9 @@ public class PlayerComponent extends JComponent implements Observer {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         if (this.player.isDefeated()){
-            float[] RGB = new float[3];
-            RGB = this.player.getColor().getRGBColorComponents(RGB);
-            g2.setColor(new Color(RGB[0], RGB[1], RGB[2], DEFEATED_OPACITY));
+            float[] rgb = new float[3];
+            rgb = this.player.getColor().getRGBColorComponents(rgb);
+            g2.setColor(new Color(rgb[0], rgb[1], rgb[2], DEFEATED_OPACITY));
             nameLabel.setText(player.getName() + " (DEFEATED)");
         }
         else {

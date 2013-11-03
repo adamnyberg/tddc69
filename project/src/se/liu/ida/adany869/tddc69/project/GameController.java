@@ -2,8 +2,14 @@ package se.liu.ida.adany869.tddc69.project;
 
 import java.awt.*;
 
+/**
+ * An utility class which holds the methods for quiting and restarting the game.
+ */
 public final class GameController {
-    public static final void restart(){
+    private GameController() {
+    }
+
+    public static void restart(){
         for (Window window : Window.getWindows()) {
             window.dispose();
         }
@@ -11,7 +17,7 @@ public final class GameController {
         Run.main(null);
     }
 
-    public static final void quit(){
+    public static void quit(){
         System.exit(0);
     }
 }

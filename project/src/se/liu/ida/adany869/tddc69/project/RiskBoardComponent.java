@@ -8,6 +8,12 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
+/**
+ * This is the bottom part of the RiskContainer. This contains all the RegionComponents and their
+ * RelationComponents. This is where the RegionComponents get their positions. The RiskBoardComponent
+ * observes the RiskWorld object, this is beause it updates the RegionRelationComponents' colors
+ * depending on if a RegionComponent is selected and which other Regions it currently can interact with.
+ */
 public class RiskBoardComponent extends JComponent implements Observer {
     private RiskWorld risk;
     private int height;
@@ -47,7 +53,6 @@ public class RiskBoardComponent extends JComponent implements Observer {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        //TODO: relations shouldn't have to call update itself
         this.relations.update(g, this.getRegionComponent(risk.getFocused()));
     }
 

@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The window, showing the game. This is also where somewhat of a game loop exist, as long as the window isn't closed,
+ * the game runs.
+ */
 public class RiskFrame  extends JFrame{
     private MenuObserver menuObserver;
 
@@ -23,11 +27,6 @@ public class RiskFrame  extends JFrame{
 
     public void notifyMenuObserver(ActionEvent e){
         this.menuObserver.update(e);
-    }
-
-    public final void closeFrame() {
-        this.setVisible(false);
-        this.dispose();
     }
 
     private void createMenus(){
@@ -54,8 +53,6 @@ public class RiskFrame  extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyMenuObserver(e);
-                //TODO
-                //closeFrame();
             }
         });
     }

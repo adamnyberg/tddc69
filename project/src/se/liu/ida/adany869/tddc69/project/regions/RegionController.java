@@ -8,9 +8,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
 
+/**
+ * This controller listens to mouse clicks on the RegionComponents and calls the RiskWorld object, which holds
+ * the current state of the game, which conducts the appropriate action. Its the communication channel between
+ * the RegionComponents and the Regions.
+ */
 public class RegionController extends MouseAdapter implements Serializable{
     private RiskWorld risk;
-
 
     public RegionController(RiskWorld risk) {
         this.risk = risk;
@@ -21,7 +25,7 @@ public class RegionController extends MouseAdapter implements Serializable{
         super.mouseClicked(e);
         RegionComponent regionComponent = (RegionComponent) e.getSource();
         Region region = regionComponent.getRegion();
-        risk.getActionState().onRegionClick(region);
+        risk.getAbstractState().onRegionClick(region);
         if (risk.checkGameOver()) {
             gameOver();
         }

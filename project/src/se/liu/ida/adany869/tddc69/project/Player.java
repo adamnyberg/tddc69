@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Observable;
 
+/**
+ * The player objects holds information about one player each. This class is observed by PlayerComponent, which
+ * displays necessary information about the player.
+ */
 public class Player extends Observable implements Serializable{
 
     private String name;
@@ -33,6 +37,7 @@ public class Player extends Observable implements Serializable{
         this.cards = new ArrayList<>();
     }
 
+    //Return true if it's the player's turn to play.
     public boolean isActive() {
         return isActive;
     }
@@ -42,6 +47,9 @@ public class Player extends Observable implements Serializable{
         updateObservers();
     }
 
+    /*Return true if the player has conquered atleast one region this turn. This is used to decide if the
+    player should get a card or not.
+     */
     public boolean hasAttackedAndWon() {
         return this.attackedAndWon;
     }

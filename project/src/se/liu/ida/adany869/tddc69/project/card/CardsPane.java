@@ -57,7 +57,7 @@ public class CardsPane {
         return localCardComponents;
     }
 
-    private boolean isSelectedTradeable() { // NOT a FUCKING TYPO, IDIOT!
+    private boolean isSelectedTradeable() {
         this.selectedCards = new ArrayList<>();
         for (CardComponent cardComponent : this.cardComponents) {
             if (cardComponent.isSelected()) {

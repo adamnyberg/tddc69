@@ -1,6 +1,5 @@
 package se.liu.ida.adany869.tddc69.project;
 
-import se.liu.ida.adany869.tddc69.project.Networking.RiskClient;
 
 public class GameControllerTEST {
     private RiskWorld risk;

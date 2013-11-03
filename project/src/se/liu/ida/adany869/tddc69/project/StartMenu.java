@@ -7,6 +7,9 @@ import javax.swing.text.JTextComponent;
 import javax.swing.text.PlainDocument;
 import java.util.ArrayList;
 
+/**
+ * An utility class for getting input panes. These are used to set the number of players and their names.
+ */
 public final class StartMenu {
     private static final int MAX_NUMBER_OF_PLAYERS = 6;
     private static final int MIN_NUMBER_OF_PLAYERS = 2;
@@ -89,6 +92,7 @@ public final class StartMenu {
         return namesOfPlayers;
     }
 
+    //A method for multiplaying on several computers
     public static String enterYourNamePane(String descriptiveText){
         Object[] optionPaneMessage = new Object[2];
 

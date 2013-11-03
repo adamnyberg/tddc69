@@ -45,6 +45,7 @@ public class Continent implements Serializable{
     public void giveReserves(Player player) {
         //Could be replaced with "equals()", but then there have to be a check for if this.getOwner() is null first,
         //making it less preferable.
+        //noinspection ObjectEquality
         if (this.getOwner() == player){
             player.addReserve(this.continentValue);
         }

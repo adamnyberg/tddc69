@@ -5,8 +5,12 @@ import java.awt.event.ActionEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+/**
+ * This class listens to the menu bar and declares what's going to happen when a menu object is pressed.
+ */
 public class LocalMenuController implements MenuObserver {
 
+    //A method for running other methods, only getting a string of the action.
     public void invokeMethod(String methodName, Object[] parameters){
         Class<?> thisClass = this.getClass();
 
@@ -40,9 +44,7 @@ public class LocalMenuController implements MenuObserver {
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
                 objButtons, objButtons[1]);
         if (promptResult == 0) {
-            //TODO: Remove
-            //RiskNetwork.sendRisk(null);
-            System.exit(0);
+            GameController.quit();
         }
     }
 
