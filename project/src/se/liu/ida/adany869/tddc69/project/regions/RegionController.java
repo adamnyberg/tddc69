@@ -6,14 +6,13 @@ import se.liu.ida.adany869.tddc69.project.RiskWorld;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.Serializable;
 
 /**
  * This controller listens to mouse clicks on the RegionComponents and calls the RiskWorld object, which holds
  * the current state of the game, which conducts the appropriate action. Its the communication channel between
  * the RegionComponents and the Regions.
  */
-public class RegionController extends MouseAdapter implements Serializable{
+public class RegionController extends MouseAdapter{
     private RiskWorld risk;
 
     public RegionController(RiskWorld risk) {

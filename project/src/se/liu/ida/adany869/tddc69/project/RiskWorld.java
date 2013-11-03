@@ -6,7 +6,6 @@ import se.liu.ida.adany869.tddc69.project.state.ReinforceState;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 import se.liu.ida.adany869.tddc69.project.regions.RegionController;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -15,7 +14,7 @@ import java.util.Observable;
  * currently is in and if someone has won. It aslo contain all the regions, players and continents. This is the logical representation of
  * the game, it has nothing to do with the graphical part.
  */
-public class RiskWorld extends Observable implements Serializable{
+public class RiskWorld extends Observable{
     private Region[] regions;
     private Player[] players;
     private Continent[] continents;

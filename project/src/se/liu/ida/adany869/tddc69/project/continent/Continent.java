@@ -3,13 +3,12 @@ package se.liu.ida.adany869.tddc69.project.continent;
 import se.liu.ida.adany869.tddc69.project.Player;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 import java.awt.*;
-import java.io.Serializable;
 
 /**
  * A continent contains of several regions. If a player owns all of these, they get extra reinforcement. This class
  * controls if a player is owner of a whole continent, and if so gives an amount of reinforcement.
  */
-public class Continent implements Serializable{
+public class Continent{
     private String name;
     private int continentValue;
     private Color color;

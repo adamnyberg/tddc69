@@ -5,7 +5,6 @@ import se.liu.ida.adany869.tddc69.project.card.Deck;
 import se.liu.ida.adany869.tddc69.project.regions.Region;
 
 import java.awt.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Observable;
@@ -14,7 +13,7 @@ import java.util.Observable;
  * The player objects holds information about one player each. This class is observed by PlayerComponent, which
  * displays necessary information about the player.
  */
-public class Player extends Observable implements Serializable{
+public class Player extends Observable{
 
     private String name;
     private Color color;

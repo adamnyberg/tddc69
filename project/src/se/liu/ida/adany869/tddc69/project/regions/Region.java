@@ -4,7 +4,6 @@ import se.liu.ida.adany869.tddc69.project.Dice;
 import se.liu.ida.adany869.tddc69.project.Player;
 
 import java.awt.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Observable;
@@ -15,7 +14,7 @@ import java.util.Observable;
  * be a part of one or several continents. The region holds information about which regions it is adjacent to,
  * its neighbours. The neighbours can be attacked or fortified, depending on the ownership of the regions.
  */
-public class Region extends Observable implements Serializable{
+public class Region extends Observable{
     private int armySize;
     private Player player = new Player("none", Color.DARK_GRAY);
     private String name;
